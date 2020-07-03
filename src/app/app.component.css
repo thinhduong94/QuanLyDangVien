@@ -1,0 +1,31 @@
+.container-fluid{
+    padding: 0;
+}
+.left-container{
+    width: 5%;
+    background: #3f51b5;
+    float: left;
+    height: 100vh;
+}
+.left-container ul{
+    list-style: none;
+    padding: 0;
+    padding-top: 40px;
+}
+.left-container li {
+    margin-top: 10px;
+    text-align: center;
+}
+.left-container li span{
+    display: inline-block;
+    width: 100%;
+}
+.left-container li a{
+    color: #ffffff;
+}
+.right-container{
+    width: 95%;
+    float: left;
+    height: 100vh;
+    position: relative;
+}

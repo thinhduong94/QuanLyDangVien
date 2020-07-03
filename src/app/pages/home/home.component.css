@@ -1,0 +1,38 @@
+.header-page{
+    width: 100%;
+    background: #3f51b5;
+    color: #ffffff;
+    line-height: 50px;
+    text-align: center;
+}
+.header-page span{
+    font-size: 20px;
+    font-weight: 500;
+}
+.content-page {
+    max-height: 600px;
+    overflow: auto;
+    padding: 10px;
+    
+}
+table {
+    width: 100%;
+}
+.search-form{
+    float: right;
+    padding: 10px;
+}
+.bottom-page{
+    display: block;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+}
+.bottom-page button {
+    border-radius: 50%;
+    background: #f44336;
+    color: #ffff;
+    width: 50px;
+    height: 50px;
+    border: none;
+}
