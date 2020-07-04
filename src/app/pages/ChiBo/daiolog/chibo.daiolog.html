@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Tạo mới thông tin Chi bộ</h1>
+<h1 mat-dialog-title>{{title}}</h1>
 <mat-dialog-content class="mat-typography">
     <form class="example-container" [formGroup]="chiBo">
         <p>
@@ -26,6 +26,6 @@
     </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button (click)="onNoClick()">đóng</button>
-  <button mat-button (click)="save()" cdkFocusInitial>Lưu</button>
+  <button mat-button (click)="onNoClick()">Đóng</button>
+  <button mat-button class="create-botton" (click)="save()" cdkFocusInitial>Lưu</button>
 </mat-dialog-actions>

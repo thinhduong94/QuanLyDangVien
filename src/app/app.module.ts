@@ -8,7 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './pages/home/home.component';
 import { ShareModule } from './app-share.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { create } from './pages/home/daiolog/create';
+import { chiboCreateDaiolog } from './pages/ChiBo/daiolog/chibo.daiolog';
+import { ChiBoComponent } from './pages/ChiBo/chibo.component';
 
 @NgModule({
     imports: [
@@ -26,7 +27,8 @@ import { create } from './pages/home/daiolog/create';
     declarations: [
         AppComponent,
         HomeComponent,
-        create
+        ChiBoComponent,
+        chiboCreateDaiolog
     ],
     providers: [
     ],

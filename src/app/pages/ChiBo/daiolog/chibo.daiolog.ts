@@ -7,25 +7,27 @@ export interface DialogData {
     id: number;
 }  
 @Component({
-    selector: 'create',
-    templateUrl: 'create.html',
-    styleUrls: ['create.scss']
+    selector: 'chibo.daiolog',
+    templateUrl: 'chibo.daiolog.html',
+    styleUrls: ['chibo.daiolog.scss']
 })
-  export class create {
+  export class chiboCreateDaiolog {
     chiBo: FormGroup;
     maChiBoControl = new FormControl('');
     tenChiBoControl = new FormControl('');
     qdThanhLapControl = new FormControl('');
     ghiChuControl = new FormControl('');
     qdThanhLapfile : string;
+    title:string = "Tạo Mới Thông Tin Chi Bộ";
     constructor(
-      public dialogRef: MatDialogRef<create>,
+      public dialogRef: MatDialogRef<chiboCreateDaiolog>,
       @Inject(MAT_DIALOG_DATA) public data: DialogData,
       public fb: FormBuilder,
       protected chiBoService: ChiBoService
       ) {
         this.createForm();
         if(data.id){
+            this.title = "Thông Tin Chi Bộ";
             this.chiBoService.get(data.id).then(data=>{
                 this.chiBo.patchValue({
                     maChiBo: data.maChiBo,
