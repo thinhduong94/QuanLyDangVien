@@ -16,8 +16,8 @@ export interface IDbResult {
  * @class TheDb
  */
 export class TheDb {
-    private static readonly version = 1;
-    private static db: Database;
+    public static readonly version = 1;
+    public static db: Database;
 
     public static selectOne(sql: string, values: {}): Promise<{}> {
         return new Promise<{}>((resolve, reject) => {

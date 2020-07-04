@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Tạo mới thông tin Chi bộ</h1>
+<mat-dialog-content class="mat-typography">
+    <form class="example-container" [formGroup]="chiBo">
+        <p>
+            <mat-form-field appearance="legacy">
+                <mat-label>Mã số Chi Bộ</mat-label>
+                <input matInput type="text" placeholder="" [formControl]="maChiBoControl" >
+              </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="legacy">
+                <mat-label>Tên Chi Bộ</mat-label>
+                <input matInput type="text" placeholder="" [formControl]="tenChiBoControl">
+              </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="legacy">
+                <mat-label>Ghi Chú</mat-label>
+                <input matInput type="text" placeholder="" [formControl]="ghiChuControl">
+            </mat-form-field>
+        </p>
+        <div>
+            <mat-label>QĐ Thành Lập <mat-icon *ngIf="qdThanhLapfile && qdThanhLapfile.length > 0" aria-hidden="false" aria-label="Example home icon">book</mat-icon> </mat-label>
+            <input class="file-input" (change)="fileEvent($event)" type="file" placeholder="" >
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">đóng</button>
+  <button mat-button (click)="save()" cdkFocusInitial>Lưu</button>
+</mat-dialog-actions>

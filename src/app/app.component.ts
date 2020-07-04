@@ -18,6 +18,7 @@ export class AppComponent {
     public heroes: Hero[];
     public title : string = "Title";
     constructor() {
+        debugger;
         Settings.initialize();
 
         if (fs.existsSync(Settings.dbPath)) {
@@ -37,9 +38,7 @@ export class AppComponent {
                     Settings.write();
                 }
             })
-            .then(() => {
-                this.getHeroes();
-            })
+            .then(() => {})
             .catch((reason) => {
                 // Handle errors
                 console.log('Error occurred while opening database: ', reason);
@@ -72,9 +71,7 @@ export class AppComponent {
                     Settings.write();
                 }
             })
-            .then(() => {
-                this.getHeroes();
-            })
+            .then(() => {})
             .catch((reason) => {
                 console.log(reason);
             });
@@ -82,36 +79,6 @@ export class AppComponent {
 
     public onRestoreDb() {
         TheDb.importJson(path.join(Settings.dbFolder, 'database.init.json'), false)
-            .then(() => {
-                this.getHeroes();
-            });
-    }
-
-    public getHeroes() {
-        Hero.getAll()
-            .then((heroes) => {
-                this.heroes = heroes;
-            });
-    }
-
-    public onMenu(hero: Hero) {
-        const menu = this.initMenu(hero);
-        menu.popup({});
-    }
-
-    private deleteHero(hero: Hero) {
-        hero.delete();
-        this.getHeroes();
-    }
-
-    private initMenu(hero: Hero): Menu {
-        const template: MenuItemConstructorOptions[] = [
-            {
-                label: `Delete ${hero.name}`,
-                click: () => this.deleteHero(hero),
-            },
-        ];
-
-        return remote.Menu.buildFromTemplate(template);
+            .then(() => {});
     }
 }

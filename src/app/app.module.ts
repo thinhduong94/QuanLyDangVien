@@ -7,6 +7,8 @@ import { MaterialModule } from './app-material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './pages/home/home.component';
 import { ShareModule } from './app-share.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { create } from './pages/home/daiolog/create';
 
 @NgModule({
     imports: [
@@ -14,14 +16,17 @@ import { ShareModule } from './app-share.module';
         AppRoutingModule,
         BrowserAnimationsModule,
         MaterialModule,
-        ShareModule
+        ShareModule,
+        FormsModule, 
+        ReactiveFormsModule
     ],
     exports:[
         MaterialModule
     ],
     declarations: [
         AppComponent,
-        HomeComponent
+        HomeComponent,
+        create
     ],
     providers: [
     ],

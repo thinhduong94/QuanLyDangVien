@@ -2,26 +2,14 @@
     "name": "./database.db",
     "version": 1,
     "tables": {
-        "hero": [
+        "chibo": [
 		    {
-		        "id": "11",
-		        "name": "Mr. Nice"
-		    },
-		    {
-		        "id": "12",
-		        "name": "Narco"
-		    },
-		    {
-		        "id": "13",
-		        "name": "Bombasto"
-		    },
-		    {
-		        "id": "14",
-		        "name": "Celeritas"
-		    },
-		    {
-		        "id": "15",
-		        "name": "Magneta"
+				"id": "1",
+				"maChiBo":"1",
+				"tenChiBo": "ten 1",
+				"qdThanhLap":"13123",
+				"ghiChu":"23123123",
+				"trangThai":0
 		    }
 		]
 	}
