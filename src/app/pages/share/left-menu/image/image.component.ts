@@ -7,7 +7,7 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 })
 export class imageComponent implements OnInit {
   imgSrc : string = '';
-  title : string = 'Hinh anh';
+  title : string = 'Hình ảnh';
   constructor(
     public dialogRef: MatDialogRef<imageComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any,
