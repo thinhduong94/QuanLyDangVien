@@ -7,6 +7,7 @@ import { ChiBoService } from 'src/app/service/chibo.service';
 import { TheDb } from 'src/app/model/thedb';
 import { MatSort } from '@angular/material/sort';
 import { chiboCreateDaiolog } from './daiolog/chibo.daiolog';
+import { imageComponent } from '../share/left-menu/image/image.component';
 @Component({
   selector: 'app-chibo',
   templateUrl: './chibo.component.html',
@@ -63,5 +64,13 @@ export class ChiBoComponent implements OnInit {
     this.chiBoService.delete(id).then(()=>{
       this.getChidos();
     })
+  }
+  public openImgDialog(img?:string): void {
+    const dialogRef = this.dialog.open(imageComponent, {
+      data: {img: img || null}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 }

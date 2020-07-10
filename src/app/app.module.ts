@@ -10,6 +10,7 @@ import { ShareModule } from './app-share.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { chiboCreateDaiolog } from './pages/ChiBo/daiolog/chibo.daiolog';
 import { ChiBoComponent } from './pages/ChiBo/chibo.component';
+import { imageComponent } from './pages/share/left-menu/image/image.component';
 
 @NgModule({
     imports: [
@@ -19,7 +20,7 @@ import { ChiBoComponent } from './pages/ChiBo/chibo.component';
         MaterialModule,
         ShareModule,
         FormsModule, 
-        ReactiveFormsModule
+        ReactiveFormsModule,
     ],
     exports:[
         MaterialModule
@@ -28,7 +29,8 @@ import { ChiBoComponent } from './pages/ChiBo/chibo.component';
         AppComponent,
         HomeComponent,
         ChiBoComponent,
-        chiboCreateDaiolog
+        chiboCreateDaiolog,
+        imageComponent
     ],
     providers: [
     ],
