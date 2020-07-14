@@ -7,7 +7,7 @@ import { ExcelService } from 'src/app/service/excel.service';
   templateUrl: './importExcel.component.html'
 })
 export class importExcelComponent implements OnInit {
-  title : string = 'Hình ảnh';
+  title : string = 'File';
   sheet : string  = '';
   objs : any[] = [];
   constructor(
