@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './app-material.module';
@@ -11,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { chiboCreateDaiolog } from './pages/ChiBo/daiolog/chibo.daiolog';
 import { ChiBoComponent } from './pages/ChiBo/chibo.component';
 import { imageComponent } from './pages/share/left-menu/image/image.component';
+import { dangvien213CreateDaiolog } from './pages/DangVien213/daiolog/dangvien213.daiolog';
+import { DangVien213Component } from './pages/DangVien213/dangvien213.component';
 
 @NgModule({
     imports: [
@@ -30,7 +31,9 @@ import { imageComponent } from './pages/share/left-menu/image/image.component';
         HomeComponent,
         ChiBoComponent,
         chiboCreateDaiolog,
-        imageComponent
+        imageComponent,
+        DangVien213Component,
+        dangvien213CreateDaiolog
     ],
     providers: [
     ],

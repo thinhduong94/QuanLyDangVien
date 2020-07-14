@@ -6,7 +6,23 @@ CREATE TABLE IF NOT EXISTS `chibo` (
 	`tenChiBo`	TEXT NULL,
 	`qdThanhLap`	BLOB NULL,
 	`ghiChu`	TEXT NULL,
-	`trangThai`	INTEGER NULL,
-	PRIMARY KEY(`id`)
+	`trangThai`	INTEGER NULL
+);
+DROP TABLE IF EXISTS `dangvien213`;
+CREATE TABLE IF NOT EXISTS `dangvien213` (
+	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`maDv`	TEXT NOT NULL,
+	`tenDv`	TEXT NULL,
+	`ngaySinh`	DATE NULL,
+	`gioTinh`	TEXT NULL,
+	`diaChi`	TEXT NULL,
+	`noiCongTac`	TEXT NULL,
+	`tinhTrang`	TEXT NULL,
+	`ngayQuanLy`	DATE NULL,
+	`maChiDo`	TEXT NULL,
+	`ghiChu`	TEXT NULL,
+	`trangThai`	INTEGER NULL
 );
 COMMIT;
+
+SELECT * FROM dangvien213

@@ -1,0 +1,69 @@
+<h1 mat-dialog-title>{{title}}</h1>
+<mat-dialog-content class="mat-typography">
+    <form class="example-container" [formGroup]="models">
+        <p>
+            <mat-form-field appearance="legacy">
+                <mat-label>Mã Số Đảng viên</mat-label>
+                <input matInput type="text" placeholder="" [formControl]="maDvControl" >
+              </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="legacy">
+                <mat-label>Tên Đảng viên</mat-label>
+                <input matInput type="text" placeholder="" [formControl]="tenDvControl">
+              </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="legacy">
+                <mat-label>Ngày sinh</mat-label>
+                <input matInput type="date" placeholder="" [formControl]="ngaySinhControl">
+              </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="legacy">
+                <mat-label>Giới Tính</mat-label>
+                <input matInput type="text" placeholder="" [formControl]="gioTinhControl">
+              </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="legacy">
+                <mat-label>Địa chỉ</mat-label>
+                <input matInput type="text" placeholder="" [formControl]="diaChiControl">
+              </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="legacy">
+                <mat-label>Nơi công tác</mat-label>
+                <input matInput type="text" placeholder="" [formControl]="noiCongTacControl">
+              </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="legacy">
+                <mat-label>Tình trạng</mat-label>
+                <input matInput type="text" placeholder="" [formControl]="tinhTrangControl">
+              </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="legacy">
+                <mat-label>Ngày Quản Lý</mat-label>
+                <input matInput type="date" placeholder="" [formControl]="ngayQuanLyControl">
+              </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="legacy">
+                <mat-label>Mã Số Chi Bộ</mat-label>
+                <input matInput type="text" placeholder="" [formControl]="maChiDoControl">
+              </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="legacy">
+                <mat-label>Ghi Chú</mat-label>
+                <input matInput type="text" placeholder="" [formControl]="ghiChuControl">
+            </mat-form-field>
+        </p>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">Đóng</button>
+  <button mat-button class="create-botton" (click)="save()" cdkFocusInitial>Lưu</button>
+</mat-dialog-actions>
