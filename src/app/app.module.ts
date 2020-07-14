@@ -9,9 +9,11 @@ import { ShareModule } from './app-share.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { chiboCreateDaiolog } from './pages/ChiBo/daiolog/chibo.daiolog';
 import { ChiBoComponent } from './pages/ChiBo/chibo.component';
-import { imageComponent } from './pages/share/left-menu/image/image.component';
+import { imageComponent } from './pages/share/image/image.component';
 import { dangvien213CreateDaiolog } from './pages/DangVien213/daiolog/dangvien213.daiolog';
 import { DangVien213Component } from './pages/DangVien213/dangvien213.component';
+import { alertComponent } from './pages/share/alert/alert.component';
+import { importExcelComponent } from './pages/share/importExcel/importExcel.component';
 
 @NgModule({
     imports: [
@@ -33,7 +35,9 @@ import { DangVien213Component } from './pages/DangVien213/dangvien213.component'
         chiboCreateDaiolog,
         imageComponent,
         DangVien213Component,
-        dangvien213CreateDaiolog
+        dangvien213CreateDaiolog,
+        alertComponent,
+        importExcelComponent
     ],
     providers: [
     ],

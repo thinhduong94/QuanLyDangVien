@@ -7,7 +7,7 @@ import { DangVien213Service } from 'src/app/service/dangvien213.service';
 import { TheDb } from 'src/app/model/thedb';
 import { MatSort } from '@angular/material/sort';
 import { dangvien213CreateDaiolog } from './daiolog/dangvien213.daiolog';
-import { imageComponent } from '../share/left-menu/image/image.component';
+import { imageComponent } from '../share/image/image.component';
 @Component({
   selector: 'app-dangvien213',
   templateUrl: './dangvien213.component.html',

@@ -3,7 +3,7 @@ import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { ChiBoService } from 'src/app/service/chibo.service';
 import { ChiBo } from 'src/app/model/chibo.model';
-import { imageComponent } from '../../share/left-menu/image/image.component';
+import { imageComponent } from '../../share/image/image.component';
 export interface DialogData {
     id: number;
 }  
