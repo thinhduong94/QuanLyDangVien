@@ -3,16 +3,18 @@
 </div>
 <div class="content-page">
     <div class="header-content-page">
-        <form class="search-form">
+          <form class="search-form">
+            <button style="margin-right: 20px;" (click)="importExcel()" class="btn btn-success">Import</button> 
+            <button style="margin-right: 20px;" (click)="exportToExcel()" class="btn btn-success">Export</button> 
             <mat-form-field class="example-full-width">
               <mat-label>Từ khóa</mat-label>
               <input type="text" matInput>
               <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field>
-        </form>
+          </form>
     </div>
-    <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="dataSource" matSort>
+    <div class="mat-elevation-z8" #epltable>
+        <table mat-table [dataSource]="dataSource" matSort matTooltip="Kích vào mã số chi bộ để xem chi tiết">
       
           <!-- Position Column -->
           <ng-container matColumnDef="id">
@@ -40,7 +42,7 @@
           <ng-container matColumnDef="qdThanhLap">
             <th mat-header-cell *matHeaderCellDef> QĐ Thành Lập </th>
             <td mat-cell *matCellDef="let element">
-               <mat-icon aria-hidden="false" aria-label="Example home icon">book</mat-icon>
+               <mat-icon (click) ="openImgDialog(element.qdThanhLap)" aria-hidden="false" aria-label="Example home icon">remove_red_eye</mat-icon>
             </td>
           </ng-container>
           <ng-container matColumnDef="action">

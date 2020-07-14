@@ -1,8 +1,9 @@
 import {Component, Inject} from '@angular/core';
-import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { ChiBoService } from 'src/app/service/chibo.service';
 import { ChiBo } from 'src/app/model/chibo.model';
+import { imageComponent } from '../../share/image/image.component';
 export interface DialogData {
     id: number;
 }  
@@ -23,7 +24,8 @@ export interface DialogData {
       public dialogRef: MatDialogRef<chiboCreateDaiolog>,
       @Inject(MAT_DIALOG_DATA) public data: DialogData,
       public fb: FormBuilder,
-      protected chiBoService: ChiBoService
+      protected chiBoService: ChiBoService,
+      public dialog: MatDialog,
       ) {
         this.createForm();
         if(data.id){
@@ -75,5 +77,13 @@ export interface DialogData {
             qdThanhLap: this.qdThanhLapControl,
             ghiChu: this.ghiChuControl
         });
+    }
+    openImgDialog(img?:string){
+        const dialogRef = this.dialog.open(imageComponent, {
+            data: {img: img || null}
+          });
+          dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
+          });
     }
   }

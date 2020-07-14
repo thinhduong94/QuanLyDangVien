@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { MaterialModule } from "./app-material.module";
@@ -12,7 +11,11 @@ import { chiboCreateDaiolog } from "./pages/ChiBo/daiolog/chibo.daiolog";
 import { ChiBoComponent } from "./pages/ChiBo/chibo.component";
 import { DangVienComponent } from "./pages/Dang-vien/dang-vien.component";
 import { DangVienFormDialog } from "./pages/Dang-vien/dang-vien-form-dialog/dang-vien-form-dialog.component";
-
+import { imageComponent } from "./pages/share/image/image.component";
+import { dangvien213CreateDaiolog } from "./pages/DangVien213/daiolog/dangvien213.daiolog";
+import { DangVien213Component } from "./pages/DangVien213/dangvien213.component";
+import { alertComponent } from "./pages/share/alert/alert.component";
+import { importExcelComponent } from "./pages/share/importExcel/importExcel.component";
 @NgModule({
   imports: [
     BrowserModule,
@@ -31,6 +34,19 @@ import { DangVienFormDialog } from "./pages/Dang-vien/dang-vien-form-dialog/dang
     chiboCreateDaiolog,
     DangVienComponent,
     DangVienFormDialog,
+    DangVien213Component,
+    dangvien213CreateDaiolog,
+    alertComponent,
+    importExcelComponent,
+    AppComponent,
+    HomeComponent,
+    ChiBoComponent,
+    chiboCreateDaiolog,
+    imageComponent,
+    DangVien213Component,
+    dangvien213CreateDaiolog,
+    alertComponent,
+    importExcelComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

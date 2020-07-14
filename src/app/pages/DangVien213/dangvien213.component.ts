@@ -1,35 +1,30 @@
-import { Component, OnInit, ViewChild , ElementRef} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
-import { ChiBo } from 'src/app/model/chibo.model';
-import { ChiBoService } from 'src/app/service/chibo.service';
+import { DangVien213 } from 'src/app/model/dangvien213.model';
+import { DangVien213Service } from 'src/app/service/dangvien213.service';
 import { TheDb } from 'src/app/model/thedb';
 import { MatSort } from '@angular/material/sort';
-import { chiboCreateDaiolog } from './daiolog/chibo.daiolog';
+import { dangvien213CreateDaiolog } from './daiolog/dangvien213.daiolog';
 import { imageComponent } from '../share/image/image.component';
-import { alertComponent } from '../share/alert/alert.component';
-import { ExcelService } from 'src/app/service/excel.service';
-import { importExcelComponent } from '../share/importExcel/importExcel.component';
 @Component({
-  selector: 'app-chibo',
-  templateUrl: './chibo.component.html',
-  styleUrls: ['./chibo.component.css']
+  selector: 'app-dangvien213',
+  templateUrl: './dangvien213.component.html',
+  styleUrls: ['./dangvien213.component.css']
 })
-export class ChiBoComponent implements OnInit {
-  displayedColumns: string[] = ['id','maChiBo', 'tenChiBo', 'ghiChu', 'qdThanhLap','action'];
-  dataSource = new MatTableDataSource<ChiBo>([]);
+export class DangVien213Component implements OnInit {
+  displayedColumns: string[] = ['id','maDv', 'tenDv', 'ngaySinh', 'gioTinh','diaChi','noiCongTac','tinhTrang','ngayQuanLy','maChiDo','ghiChu','action'];
+  dataSource = new MatTableDataSource<DangVien213>([]);
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-  @ViewChild('epltable', { static: false }) epltable: ElementRef;
   animal: string;
   name: string;
-  chibo: ChiBo;
-  chibos: ChiBo[] = [];
+  chibo: DangVien213;
+  chibos: DangVien213[] = [];
   constructor(
     public dialog: MatDialog,
-    protected chiBoService: ChiBoService,
-    protected excelService : ExcelService) { }
+    protected chiBoService: DangVien213Service) { }
   ngOnInit() {
     const checkDB = setInterval(()=>{
       if(TheDb.db){
@@ -40,7 +35,7 @@ export class ChiBoComponent implements OnInit {
    
   }
   openDialog(id?:number): void {
-    const dialogRef = this.dialog.open(chiboCreateDaiolog, {
+    const dialogRef = this.dialog.open(dangvien213CreateDaiolog, {
       data: {id: id || null}
     });
 
@@ -58,7 +53,7 @@ export class ChiBoComponent implements OnInit {
         });
   }
   public loadData(){
-    this.dataSource = new MatTableDataSource<ChiBo>(this.chibos);
+    this.dataSource = new MatTableDataSource<DangVien213>(this.chibos);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
@@ -78,23 +73,4 @@ export class ChiBoComponent implements OnInit {
       console.log('The dialog was closed');
     });
   }
-  exportToExcel() {
-    this.excelService.exportAsExcelFile(this.chibos,'ChiBo');
-    this.showAlert("Đã hoàn thành.");
-   }
-   showAlert(mess:string){
-    const dialogRef = this.dialog.open(alertComponent, {
-      width: '500px',
-      data: {mess: mess || null}
-    });
-   }
-   importExcel(){
-    const dialogRef = this.dialog.open(importExcelComponent, {
-      width: '500px',
-      data: {sheet : 'ChiBo'}
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-    });
-   }
 }

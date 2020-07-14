@@ -20,7 +20,7 @@
             </mat-form-field>
         </p>
         <div>
-            <mat-label>QĐ Thành Lập <mat-icon *ngIf="qdThanhLapfile && qdThanhLapfile.length > 0" aria-hidden="false" aria-label="Example home icon">book</mat-icon> </mat-label>
+            <mat-label style="position: relative;">QĐ Thành Lập <mat-icon style="position: absolute;right: -30px;top: -3px;" *ngIf="qdThanhLapfile && qdThanhLapfile.length > 0"  (click) ="openImgDialog(qdThanhLapfile)" aria-hidden="false" aria-label="Example home icon">remove_red_eye</mat-icon> </mat-label>
             <input class="file-input" (change)="fileEvent($event)" type="file" placeholder="" >
         </div>
     </form>
