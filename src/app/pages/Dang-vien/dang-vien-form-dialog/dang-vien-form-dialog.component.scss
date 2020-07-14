@@ -1,0 +1,35 @@
+.dv-form-title {
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: underline;
+  text-align: center;
+}
+
+.dv-header {
+  display: flex;
+}
+
+.dv-header {
+  div {
+    width: 50%;
+    padding: 10px;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.dv-left-header {
+  display: block;
+}
+
+mat-form-field {
+  padding: 0 20px;
+}
+
+.check-box {
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 16px;
+  font-weight: 400;
+}

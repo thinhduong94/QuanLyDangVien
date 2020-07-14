@@ -1,0 +1,94 @@
+<div class="header-page">
+  <span>Quản Lý Chi Bô</span>
+</div>
+<div class="content-page">
+  <div class="header-content-page">
+    <form class="search-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Từ khóa</mat-label>
+        <input type="text" matInput>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="soLyLich">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Số lý lịch </th>
+        <td mat-cell *matCellDef="let element" (click)="openDialog(element.id)"> {{element.soLyLich}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="soTheDangVien">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Số thẻ đảng viên </th>
+        <td mat-cell *matCellDef="let element" (click)="openDialog(element.id)"> {{element.soTheDangVien}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="gioiTinh">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Giới Tính </th>
+        <td mat-cell *matCellDef="let element" (click)="openDialog(element.id)"> {{element.gioiTinh}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="tenDangDung">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Tên đang dùng </th>
+        <td mat-cell *matCellDef="let element" (click)="openDialog(element.id)"> {{element.tenDangDung}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="noiSinh">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nơi Sinh</th>
+        <td mat-cell *matCellDef="let element" (click)="openDialog(element.id)"> {{element.noiSinh}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="queQuan">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Quê quán</th>
+        <td mat-cell *matCellDef="let element" (click)="openDialog(element.id)"> {{element.queQuan}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="thuongTru">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Thường trú </th>
+        <td mat-cell *matCellDef="let element" (click)="openDialog(element.id)"> {{element.thuongTru}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="danToc">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Dân tộc </th>
+        <td mat-cell *matCellDef="let element" (click)="openDialog(element.id)"> {{element.danToc}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="tonGiao">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Tôn giáo</th>
+        <td mat-cell *matCellDef="let element" (click)="openDialog(element.id)"> {{element.tonGiao}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ngheNghiep">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nghề nghiệp</th>
+        <td mat-cell *matCellDef="let element" (click)="openDialog(element.id)"> {{element.ngheNghiep}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ngayVaoDang">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ngày vào đảng</th>
+        <td mat-cell *matCellDef="let element" (click)="openDialog(element.id)"> {{element.ngayVaoDang}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <mat-icon aria-hidden="false" (click)="deleteDangVien(element.id)">remove
+          </mat-icon>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>
+<div class="bottom-page">
+  <button mat-fab color="accent" (click)="openDialog()" aria-label="Example icon button with a bookmark icon">
+    <mat-icon>plus</mat-icon>
+  </button>
+</div>

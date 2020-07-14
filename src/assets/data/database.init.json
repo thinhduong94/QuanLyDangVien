@@ -1,16 +1,43 @@
 {
-    "name": "./database.db",
-    "version": 1,
-    "tables": {
-        "chibo": [
-		    {
-				"id": "1",
-				"maChiBo":"1",
-				"tenChiBo": "ten 1",
-				"qdThanhLap":"13123",
-				"ghiChu":"23123123",
-				"trangThai":0
-		    }
-		]
-	}
+  "name": "./database.db",
+  "version": 1,
+  "tables": {
+    "chibo": [{
+      "id": "1",
+      "maChiBo": "1",
+      "tenChiBo": "ten 1",
+      "qdThanhLap": "13123",
+      "ghiChu": "23123123",
+      "trangThai": 0
+    }],
+    "dangvien": [{
+      "id": "0",
+      "soLyLich": "11111",
+      "soTheDangVien": "22222",
+      "tenDangDung": "Dang Van Hung",
+      "gioiTinh": "Nam",
+      "noiSinh": "HCM",
+      "queQuan": "SG",
+      "thuongTru": "123 tran hung dao",
+      "danToc": "kinh",
+      "tonGiao": "khong",
+      "ngheNghiep": "grab",
+      "ngayVaoDang": "01/01/2020",
+      "trangThai": 0
+    }, {
+      "id": "1",
+      "soLyLich": "22222",
+      "soTheDangVien": "33333",
+      "tenDangDung": "John Wick",
+      "gioiTinh": "Nam",
+      "noiSinh": "HCM",
+      "queQuan": "SG",
+      "thuongTru": "555 nguyen hue",
+      "danToc": "kinh",
+      "tonGiao": "khong",
+      "ngheNghiep": "grab",
+      "ngayVaoDang": "01/01/2020",
+      "trangThai": 0
+    }]
+  }
 }

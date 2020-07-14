@@ -1,21 +1,25 @@
 <div class="container-fluid">
-    <div class="left-container">
-        <ul>
-            <li>
-                <a routerLink="/">
-                    <span><mat-icon aria-hidden="false" aria-label="Example home icon">book</mat-icon></span>
-                    <span>Chi bộ</span>
-                </a>
-            </li>
-            <li>
-                <a routerLink="/persongroup">
-                    <span><mat-icon aria-hidden="false" aria-label="Example home icon">book</mat-icon></span>
-                    <span>Đảng viên</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <div class="right-container">
-        <router-outlet></router-outlet>
-    </div>
+  <div class="left-container">
+    <ul>
+      <li>
+        <a routerLink="/">
+          <span>
+            <mat-icon aria-hidden="false" aria-label="Example home icon">book</mat-icon>
+          </span>
+          <span>Chi bộ</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/dangVien">
+          <span>
+            <mat-icon aria-hidden="false" aria-label="Example home icon">book</mat-icon>
+          </span>
+          <span>Đảng viên</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="right-container">
+    <router-outlet></router-outlet>
+  </div>
 </div>
