@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as FileSaver from 'file-saver';
 import * as xlsx from 'xlsx';
-
+import * as moment from 'moment';
 const Excel_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const Excel_EXTENSION = '.xlsx';
 @Injectable({
@@ -15,8 +15,9 @@ export class ExcelService {
     const ws: xlsx.WorkSheet =   
     xlsx.utils.json_to_sheet(json);
     const wb: xlsx.WorkBook = xlsx.utils.book_new();
-    xlsx.utils.book_append_sheet(wb, ws, 'ChiBo');
-    xlsx.writeFile(wb, 'quanlydangvien.xlsx');
+    xlsx.utils.book_append_sheet(wb, ws, sheet);
+    const now = moment().format('MM-DD-YYYY');
+    xlsx.writeFile(wb, `${sheet}_${now}.xlsx`);
   }
   public excelFileToData(fileName:string,sheetName:string) : Array<any> {
     const workbook = xlsx.readFile(fileName);

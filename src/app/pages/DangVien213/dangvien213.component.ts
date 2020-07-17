@@ -8,6 +8,9 @@ import { TheDb } from 'src/app/model/thedb';
 import { MatSort } from '@angular/material/sort';
 import { dangvien213CreateDaiolog } from './daiolog/dangvien213.daiolog';
 import { imageComponent } from '../share/image/image.component';
+import { ExcelService } from 'src/app/service/excel.service';
+import { alertComponent } from '../share/alert/alert.component';
+import { importExcelComponent } from '../share/importExcel/importExcel.component';
 @Component({
   selector: 'app-dangvien213',
   templateUrl: './dangvien213.component.html',
@@ -20,11 +23,12 @@ export class DangVien213Component implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   animal: string;
   name: string;
-  chibo: DangVien213;
-  chibos: DangVien213[] = [];
+  dangVien213: DangVien213;
+  dangVien213s: DangVien213[] = [];
   constructor(
     public dialog: MatDialog,
-    protected chiBoService: DangVien213Service) { }
+    protected dangVien213Service: DangVien213Service,
+    protected excelService : ExcelService) { }
   ngOnInit() {
     const checkDB = setInterval(()=>{
       if(TheDb.db){
@@ -45,15 +49,15 @@ export class DangVien213Component implements OnInit {
     });
   }
   public getChidos() {
-    this.chiBoService.getAll()
-        .then((chibos) => {
-            console.log(chibos);
-            this.chibos = chibos;
+    this.dangVien213Service.getAll()
+        .then((dangVien213s) => {
+            console.log(dangVien213s);
+            this.dangVien213s = dangVien213s;
             this.loadData();
         });
   }
   public loadData(){
-    this.dataSource = new MatTableDataSource<DangVien213>(this.chibos);
+    this.dataSource = new MatTableDataSource<DangVien213>(this.dangVien213s);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
@@ -61,7 +65,7 @@ export class DangVien213Component implements OnInit {
     this.openDialog(id);
   }
   public removeItem(id:number){
-    this.chiBoService.delete(id).then(()=>{
+    this.dangVien213Service.delete(id).then(()=>{
       this.getChidos();
     })
   }
@@ -73,4 +77,23 @@ export class DangVien213Component implements OnInit {
       console.log('The dialog was closed');
     });
   }
+  exportToExcel() {
+    this.excelService.exportAsExcelFile(this.dangVien213s,'DangVien213');
+    this.showAlert("Đã hoàn thành.");
+   }
+   showAlert(mess:string){
+    const dialogRef = this.dialog.open(alertComponent, {
+      width: '500px',
+      data: {mess: mess || null}
+    });
+   }
+   importExcel(){
+    const dialogRef = this.dialog.open(importExcelComponent, {
+      width: '500px',
+      data: {sheet : 'DangVien213'}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
+   }
 }

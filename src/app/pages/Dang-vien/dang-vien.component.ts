@@ -7,6 +7,9 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatDialog } from "@angular/material/dialog";
 import { DangVienFormDialog } from "./dang-vien-form-dialog/dang-vien-form-dialog.component";
+import { ExcelService } from 'src/app/service/excel.service';
+import { alertComponent } from '../share/alert/alert.component';
+import { importExcelComponent } from '../share/importExcel/importExcel.component';
 
 @Component({
   selector: "dang-vien",
@@ -16,7 +19,8 @@ import { DangVienFormDialog } from "./dang-vien-form-dialog/dang-vien-form-dialo
 export class DangVienComponent implements OnInit, OnDestroy {
   constructor(
     private dangVienService: DangVienService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    protected excelService : ExcelService
   ) {}
   displayedColumns: string[] = [
     "soLyLich",
@@ -82,4 +86,23 @@ export class DangVienComponent implements OnInit, OnDestroy {
       this.getDangVien();
     });
   }
+  exportToExcel() {
+    this.excelService.exportAsExcelFile(this.danhSachDangVien,'DangVien');
+    this.showAlert("Đã hoàn thành.");
+   }
+   showAlert(mess:string){
+    const dialogRef = this.dialog.open(alertComponent, {
+      width: '500px',
+      data: {mess: mess || null}
+    });
+   }
+   importExcel(){
+    const dialogRef = this.dialog.open(importExcelComponent, {
+      width: '500px',
+      data: {sheet : 'DangVien'}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
+   }
 }

@@ -59,6 +59,7 @@
     "file-saver": "^2.0.2",
     "jquery": "^3.4.1",
     "karma-electron": "^6.3.0",
+    "moment": "^2.27.0",
     "node-pre-gyp": "^0.15.0",
     "popper.js": "^1.16.1",
     "rxjs": "^6.5.5",
