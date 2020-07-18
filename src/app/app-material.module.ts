@@ -11,6 +11,9 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSortModule } from "@angular/material/sort";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatTooltipModule } from "@angular/material/tooltip";
+import { MatSelectModule } from "@angular/material/select";
+import { MatListModule } from "@angular/material/list";
+import { MatRadioModule } from "@angular/material/radio";
 @NgModule({
   imports: [
     MatSliderModule,
@@ -25,6 +28,9 @@ import { MatTooltipModule } from "@angular/material/tooltip";
     MatFormFieldModule,
     MatCheckboxModule,
     MatTooltipModule,
+    MatSelectModule,
+    MatListModule,
+    MatRadioModule,
   ],
   exports: [
     MatSliderModule,
@@ -39,6 +45,9 @@ import { MatTooltipModule } from "@angular/material/tooltip";
     MatSortModule,
     MatCheckboxModule,
     MatTooltipModule,
+    MatSelectModule,
+    MatListModule,
+    MatRadioModule,
   ],
 })
 export class MaterialModule {}
