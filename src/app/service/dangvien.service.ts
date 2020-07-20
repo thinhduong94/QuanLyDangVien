@@ -6,6 +6,17 @@ import { DangVien } from "../model/dangvien.model";
   providedIn: "root",
 })
 export class DangVienService {
+  public getBySoTheDangVien(soTheDangVien: number): Promise<DangVien> {
+    const sql = "SELECT * FROM dangvien WHERE soTheDangVien = $soTheDangVien";
+    const values = { $soTheDangVien: soTheDangVien };
+
+    return TheDb.selectOne(sql, values).then((row) => {
+      if (row) {
+        return new DangVienService().fromRow(row);
+      }
+    });
+  }
+
   public get(id: number): Promise<DangVien> {
     const sql = "SELECT * FROM dangvien WHERE id = $id";
     const values = { $id: id };

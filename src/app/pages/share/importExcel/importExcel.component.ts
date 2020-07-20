@@ -8,6 +8,7 @@ import * as xlsx from "xlsx";
 import { ExcelService } from "src/app/service/excel.service";
 import { DangVienService } from "src/app/service/dangvien.service";
 import { alertComponent } from "../alert/alert.component";
+import { DangVien } from "src/app/model/dangvien.model";
 @Component({
   selector: "app-importExcel",
   templateUrl: "./importExcel.component.html",
@@ -38,10 +39,17 @@ export class importExcelComponent implements OnInit {
         file.name,
         this.sheet
       );
-      dangVienData.forEach((dangVien) => {
-        this.dangVienService.insert(dangVien).then((res) => {
-          console.log(`insert dang vien ${dangVien.tenDangDung} thanh cong`);
-        });
+      dangVienData.forEach((dangVien: DangVien) => {
+        const { soTheDangVien = 0 } = dangVien;
+        this.dangVienService
+          .getBySoTheDangVien(+soTheDangVien)
+          .then((foundDangVien) => {
+            if (!foundDangVien) {
+              this.dangVienService.insert(dangVien).then((res) => {
+                console.log(`inserted dang vien ${dangVien.tenDangDung}`);
+              });
+            }
+          });
       });
     } else {
       this.objs = this.excelService.excelFileToData(file.name, this.sheet);
