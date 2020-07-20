@@ -11,8 +11,6 @@ CREATE TABLE IF NOT EXISTS 'chibo' (
 DROP TABLE IF EXISTS 'dangvien';
 CREATE TABLE IF NOT EXISTS 'dangvien' (
 	'id' INTEGER PRIMARY KEY AUTOINCREMENT,
-	'ten' TEXT NULL,
-	'tuoi' TEXT NULL,
 	'gioiTinh' TEXT NULL,
 	'dangBoTinh' TEXT NULL,
 	'dangBoHuyen' TEXT NULL,
@@ -31,7 +29,6 @@ CREATE TABLE IF NOT EXISTS 'dangvien' (
 	'ngheNghiep' TEXT NULL,
 	'ngayVaoDang' TEXT NULL,
 	'chiBoVaoDang' TEXT NULL,
-	'nguoiGioiThieu' TEXT NULL,
 	'ngayCapThamQuyenVaoDang' TEXT NULL,
 	'ngayChinhThucVaoDang' TEXT NULL,
 	'chiBoChinhThucVaoDang' TEXT NULL,
