@@ -56,6 +56,7 @@
       "tonGiao": "khong",
       "ngheNghiep": "grab",
       "ngayVaoDang": "01/01/2020",
+      "chibo":"001",
       "trangThai": 0
     }, {
       "id": "1",
@@ -70,6 +71,7 @@
       "tonGiao": "khong",
       "ngheNghiep": "grab",
       "ngayVaoDang": "01/01/2020",
+      "chibo":"001",
       "trangThai": 0
     }]
   }
