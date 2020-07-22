@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { DialogData } from "../../ChiBo/daiolog/chibo.daiolog";
-import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
+import { FormGroup, FormControl, FormBuilder, FormArray } from "@angular/forms";
 import { DangVienService } from "src/app/service/dangvien.service";
+import { ChiBoService } from "src/app/service/chibo.service";
 
 @Component({
   selector: "dang-vien-form-dialog",
@@ -14,51 +15,33 @@ export class DangVienFormDialog implements OnInit {
     public dialogRef: MatDialogRef<DangVienFormDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     public fb: FormBuilder,
-    private dangVienService: DangVienService
+    private dangVienService: DangVienService,
+    private chiboService: ChiBoService
   ) {}
-  isUpdate = false;
-  dangBoTinh = new FormControl("");
-  dangBoHuyen = new FormControl("");
-  soLyLich = new FormControl("");
-  soTheDangVien = new FormControl("");
-  tenDangDung = new FormControl("");
-  tenKhaiSinh = new FormControl("");
-  gioiTinh = new FormControl("");
-  noiSinh = new FormControl("");
-  ngaySinh = new FormControl("");
-  queQuan = new FormControl("");
-  thuongTru = new FormControl("");
-  tamTru = new FormControl("");
-  danToc = new FormControl("");
-  tonGiao = new FormControl("");
-  thanhPhanGiaDinh = new FormControl("");
-  ngheNghiep = new FormControl("");
-  ngayVaoDang = new FormControl("");
-  chiBoVaoDang = new FormControl("");
-  nguoiGioiThieu = new FormControl("");
-  ngayCapThamQuyenVaoDang = new FormControl("");
-  ngayChinhThucVaoDang = new FormControl("");
-  chiBoChinhThucVaoDang = new FormControl("");
-  ngayDuocTuyen = new FormControl("");
-  coQuanTuyenDung = new FormControl("");
-  ngayVaoDoan = new FormControl("");
-  thamGiaToChucXaHoi = new FormControl("");
-  ngayNhapNgu = new FormControl("");
-  ngayXuatNgu = new FormControl("");
-  trinhDo = new FormControl("");
-  tinhTrangSucKhoe = new FormControl("");
-  soCmnd = new FormControl("");
-  quaTringHoatDongVaCongTac = new FormControl("");
-  daoTao = new FormControl("");
-  khenThuong = new FormControl("");
-  huyHieu = new FormControl("");
-  danhHieu = new FormControl("");
-  dacDiemLichSuBanThan = new FormControl("");
-  quanHeNuocNgoai = new FormControl("");
-  trangThai = new FormControl("");
+
   dangVienForm: FormGroup;
+  chibos = [];
+  danhSachHuyHieu = [
+    { value: "30", display: "30 năm" },
+    { value: "40", display: "40 năm" },
+    { value: "45", display: "45 năm" },
+    { value: "50", display: "50 năm" },
+    { value: "55", display: "55 năm" },
+    { value: "60", display: "60 năm" },
+    { value: "65", display: "65 năm" },
+    { value: "70", display: "70 năm" },
+    { value: "75", display: "75 năm" },
+    { value: "80", display: "80 năm" },
+    { value: "85", display: "85 năm" },
+    { value: "90", display: "90 năm" },
+  ];
   ngOnInit() {
     this.initForm();
+    this.loadChiBoDropDown();
+    this.loadDangVienData();
+  }
+
+  loadDangVienData() {
     if (this.data.id) {
       this.dangVienService.get(this.data.id).then((foundDangVien) => {
         this.dangVienForm.patchValue({
@@ -92,14 +75,50 @@ export class DangVienFormDialog implements OnInit {
           trinhDo: foundDangVien.trinhDo,
           tinhTrangSucKhoe: foundDangVien.tinhTrangSucKhoe,
           soCmnd: foundDangVien.soCmnd,
-          quaTringHoatDongVaCongTac: foundDangVien.quaTringHoatDongVaCongTac,
+          quaTrinhHoatDongVaCongTac: foundDangVien.quaTrinhHoatDongVaCongTac,
           daoTao: foundDangVien.daoTao,
           khenThuong: foundDangVien.khenThuong,
           huyHieu: foundDangVien.huyHieu,
           danhHieu: foundDangVien.danhHieu,
           dacDiemLichSuBanThan: foundDangVien.dacDiemLichSuBanThan,
           quanHeNuocNgoai: foundDangVien.quanHeNuocNgoai,
-          trangThai: foundDangVien.trangThai,
+          chiBoCoSo: foundDangVien.chiBoCoSo,
+          chiBo: foundDangVien.chiBo,
+          boPhan: foundDangVien.boPhan,
+          ngaySinh: foundDangVien.ngaySinh,
+          mienCongTacNgay: foundDangVien.mienCongTacNgay,
+          ngayKhoiPhucDang: foundDangVien.ngayKhoiPhucDang,
+          biXuLyTheoPhapLuat: foundDangVien.biXuLyTheoPhapLuat,
+          lamViecTrongCheDoCu: foundDangVien.lamViecTrongCheDoCu,
+          daDiNuocNgoai: foundDangVien.daDiNuocNgoai,
+          thamGiaToChucNuocNgoai: foundDangVien.thamGiaToChucNuocNgoai,
+          coNguoiThanNuocNgoai: foundDangVien.coNguoiThanNuocNgoai,
+          tongThuNhap: foundDangVien.tongThuNhap,
+          binhQuan: foundDangVien.binhQuan,
+          loaiNhaDuocCap: foundDangVien.loaiNhaDuocCap,
+          dienTichNhaDuocCap: foundDangVien.dienTichNhaDuocCap,
+          loaiNhaDuocMua: foundDangVien.loaiNhaDuocMua,
+          dienTichNhaDuocMua: foundDangVien.dienTichNhaDuocMua,
+          datDuocCap: foundDangVien.datDuocCap,
+          datDuocMua: foundDangVien.datDuocMua,
+          hoatDongKinhTe: foundDangVien.hoatDongKinhTe,
+          dienTichDatTrangTrai: foundDangVien.dienTichDatTrangTrai,
+          soLaoDongThue: foundDangVien.soLaoDongThue,
+          taiSanCoGiaTri: foundDangVien.taiSanCoGiaTri,
+          giaTriTaiSan: foundDangVien.giaTriTaiSan,
+          thoiGianBiXoa: foundDangVien.thoiGianBiXoa,
+          chiBoBiXoa: foundDangVien.chiBoBiXoa,
+          ngayVaoDangLanHai: foundDangVien.ngayVaoDangLanHai,
+          chiBoVaoDangLanHai: foundDangVien.chiBoVaoDangLanHai,
+          nguoiGioiThieuMot: foundDangVien.nguoiGioiThieuMot,
+          chucVuNguoiGioiThieuMot: foundDangVien.chucVuNguoiGioiThieuMot,
+          nguoiGioiThieuHai: foundDangVien.nguoiGioiThieuHai,
+          chucVuNguoiGioiThieuHai: foundDangVien.chucVuNguoiGioiThieuHai,
+          ngayChinhThucVaoLanHai: foundDangVien.ngayChinhThucVaoLanHai,
+          chiBoChinhThucVaoDangLanHai:
+            foundDangVien.chiBoChinhThucVaoDangLanHai,
+          kyLuat: foundDangVien.kyLuat,
+          quanHeGiaDinh: foundDangVien.quanHeGiaDinh,
         });
       });
     }
@@ -107,44 +126,79 @@ export class DangVienFormDialog implements OnInit {
 
   initForm() {
     this.dangVienForm = this.fb.group({
-      dangBoTinh: this.dangBoTinh,
-      dangBoHuyen: this.dangBoHuyen,
-      soLyLich: this.soLyLich,
-      soTheDangVien: this.soTheDangVien,
-      tenDangDung: this.tenDangDung,
-      tenKhaiSinh: this.tenKhaiSinh,
-      gioiTinh: this.gioiTinh,
-      noiSinh: this.noiSinh,
-      queQuan: this.queQuan,
-      thuongTru: this.thuongTru,
-      tamTru: this.tamTru,
-      danToc: this.danToc,
-      tonGiao: this.tonGiao,
-      thanhPhanGiaDinh: this.thanhPhanGiaDinh,
-      ngheNghiep: this.ngheNghiep,
-      ngayVaoDang: this.ngayVaoDang,
-      chiBoVaoDang: this.chiBoVaoDang,
-      nguoiGioiThieu: this.nguoiGioiThieu,
-      ngayCapThamQuyenVaoDang: this.ngayCapThamQuyenVaoDang,
-      ngayChinhThucVaoDang: this.ngayChinhThucVaoDang,
-      chiBoChinhThucVaoDang: this.chiBoChinhThucVaoDang,
-      ngayDuocTuyen: this.ngayDuocTuyen,
-      coQuanTuyenDung: this.coQuanTuyenDung,
-      ngayVaoDoan: this.ngayVaoDoan,
-      thamGiaToChucXaHoi: this.thamGiaToChucXaHoi,
-      ngayNhapNgu: this.ngayNhapNgu,
-      ngayXuatNgu: this.ngayXuatNgu,
-      trinhDo: this.trinhDo,
-      tinhTrangSucKhoe: this.tinhTrangSucKhoe,
-      soCmnd: this.soCmnd,
-      quaTringHoatDongVaCongTac: this.quaTringHoatDongVaCongTac,
-      daoTao: this.daoTao,
-      khenThuong: this.khenThuong,
-      huyHieu: this.huyHieu,
-      danhHieu: this.danhHieu,
-      dacDiemLichSuBanThan: this.dacDiemLichSuBanThan,
-      quanHeNuocNgoai: this.quanHeNuocNgoai,
-      trangThai: this.trangThai,
+      dangBoTinh: new FormControl(""),
+      dangBoHuyen: new FormControl(""),
+      soLyLich: new FormControl(""),
+      soTheDangVien: new FormControl(""),
+      tenDangDung: new FormControl(""),
+      tenKhaiSinh: new FormControl(""),
+      gioiTinh: new FormControl(""),
+      noiSinh: new FormControl(""),
+      queQuan: new FormControl(""),
+      thuongTru: new FormControl(""),
+      tamTru: new FormControl(""),
+      danToc: new FormControl(""),
+      tonGiao: new FormControl(""),
+      thanhPhanGiaDinh: new FormControl(""),
+      ngheNghiep: new FormControl(""),
+      ngayVaoDang: new FormControl(""),
+      chiBoVaoDang: new FormControl(""),
+      nguoiGioiThieu: new FormControl(""),
+      ngayCapThamQuyenVaoDang: new FormControl(""),
+      ngayChinhThucVaoDang: new FormControl(""),
+      chiBoChinhThucVaoDang: new FormControl(""),
+      ngayDuocTuyen: new FormControl(""),
+      coQuanTuyenDung: new FormControl(""),
+      ngayVaoDoan: new FormControl(""),
+      thamGiaToChucXaHoi: new FormControl(""),
+      ngayNhapNgu: new FormControl(""),
+      ngayXuatNgu: new FormControl(""),
+      trinhDo: new FormControl(""),
+      tinhTrangSucKhoe: new FormControl(""),
+      soCmnd: new FormControl(""),
+      quaTrinhHoatDongVaCongTac: new FormControl(""),
+      daoTao: new FormControl(""),
+      khenThuong: new FormControl(""),
+      huyHieu: new FormControl(""),
+      danhHieu: new FormControl(""),
+      dacDiemLichSuBanThan: new FormControl(""),
+      quanHeNuocNgoai: new FormControl(""),
+      chiBoCoSo: new FormControl(""),
+      chiBo: new FormControl(""),
+      boPhan: new FormControl(""),
+      ngaySinh: new FormControl(""),
+      mienCongTacNgay: new FormControl(""),
+      ngayKhoiPhucDang: new FormControl(""),
+      biXuLyTheoPhapLuat: new FormControl(""),
+      lamViecTrongCheDoCu: new FormControl(""),
+      daDiNuocNgoai: new FormControl(""),
+      thamGiaToChucNuocNgoai: new FormControl(""),
+      coNguoiThanNuocNgoai: new FormControl(""),
+      tongThuNhap: new FormControl(""),
+      binhQuan: new FormControl(""),
+      loaiNhaDuocCap: new FormControl(""),
+      dienTichNhaDuocCap: new FormControl(""),
+      loaiNhaDuocMua: new FormControl(""),
+      dienTichNhaDuocMua: new FormControl(""),
+      datDuocCap: new FormControl(""),
+      datDuocMua: new FormControl(""),
+      hoatDongKinhTe: new FormControl(""),
+      dienTichDatTrangTrai: new FormControl(""),
+      soLaoDongThue: new FormControl(""),
+      taiSanCoGiaTri: new FormControl(""),
+      giaTriTaiSan: new FormControl(""),
+      quanHeGiaDinh: new FormControl(""),
+      thoiGianBiXoa: new FormControl(""),
+      chiBoBiXoa: new FormControl(""),
+      ngayVaoDangLanHai: new FormControl(""),
+      chiBoVaoDangLanHai: new FormControl(""),
+      nguoiGioiThieuMot: new FormControl(""),
+      chucVuNguoiGioiThieuMot: new FormControl(""),
+      nguoiGioiThieuHai: new FormControl(""),
+      chucVuNguoiGioiThieuHai: new FormControl(""),
+      ngayChinhThucVaoLanHai: new FormControl(""),
+      chiBoChinhThucVaoDangLanHai: new FormControl(""),
+      kyLuat: new FormControl(""),
     });
   }
 
@@ -154,14 +208,18 @@ export class DangVienFormDialog implements OnInit {
     if (this.data.id) {
       dangVienFormValue.id = this.data.id;
       this.dangVienService.update(dangVienFormValue).then((response) => {
-        console.log("response", response);
         this.dialogRef.close();
       });
     } else {
       this.dangVienService.insert(dangVienFormValue).then((response) => {
-        console.log("response", response);
         this.dialogRef.close();
       });
     }
+  }
+
+  loadChiBoDropDown() {
+    this.chiboService.getAll().then((result) => {
+      this.chibos = result;
+    });
   }
 }

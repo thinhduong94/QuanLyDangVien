@@ -3,13 +3,46 @@
   "version": 1,
   "tables": {
     "chibo": [{
-      "id": "1",
-      "maChiBo": "1",
-      "tenChiBo": "ten 1",
-      "qdThanhLap": "13123",
-      "ghiChu": "23123123",
-      "trangThai": 0
-    }],
+        "id": "0",
+        "maChiBo": "001",
+        "tenChiBo": "Bo Y Te",
+        "qdThanhLap": "13123",
+        "ghiChu": "23123123",
+        "trangThai": 0
+      },
+      {
+        "id": "1",
+        "maChiBo": "002",
+        "tenChiBo": "Bo Giao Thong Van Tai",
+        "qdThanhLap": "13123",
+        "ghiChu": "23123123",
+        "trangThai": 0
+      },
+      {
+        "id": "2",
+        "maChiBo": "003",
+        "tenChiBo": "Bo Tai Chinh",
+        "qdThanhLap": "13123",
+        "ghiChu": "23123123",
+        "trangThai": 0
+      },
+      {
+        "id": "3",
+        "maChiBo": "004",
+        "tenChiBo": "Bo Cong An",
+        "qdThanhLap": "13123",
+        "ghiChu": "23123123",
+        "trangThai": 0
+      },
+      {
+        "id": "4",
+        "maChiBo": "005",
+        "tenChiBo": "Bo Quoc Phong",
+        "qdThanhLap": "13123",
+        "ghiChu": "23123123",
+        "trangThai": 0
+      }
+    ],
     "dangvien": [{
       "id": "0",
       "soLyLich": "11111",
