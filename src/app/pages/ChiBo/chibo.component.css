@@ -41,3 +41,7 @@ table {
   background: #59abfd;
   opacity: 1;
 }
+
+.mat-header-cell{
+    color: white;
+}
