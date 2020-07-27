@@ -79,6 +79,17 @@ export interface PhieuDangVienModel {
   chiBoBiXoa: string;
   quanHeGiaDinh: string;
 }
+export interface PhieuDangVienOptionModel {
+  chiBo: string;
+  kyLuat: string;
+  trinhDoChuyenMon: string;
+  trinhDoChinhTri:string;
+  gioiTinh:string;
+  danToc:string;
+  tuoiDang:string;
+  tinhTrangDangVien:string;
+  xepLoaiDangVien:string;
+}
 @Injectable({
   providedIn: "root",
 })

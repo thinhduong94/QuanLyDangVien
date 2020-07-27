@@ -11,14 +11,21 @@ const Excel_EXTENSION = ".xlsx";
 export class ExcelService {
   constructor() {}
 
-  public exportAsExcelFile(json: any[], sheet: string): void {
-    const ws: xlsx.WorkSheet = xlsx.utils.json_to_sheet(json);
+  public exportAsExcelFile(json: any[], sheet: string,type?,html?): void {
+    let ws: xlsx.WorkSheet = null;
+    if(type ==='html'){
+      ws = xlsx.utils.table_to_sheet(html);
+    }else{
+      ws = xlsx.utils.json_to_sheet(json);
+    }
+    
     const wb: xlsx.WorkBook = xlsx.utils.book_new();
     if (sheet === "DangVien") {
       DangVienExcelMapping.forEach((mapping) => {
         ws[`${mapping.header}1`].v = mapping.display;
       });
     }
+    xlsx.utils.book_append_sheet(wb, ws, sheet);
     const now = moment().format('MM-DD-YYYY');
     xlsx.writeFile(wb, `${sheet}_${now}.xlsx`);
   }

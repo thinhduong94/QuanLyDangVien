@@ -5,81 +5,211 @@
     <mat-tab-group>
         <mat-tab label="Danh sách">
             <mat-tab-group>
-                <mat-tab label="Chi bộ (BM1)">
-                    <h4 style="text-align: center;">
-                        PHIẾU ĐẢNG VIÊN
-                    </h4>
-                    <table>
+                <mat-tab label="Chi bộ (BM1)" style="position: relative;">
+                    <button style="position: absolute;top: 10px;right: 10px;" (click)="phieuDangVien()" >Export</button>
+                        <h3>
+                            ĐẢNG CỘNG SẢN VIỆT NAM					
+                        </h3>
+                        <p>ĐẢNG BỘ THÀNH PHỐ HỒ CHÍ MINH</p>
+                        <p>ĐẢNG BỘ QUẬN 5</p>
+                        <p>ĐẢNG BỘ PHƯỜNG 10</p>
+                        <h4>
+                            PHIẾU ĐẢNG VIÊN
+                        </h4>
+                        <table  #phieuDangVienRef>
+                            <thead>
+                                <tr>
+                                    <th rowspan="2">CHI BỘ</th>
+                                    <th rowspan="2">HỌ TÊN KHAI SINH</th>
+                                    <th rowspan="2">HỌ TÊN ĐANG DÙNG</th>
+                                    <th rowspan="2">SỐ THẺ ĐẢNG VIÊN</th>
+                                    <th rowspan="2">GIỚI TÍNH</th>
+                                    <th rowspan="2">NGÀY, THÁNG, NĂM SINH</th>
+                                    <th rowspan="2">QUÊ QUÁN</th>
+                                    <th rowspan="2">ĐỊA CHỈ</th>
+                                    <th rowspan="2">NƠI THỰC TẾ CƯ TRÚ</th>
+                                    <th rowspan="2">DÂN TỘC</th>
+                                    <th rowspan="2">TÔN GIÁO</th>
+                                    <th rowspan="2">NGÀY VÀO ĐẢNG</th>
+                                    <th rowspan="2">NGÀY CHÍNH THỨC</th>
+                                    <th rowspan="2">NGÀY VÀO ĐOÀN</th>
+                                    <th colspan="2">CHỨC VỤ HIỆN NAY</th>
+                                    <th rowspan="2">TRÌNH ĐỘ HỌC VẤN, HỌC VỊ, HỌC HÀM (THPT; ĐH, CĐ, TC, TH; ThS, TS; (PGS, GS)</th>
+                                    <th rowspan="2">TRÌNH ĐỘ NGOẠI NGỮ</th>
+                                    <th rowspan="2">LÝ LUẬN CHÍNH TRỊ (CC, TC, SC)</th>
+                                    <th rowspan="2">CHÍNH SÁCH CÓ CÔNG (TB, LS, CCCM)</th>
+                                    <th colspan="2">CHỨC VỤ HIỆN NAY</th>
+                                    <th rowspan="2">ĐÃ NHẬN HUY HIỆU ĐẢNG (70, 65, 60, 55, 50, 45, 40, 30)</th>
+                                    <th rowspan="2">KHEN THƯỞNG</th>
+                                    <th rowspan="2">KỶ LUẬT (KTr, CCa, CCh, KT)</th>
+                                </tr>
+                                <tr>
+                                    <th>Đảng (BT, PBT, CUV, ĐV)</th>
+                                    <th>Chính quyền, Đoàn thể</th>
+                                    <th>KHÔNG CÒN QUẢN LÝ (TT, CĐi, CĐT, XT, CR, KT)</th>
+                                    <th>ĐANG QUẢN LÝ (ĐSH, MSH, CT)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of phieuDangVienModels">
+                                    <td>{{item.tenChiBo}}</td>
+                                    <td>{{item.tenKhaiSinh}}</td>
+                                    <td>{{item.tenDangDung}}</td>
+                                    <td>{{item.soTheDangVien}}</td>
+                                    <td>{{item.gioiTinh}}</td>
+                                    <td>{{item.ngaySinh}}</td>
+                                    <td>{{item.queQuan}}</td>
+                                    <td>{{item.thuongTru}}</td>
+                                    <td>{{item.tamTru}}</td>
+                                    <td>{{item.danToc}}</td>
+                                    <td>{{item.tonGiao}}</td>
+                                    <td>{{item.ngayVaoDang}}</td>
+                                    <td>{{item.ngayChinhThucVaoDang}}</td>
+                                    <td>{{item.ngayVaoDoan}}</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>{{item.trinhDo}}</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>{{item.huyHieu}}</td>
+                                    <td>{{item.khenThuong}}</td>
+                                    <td>{{item.kyLuat}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </mat-tab>
+                <mat-tab label="Đảng viên (BM2)" style="position: relative;">
+                    <div style="position: absolute;top: 10px;right: 10px;">
+                        <button (click)="tkDangVienBM2()">Export</button>
+                        <button (click)="chayBaoCaoBM2()">Run</button>
+                    </div> 
+                    <table #tkDangVienRefBM2>
                         <thead>
                             <tr>
+                                <th colspan="6">ĐẢNG BỘ QUẬN 5</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th colspan="8">ĐẢNG CỘNG SẢN VIỆT NAM</th>
+                            </tr>
+                            <tr>
+                                <th colspan="6">ĐẢNG UỶ PHƯỜNG 10</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th colspan="8"></th>
+                            </tr>
+                            <tr>
+                                <th colspan="6">*</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th colspan="8">Phường 10, ngày ... tháng … năm …</th>
+                            </tr>
+                            <tr>
+                                <th colspan="17">
+                                    <h4>DANH SÁCH ĐẢNG VIÊN ĐANG QUẢN LÝ</h4>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th colspan="4">Chi bộ: <input [(ngModel)]="phieuDangVienOptionModel.chiBo" placeholder="..." type="text"/></th>
+                                <th colspan="4">Tuổi Đảng: <input [(ngModel)]="phieuDangVienOptionModel.tuoiDang" placeholder="..." type="text"/></th>
+                                <th colspan="4">Tình trạng Đảng viên: <input [(ngModel)]="phieuDangVienOptionModel.tinhTrangDangVien" placeholder="..." type="text"/></th>
+                                <th colspan="5">Xếp loại Đảng viên: <input [(ngModel)]="phieuDangVienOptionModel.xepLoaiDangVien" placeholder="..." type="text"/></th>
+                            </tr>
+                            
+                            <tr>
+                                <th rowspan="2">STT</th>
                                 <th rowspan="2">CHI BỘ</th>
-                                <th rowspan="2">HỌ TÊN KHAI SINH</th>
                                 <th rowspan="2">HỌ TÊN ĐANG DÙNG</th>
-                                <th rowspan="2">SỐ THẺ ĐẢNG VIÊN</th>
-                                <th rowspan="2">GIỚI TÍNH</th>
-                                <th rowspan="2">NGÀY, THÁNG, NĂM SINH</th>
-                                <th rowspan="2">QUÊ QUÁN</th>
+                                <th rowspan="2">SỐ THẺ ĐẢNG</th>
+                                <th colspan="2">NGÀY, THÁNG, NĂM SINH</th>
                                 <th rowspan="2">ĐỊA CHỈ</th>
                                 <th rowspan="2">NƠI THỰC TẾ CƯ TRÚ</th>
                                 <th rowspan="2">DÂN TỘC</th>
                                 <th rowspan="2">TÔN GIÁO</th>
+                                <th colspan="2">TRÌNH ĐỘ</th>
+                                <th colspan="2">CHỨC VỤ HIỆN NAY</th>
                                 <th rowspan="2">NGÀY VÀO ĐẢNG</th>
                                 <th rowspan="2">NGÀY CHÍNH THỨC</th>
-                                <th rowspan="2">NGÀY VÀO ĐOÀN</th>
-                                <th colspan="2">CHỨC VỤ HIỆN NAY</th>
-                                <th rowspan="2">TRÌNH ĐỘ HỌC VẤN, HỌC VỊ, HỌC HÀM (THPT; ĐH, CĐ, TC, TH; ThS, TS; (PGS, GS)</th>
-                                <th rowspan="2">TRÌNH ĐỘ NGOẠI NGỮ</th>
-                                <th rowspan="2">LÝ LUẬN CHÍNH TRỊ (CC, TC, SC)</th>
-                                <th rowspan="2">CHÍNH SÁCH CÓ CÔNG (TB, LS, CCCM)</th>
-                                <th colspan="2">CHỨC VỤ HIỆN NAY</th>
-                                <th rowspan="2">ĐÃ NHẬN HUY HIỆU ĐẢNG (70, 65, 60, 55, 50, 45, 40, 30)</th>
-                                <th rowspan="2">KHEN THƯỞNG</th>
-                                <th rowspan="2">KỶ LUẬT (KTr, CCa, CCh, KT)</th>
+                                <th rowspan="2">TUỔI ĐẢNG</th>
                             </tr>
                             <tr>
-                                <th>Đảng (BT, PBT, CUV, ĐV)</th>
-                                <th>Chính quyền, Đoàn thể</th>
-                                <th>KHÔNG CÒN QUẢN LÝ (TT, CĐi, CĐT, XT, CR, KT)</th>
-                                <th>ĐANG QUẢN LÝ (ĐSH, MSH, CT)</th>
+                                <th>NAM</th>
+                                <th>NỮ</th>
+                                <th>TRÌNH ĐỘ HỌC VẤN, HỌC VỊ, HỌC HÀM</th>
+                                <th>LÝ LUẬN CHÍNH TRỊ</th>
+                                <th>ĐẢNG</th>
+                                <th>CHÍNH QUYỀN, ĐOÀN THỂ</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let item of phieuDangVienModels">
+                            <tr *ngFor= "let item of tkDangVienDangQuanLyModels; let i = index">
+                                <td>{{(i+1)}}</td>
                                 <td>{{item.tenChiBo}}</td>
-                                <td>{{item.tenKhaiSinh}}</td>
                                 <td>{{item.tenDangDung}}</td>
                                 <td>{{item.soTheDangVien}}</td>
-                                <td>{{item.gioiTinh}}</td>
-                                <td>{{item.ngaySinh}}</td>
-                                <td>{{item.queQuan}}</td>
+                                <td>{{item.gioiTinh === 'Nam' ? item.ngaySinh : ''}}</td>
+                                <td>{{item.gioiTinh === 'Nu' ? item.ngaySinh : ''}}</td>
                                 <td>{{item.thuongTru}}</td>
                                 <td>{{item.tamTru}}</td>
                                 <td>{{item.danToc}}</td>
                                 <td>{{item.tonGiao}}</td>
+                                <td>{{item.trinhDo}}</td>
+                                <td>11</td>
+                                <td>12</td>
+                                <td>13</td>
                                 <td>{{item.ngayVaoDang}}</td>
                                 <td>{{item.ngayChinhThucVaoDang}}</td>
-                                <td>{{item.ngayVaoDoan}}</td>
-                                <td>15</td>
                                 <td>16</td>
-                                <td>{{item.trinhDo}}</td>
-                                <td>18</td>
-                                <td>19</td>
-                                <td>20</td>
-                                <td>21</td>
-                                <td>22</td>
-                                <td>{{item.huyHieu}}</td>
-                                <td>{{item.khenThuong}}</td>
-                                <td>{{item.kyLuat}}</td>
-                            </tr>
+                            </tr>    
                         </tbody>
                     </table>
                 </mat-tab>
-                <mat-tab label="Đảng viên (BM2)">
-                    <h4>
-                        DANH SÁCH ĐẢNG VIÊN ĐANG QUẢN LÝ
-                    </h4>
-                    <table>
+                <mat-tab label="Thống kê ĐK (BM3)" style="position: relative;">
+                    <div style="position: absolute;top: 10px;right: 10px;">
+                        <button (click)="tkDangVienBM3()">Export</button>
+                        <button (click)="chayBaoCaoBM3()">Run</button>
+                    </div> 
+                    <table #tkDangVienRefBM3>
                         <thead>
+                            <tr>
+                                <th colspan="6">ĐẢNG BỘ QUẬN 5</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th colspan="8">ĐẢNG CỘNG SẢN VIỆT NAM</th>
+                            </tr>
+                            <tr>
+                                <th colspan="6">ĐẢNG UỶ PHƯỜNG 10</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th colspan="8"></th>
+                            </tr>
+                            <tr>
+                                <th colspan="6">*</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th colspan="8">Phường 10, ngày ... tháng … năm …</th>
+                            </tr>
+                            <tr>
+                                <th colspan="17">
+                                    <h4>DANH SÁCH ĐẢNG VIÊN ĐANG QUẢN LÝ</h4>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th colspan="3">Chi bộ: <input [(ngModel)]="phieuDangVienOptionModel.chiBo" placeholder="..." type="text"/></th>
+                                <th colspan="3">Giới tính: <input [(ngModel)]="phieuDangVienOptionModel.gioiTinh" placeholder="..." type="text"/></th>
+                                <th colspan="2">Dân tộc: <input [(ngModel)]="phieuDangVienOptionModel.danToc" placeholder="..." type="text"/></th>
+                                <th colspan="4">Trình độ chuyên môn: <input [(ngModel)]="phieuDangVienOptionModel.trinhDoChuyenMon" placeholder="..." type="text"/></th>
+                                <th colspan="3">Trình độ chính trị: <input [(ngModel)]="phieuDangVienOptionModel.trinhDoChinhTri" placeholder="..." type="text"/></th>
+                                <th colspan="2">Kỷ luật: <input [(ngModel)]="phieuDangVienOptionModel.kyLuat" placeholder="..." type="text"/></th>
+                            </tr>
                             <tr>
                                 <th rowspan="2">STT</th>
                                 <th rowspan="2">CHI BỘ</th>
@@ -118,71 +248,18 @@
                                 <td>{{item.danToc}}</td>
                                 <td>{{item.tonGiao}}</td>
                                 <td>{{item.trinhDo}}</td>
-                                <td>11</td>
-                                <td>12</td>
-                                <td>13</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
                                 <td>{{item.ngayVaoDang}}</td>
                                 <td>{{item.ngayChinhThucVaoDang}}</td>
-                                <td>16</td>
+                                <td>--</td>
                             </tr>    
                         </tbody>
                     </table>
                 </mat-tab>
-                <mat-tab label="Thống kê ĐK (BM3)">
-                    <h4>
-                        DANH SÁCH ĐẢNG VIÊN ĐANG QUẢN LÝ
-                    </h4>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th rowspan="2">STT</th>
-                                <th rowspan="2">CHI BỘ</th>
-                                <th rowspan="2">HỌ TÊN ĐANG DÙNG</th>
-                                <th rowspan="2">SỐ THẺ ĐẢNG</th>
-                                <th colspan="2">NGÀY, THÁNG, NĂM SINH</th>
-                                <th rowspan="2">ĐỊA CHỈ</th>
-                                <th rowspan="2">NƠI THỰC TẾ CƯ TRÚ</th>
-                                <th rowspan="2">DÂN TỘC</th>
-                                <th rowspan="2">TÔN GIÁO</th>
-                                <th colspan="2">TRÌNH ĐỘ</th>
-                                <th colspan="2">CHỨC VỤ HIỆN NAY</th>
-                                <th rowspan="2">NGÀY VÀO ĐẢNG</th>
-                                <th rowspan="2">NGÀY CHÍNH THỨC</th>
-                                <th rowspan="2">TUỔI ĐẢNG</th>
-                            </tr>
-                            <tr>
-                                <th>NAM</th>
-                                <th>NỮ</th>
-                                <th>TRÌNH ĐỘ HỌC VẤN, HỌC VỊ, HỌC HÀM</th>
-                                <th>LÝ LUẬN CHÍNH TRỊ</th>
-                                <th>ĐẢNG</th>
-                                <th>CHÍNH QUYỀN, ĐOÀN THỂ</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor= "let item of tkDangVienDangQuanLyModels; let i = index">
-                                <td>{{(i+1)}}</td>
-                                <td>{{item.tenChiBo}}</td>
-                                <td>{{item.tenDangDung}}</td>
-                                <td>{{item.soTheDangVien}}</td>
-                                <td>{{item.gioiTinh === 'Nam' ? 'X' : ''}}</td>
-                                <td>{{item.gioiTinh === 'Nu' ? 'X' : ''}}</td>
-                                <td>{{item.thuongTru}}</td>
-                                <td>{{item.tamTru}}</td>
-                                <td>{{item.danToc}}</td>
-                                <td>{{item.tonGiao}}</td>
-                                <td>{{item.trinhDo}}</td>
-                                <td>11</td>
-                                <td>12</td>
-                                <td>13</td>
-                                <td>{{item.ngayVaoDang}}</td>
-                                <td>{{item.ngayChinhThucVaoDang}}</td>
-                                <td>16</td>
-                            </tr>    
-                        </tbody>
-                    </table>
-                </mat-tab>
-                <mat-tab label="Huy hiệu Đảng">
+                <mat-tab label="Huy hiệu Đảng" style="position: relative;">
+                    <button style="position: absolute;top: 10px;right: 10px;" (click)="phieuDangVien()" >Export</button>
                     <h4>DANH SÁCH ĐẢNG VIÊN</h4>
                     <h5>Đề nghị tặng Huy hiệu đảng ĐỢT THÁNG …</h5>
                     <table>
@@ -223,7 +300,8 @@
         <mat-tab label="Xếp loại">
             Xếp loại
         </mat-tab>
-        <mat-tab label="Số liệu">
+        <mat-tab label="Số liệu" style="position: relative;">
+            <button style="position: absolute;top: 10px;right: 10px;" (click)="phieuDangVien()" >Export</button>
             <h4>THỐNG KÊ SỐ LIỆU ĐẢNG VIÊN</h4>
             <table>
                 <thead>
