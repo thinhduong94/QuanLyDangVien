@@ -6,7 +6,8 @@ import { DangVienComponent } from "./pages/Dang-vien/dang-vien.component";
 import { DangVien213Component } from "./pages/DangVien213/dangvien213.component";
 import { thongkeComponent } from './pages/Thong-ke/thongke.component';
 const routes: Routes = [
-  { path: "", component: ChiBoComponent },
+  { path: "", redirectTo: '/chiBo', pathMatch: 'full' },
+  { path: "chiBo", component: ChiBoComponent },
   { path: "persongroup", component: personGroupComponent },
   { path: "dangVien", component: DangVienComponent },
   { path: "dangvien213", component: DangVien213Component },
