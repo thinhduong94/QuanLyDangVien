@@ -1,5 +1,5 @@
 <h2 mat-dialog-title class="dv-form-title">ĐẢNG CỘNG SẢN VIỆT NAM</h2>
-<div mat-dialog-content [formGroup]="dangVienForm">
+<div mat-dialog-content [formGroup]="dangVienForm" #topdf id="topdf">
   <div class="dv-header">
     <div class="dv-left-header">
       <mat-form-field class="full-width" appearance="legacy">
@@ -100,7 +100,7 @@
       <input matInput type="text" formControlName="thanhPhanGiaDinh">
     </mat-form-field>
     <mat-form-field appearance="legacy" class="full-width">
-      <mat-label>111) Nghề nghiệp hiện tay</mat-label>
+      <mat-label>11) Nghề nghiệp hiện tay</mat-label>
       <input matInput type="text" formControlName="ngheNghiep">
     </mat-form-field>
     <mat-form-field appearance="legacy" style="width:40%">
@@ -110,6 +110,38 @@
     <mat-form-field appearance="legacy" style="width:60%">
       <mat-label>Tại chi bộ</mat-label>
       <mat-select formControlName="chiBoVaoDang">
+        <mat-option *ngFor="let cb of chibos" [value]="cb.maChiBo">
+          {{cb.tenChiBo}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="legacy" style="width:50%;padding-left: 25px;">
+      <mat-label>Ngày giới thiệu thứ 1:</mat-label>
+      <input matInput type="text" formControlName="nguoiGioiThieuMot">
+    </mat-form-field>
+    <mat-form-field appearance="legacy" style="width:50%;">
+      <mat-label>Chức vụ,đơn vị:</mat-label>
+      <input matInput type="text" formControlName="chucVuNguoiGioiThieuMot">
+    </mat-form-field>
+    <mat-form-field appearance="legacy" style="width:50%;padding-left: 25px;">
+      <mat-label>Ngày giới thiệu thứ 2:</mat-label>
+      <input matInput type="text" formControlName="nguoiGioiThieuMot">
+    </mat-form-field>
+    <mat-form-field appearance="legacy" style="width:50%;">
+      <mat-label>Chức vụ, đơn vị:</mat-label>
+      <input matInput type="text" formControlName="chucVuNguoiGioiThieuMot">
+    </mat-form-field>
+    <mat-form-field appearance="legacy" style="width:100%;padding-left: 25px;">
+      <mat-label>Ngày cấp có thẩm quyền ra quyết định kết nạp:</mat-label>
+      <input matInput type="text" formControlName="ngayQuyetDinhKetNap">
+    </mat-form-field>
+    <mat-form-field appearance="legacy" style="width:40%;padding-left: 25px;">
+      <mat-label>Ngày chính thức :</mat-label>
+      <input matInput type="text" formControlName="ngayChinhThucVaoDang">
+    </mat-form-field>
+    <mat-form-field appearance="legacy" style="width:60%">
+      <mat-label>Tại chi bộ</mat-label>
+      <mat-select formControlName="chiBoChinhThucVaoDang">
         <mat-option *ngFor="let cb of chibos" [value]="cb.maChiBo">
           {{cb.tenChiBo}}
         </mat-option>
@@ -139,9 +171,40 @@
       <mat-label>Ngày xuất ngũ/ chuyển ngành</mat-label>
       <input matInput type="text" formControlName="ngayXuatNgu">
     </mat-form-field>
-    <mat-form-field appearance="legacy" class="full-width">
+    <div style="width: 100%;">
       <mat-label>17) Trình độ hiện nay</mat-label>
-      <input matInput type="text" formControlName="trinhDo">
+    </div>
+    <mat-form-field appearance="legacy" style="width: 50%;">
+      <mat-label>Giáo dục phổ thông</mat-label>
+      <input matInput type="text" formControlName="giaoDucPhoThong">
+    </mat-form-field>
+    <mat-form-field appearance="legacy" style="width: 100%;">
+      <mat-label>Giáo dục nghề nghiệp</mat-label>
+      <input matInput type="text" formControlName="giaoDucNgheNghiep">
+    </mat-form-field>
+    <mat-form-field appearance="legacy" style="width: 50%;">
+      <mat-label>Học vị</mat-label>
+      <input matInput type="text" formControlName="hocVi">
+    </mat-form-field>
+    <mat-form-field appearance="legacy" style="width: 50%;">
+      <mat-label>Học hàm</mat-label>
+      <input matInput type="text" formControlName="hocHam">
+    </mat-form-field>
+    <mat-form-field appearance="legacy" style="width: 50%;">
+      <mat-label>Lý luận chính trị</mat-label>
+      <input matInput type="text" formControlName="lyLuanChinhTri">
+    </mat-form-field>
+    <mat-form-field appearance="legacy" style="width: 50%;">
+      <mat-label>Ngoại ngữ</mat-label>
+      <input matInput type="text" formControlName="ngoaiNgu">
+    </mat-form-field>
+    <mat-form-field appearance="legacy" style="width: 100%;">
+      <mat-label>Tin học</mat-label>
+      <input matInput type="text" formControlName="tinHoc">
+    </mat-form-field>
+    <mat-form-field appearance="legacy" style="width: 100%;">
+      <mat-label>Giáo dục đại học và sau đại học</mat-label>
+      <input matInput type="text" formControlName="giaoDucDaiHocVaSauDaiHoc">
     </mat-form-field>
     <mat-form-field appearance="legacy" class="full-width">
       <mat-label>18) Trình trạng sức khỏe bản thân</mat-label>

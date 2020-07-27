@@ -74,4 +74,13 @@ export class DangVien {
   thoiGianBiXoa: string;
   chiBoBiXoa: string;
   quanHeGiaDinh: string;
+  ngayQuyetDinhKetNap: string;
+  giaoDucPhoThong: string;
+  giaoDucNgheNghiep: string;
+  giaoDucDaiHocVaSauDaiHoc: string;
+  hocVi: string;
+  hocHam: string;
+  lyLuanChinhTri: string;
+  ngoaiNgu: string;
+  tinHoc: string;
 }

@@ -119,6 +119,15 @@ export class DangVienService {
         thoiGianBiXoa,
         chiBoBiXoa,
         quanHeGiaDinh,
+        ngayQuyetDinhKetNap,
+        giaoDucPhoThong,
+        giaoDucNgheNghiep,
+        giaoDucDaiHocVaSauDaiHoc,
+        hocVi,
+        hocHam,
+        lyLuanChinhTri,
+        ngoaiNgu,
+        tinHoc,
         trangThai)
 
         VALUES
@@ -195,6 +204,15 @@ export class DangVienService {
           $thoiGianBiXoa,
           $chiBoBiXoa,
           $quanHeGiaDinh,
+          $ngayQuyetDinhKetNap,
+          $giaoDucPhoThong,
+          $giaoDucNgheNghiep,
+          $giaoDucDaiHocVaSauDaiHoc,
+          $hocVi,
+          $hocHam,
+          $lyLuanChinhTri,
+          $ngoaiNgu,
+          $tinHoc,
           $trangThai)`;
 
     const values = {
@@ -270,6 +288,15 @@ export class DangVienService {
       $thoiGianBiXoa: obj.thoiGianBiXoa,
       $chiBoBiXoa: obj.chiBoBiXoa,
       $quanHeGiaDinh: obj.quanHeGiaDinh,
+      $ngayQuyetDinhKetNap: obj.ngayQuyetDinhKetNap,
+      $giaoDucPhoThong: obj.giaoDucPhoThong,
+      $giaoDucNgheNghiep: obj.giaoDucNgheNghiep,
+      $giaoDucDaiHocVaSauDaiHoc: obj.giaoDucDaiHocVaSauDaiHoc,
+      $hocVi: obj.hocVi,
+      $hocHam: obj.hocHam,
+      $lyLuanChinhTri: obj.lyLuanChinhTri,
+      $ngoaiNgu: obj.ngoaiNgu,
+      $tinHoc: obj.tinHoc,
       $trangThai: 0,
     };
 
@@ -359,7 +386,16 @@ export class DangVienService {
         kyLuat = $kyLuat,
         thoiGianBiXoa = $thoiGianBiXoa,
         chiBoBiXoa = $chiBoBiXoa,
-        quanHeGiaDinh = $quanHeGiaDinh
+        quanHeGiaDinh = $quanHeGiaDinh,
+        ngayQuyetDinhKetNap = $ngayQuyetDinhKetNap,
+        giaoDucPhoThong = $giaoDucPhoThong,
+        giaoDucNgheNghiep = $giaoDucNgheNghiep,
+        giaoDucDaiHocVaSauDaiHoc = $giaoDucDaiHocVaSauDaiHoc,
+        hocVi = $hocVi,
+        hocHam = $hocHam,
+        lyLuanChinhTri = $lyLuanChinhTri,
+        ngoaiNgu = $ngoaiNgu,
+        tinHoc = $tinHoc,
          WHERE id = $id`;
 
     const values = this.getValueObject(obj);
@@ -471,6 +507,15 @@ export class DangVienService {
       $thoiGianBiXoa: obj.thoiGianBiXoa,
       $chiBoBiXoa: obj.chiBoBiXoa,
       $quanHeGiaDinh: obj.quanHeGiaDinh,
+      $ngayQuyetDinhKetNap: obj.ngayQuyetDinhKetNap,
+      $giaoDucPhoThong: obj.giaoDucPhoThong,
+      $giaoDucNgheNghiep: obj.giaoDucNgheNghiep,
+      $giaoDucDaiHocVaSauDaiHoc: obj.giaoDucDaiHocVaSauDaiHoc,
+      $hocVi: obj.hocVi,
+      $hocHam: obj.hocHam,
+      $lyLuanChinhTri: obj.lyLuanChinhTri,
+      $ngoaiNgu: obj.ngoaiNgu,
+      $tinHoc: obj.tinHoc,
     };
   }
 }
