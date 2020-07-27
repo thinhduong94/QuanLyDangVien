@@ -37,3 +37,7 @@ table {
     border: none;
 }
 
+.mat-table-sticky {
+    background: #59abfd;
+    opacity: 1;
+  }
