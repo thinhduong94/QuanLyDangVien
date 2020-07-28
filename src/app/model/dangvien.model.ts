@@ -4,6 +4,7 @@ export class DangVien {
   dangBoHuyen: string;
   soLyLich: string;
   soTheDangVien: string;
+  anh3x4: string;
   tenDangDung: string;
   tenKhaiSinh: string;
   gioiTinh: string;

@@ -17,8 +17,10 @@ export class DangVienFormDialog implements OnInit {
     public fb: FormBuilder,
     private dangVienService: DangVienService,
     private chiboService: ChiBoService
-  ) {}
+  ) { }
 
+  fileData: File = null;
+  anh3x4: any = null;
   dangVienForm: FormGroup;
   chibos = [];
   danhSachHuyHieu = [
@@ -120,6 +122,7 @@ export class DangVienFormDialog implements OnInit {
           kyLuat: foundDangVien.kyLuat,
           quanHeGiaDinh: foundDangVien.quanHeGiaDinh,
         });
+        this.anh3x4 = foundDangVien.anh3x4;
       });
     }
   }
@@ -204,6 +207,7 @@ export class DangVienFormDialog implements OnInit {
 
   onSaveClick() {
     const dangVienFormValue = this.dangVienForm.value;
+    dangVienFormValue.anh3x4 = this.anh3x4;
     console.log("dangVienFormValue", dangVienFormValue);
     if (this.data.id) {
       dangVienFormValue.id = this.data.id;
@@ -221,5 +225,23 @@ export class DangVienFormDialog implements OnInit {
     this.chiboService.getAll().then((result) => {
       this.chibos = result;
     });
+  }
+
+  fileProgress(fileInput: any) {
+    this.fileData = <File>fileInput.target.files[0];
+    this.preview();
+  }
+
+  preview() {
+    var mimeType = this.fileData.type;
+    if (mimeType.match(/image\/*/) == null) {
+      return;
+    }
+
+    var reader = new FileReader();
+    reader.readAsDataURL(this.fileData);
+    reader.onload = (_event) => {
+      this.anh3x4 = reader.result;
+    }
   }
 }

@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS 'dangvien' (
 	'dangBoHuyen' TEXT NULL,
 	'soLyLich' TEXT NULL,
 	'soTheDangVien' TEXT NULL,
+	'anh3x4' TEXT NULL,
 	'tenDangDung' TEXT NULL,
 	'tenKhaiSinh' TEXT NULL,
 	'noiSinh' TEXT NULL,

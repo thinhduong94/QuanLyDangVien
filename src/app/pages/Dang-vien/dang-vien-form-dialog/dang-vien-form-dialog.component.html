@@ -43,13 +43,18 @@
       <div style="display:flex;width: 100%;height: 200px;">
         <p style="text-align: center;font-size: 45px;font-weight: bold;">Phiếu đảng<br />viên</p>
         <div style="border: 1px solid gray;text-align: center;">
-          <p style="align-items: center;">
+          <div style="align-self: flex-end;">
+            <!-- <input type="file" name="image" (change)="fileProgress($event)" /> -->
+            <label>
+              <input style="display:none" type="file" name="image" (change)="fileProgress($event)" />
+              <span class="btn btn-secondary">Chọn hình</span>
+            </label>
+          </div>
+          <p *ngIf="!anh3x4" style="align-items: center;">
             Ảnh<br />
             (3 x 4)
           </p>
-          <div style="align-self: flex-end;">
-            <input type="file" />
-          </div>
+          <img *ngIf="anh3x4" [src]="anh3x4" height="110px" width="90px"/>
         </div>
       </div>
     </div>
