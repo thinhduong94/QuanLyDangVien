@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ThongKeService, PhieuDangVienModel, PhieuDangVienOptionModel } from 'src/app/service/thongke.service';
+import { ThongKeService, PhieuDangVienModel, PhieuDangVienOptionModel, SoLieuModel } from 'src/app/service/thongke.service';
 import { ExcelService } from 'src/app/service/excel.service';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { SlowBuffer } from 'buffer';
+import { ChiBoService } from 'src/app/service/chibo.service';
 @Component({
   selector: 'app-thongke',
   templateUrl: './thongke.component.html',
@@ -17,8 +18,11 @@ export class thongkeComponent implements OnInit {
   tkDangVienDangQuanLyDataBM3 : PhieuDangVienModel[] = [];
   tkDangVienDangQuanLyDataBM2 : PhieuDangVienModel[] = [];  
   phieuDangVienOptionModel = {} as PhieuDangVienOptionModel;
+  soLieuModel = {} as SoLieuModel;
+  soLieuModels : SoLieuModel[] = [];
   constructor(
     private thongKeService : ThongKeService,
+    private chiBoService : ChiBoService,
     private excelService: ExcelService,
     public fb: FormBuilder,
   ){
@@ -54,24 +58,68 @@ export class thongkeComponent implements OnInit {
     let temp = [...this.tkDangVienDangQuanLyDataBM3];
     let option = this.phieuDangVienOptionModel;
     console.log(this.phieuDangVienOptionModel);
-    temp = temp.filter((item)=>{
-      ((option.chiBo && option.chiBo === "") ? true : option.chiBo === item.chiBo) &&
-      ((option.gioiTinh && option.gioiTinh === "") ? true : option.gioiTinh === item.gioiTinh) &&
-      ((option.danToc && option.danToc === "") ? true : option.danToc === item.danToc) &&
-      ((option.kyLuat && option.kyLuat === "") ? true : option.kyLuat === item.kyLuat)
-    });
-   this.tkDangVienDangQuanLyModels = temp;
+    const _temp = temp.filter((item)=>
+      ((option.chiBo && option.chiBo !== "") ? option.chiBo === item.chiBo : true) &&
+      ((option.gioiTinh && option.gioiTinh !== "") ? option.gioiTinh === item.gioiTinh : true) &&
+      ((option.danToc && option.danToc !== "") ? option.danToc === item.danToc : true ) &&
+      ((option.kyLuat && option.kyLuat !== "") ? option.kyLuat === item.kyLuat : true)
+    );
+   this.tkDangVienDangQuanLyModels = _temp;
   }
   chayBaoCaoBM2(){
     let temp = [...this.tkDangVienDangQuanLyDataBM2];
     let option = this.phieuDangVienOptionModel;
     console.log(this.phieuDangVienOptionModel);
-    temp = temp.filter((item)=>{
-      ((option.chiBo && option.chiBo === "") ? true : option.chiBo === item.chiBo) &&
-      ((option.tuoiDang && option.tuoiDang === "") ? true : option.tuoiDang === item['tuoiDang']) &&
-      ((option.tinhTrangDangVien && option.tinhTrangDangVien === "") ? true : option.tinhTrangDangVien === item['tinhTrangDangVien']) &&
-      ((option.xepLoaiDangVien && option.xepLoaiDangVien === "") ? true : option.xepLoaiDangVien === item['xepLoaiDangVien'])
+    const _temp = temp.filter((item)=>
+      ((!option.chiBo || option.chiBo === "") ? true : option.chiBo === item.chiBo) &&
+      ((!option.tuoiDang || option.tuoiDang === "") ? true : option.tuoiDang === item['tuoiDang']) &&
+      ((!option.tinhTrangDangVien || option.tinhTrangDangVien === "") ? true : option.tinhTrangDangVien === item['tinhTrangDangVien']) &&
+      ((!option.xepLoaiDangVien || option.xepLoaiDangVien === "") ? true : option.xepLoaiDangVien === item['xepLoaiDangVien'])
+    );
+   this.tkDangVienDangQuanLyModels = _temp;
+  }
+  getSoLieuChiBo(){
+    
+    this.chiBoService.getAll().then(items=>{
+      items.forEach(item=>{
+        let soLuongCapUy = 0;
+        let nu = 0;
+        let danTocKhac = 0;
+        let duBi = 0;
+        let soLuongDangVien = 0;
+        let dangVienDuBi = 0;
+        let huyHieuDang = 0;
+        this.tkDangVienDangQuanLyDataBM2.forEach(dv=>{
+          if(dv.chiBo == item.maChiBo){
+            soLuongDangVien++;
+            if(["BT","PBT","CUV"].includes(dv['chucVuDang'])){
+              soLuongCapUy++;
+            }
+            if(dv.gioiTinh === 'Nu'){
+              nu++;
+            }
+            if(dv.danToc !== 'Kinh'){
+              danTocKhac++;
+            }
+            if(dv.ngayChinhThucVaoDang === ''){
+              dangVienDuBi++;
+            }
+            if(dv.huyHieu !== ''){
+              huyHieuDang++;
+            }
+          }
+        });
+        const obj = {} as SoLieuModel;
+        obj.chibo = item.tenChiBo;
+        obj.danTocKhac = danTocKhac;
+        obj.dangVienDuBi = dangVienDuBi;
+        obj.dangSo = soLuongDangVien;
+        obj.dangVienNhanHuyHieuDang = huyHieuDang;
+        obj.duBi = duBi;
+        obj.nu = nu;
+        obj.soLuongCapUy = soLuongCapUy;
+        this.soLieuModels.push(obj);
+      })
     });
-   this.tkDangVienDangQuanLyModels = temp;
   }
 }

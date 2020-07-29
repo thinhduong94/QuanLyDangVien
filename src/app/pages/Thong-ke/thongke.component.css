@@ -28,3 +28,16 @@ table th {
 h3 , h4 , h5{
     text-align: center;
 }
+.inputGroup{
+    width: 100%;margin-top: 10px;
+}
+.inputitem{
+    width: 20%;padding-right: 10px;
+    float: left;
+}
+.buttonGroup{
+    width: 100%;
+}
+.buttonGroup button{
+    float: right;
+}

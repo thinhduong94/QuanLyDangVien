@@ -90,6 +90,25 @@ export interface PhieuDangVienOptionModel {
   tinhTrangDangVien:string;
   xepLoaiDangVien:string;
 }
+export interface SoLieuModel {
+  chibo:string;
+  soLuongCapUy:number;
+  dangSo:number;
+  nu:number;
+  danTocKhac:number;
+  duBi:number;
+  mienSinhHoat:number;
+  sinhHoatTam:number;
+  dangVienDuBi:number;
+  dangVienNhanHuyHieuDang:number;
+  xuatSac:number;
+  tot:number;
+  hoanThanh:number;
+  khongHoanThanh:number;
+  soCap:number;
+  trungCap:number;
+  caoCap:number;
+}
 @Injectable({
   providedIn: "root",
 })
@@ -115,7 +134,7 @@ export class ThongKeService {
 
   public getTkDangVienDangQuanLy(option:any): Promise<PhieuDangVienModel[]> {
     const sql = `SELECT 
-    chibo.tenChiBo  ,
+    chibo.tenChiBo,
     dangvien.*
     FROM dangvien JOIN chibo ON dangvien.chiBo = chiBo.maChiBo
     WHERE dangvien.trangThai = 0`;
