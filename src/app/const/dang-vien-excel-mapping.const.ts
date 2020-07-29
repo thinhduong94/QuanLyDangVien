@@ -164,4 +164,5 @@ export const DangVienExcelMapping = [
   { header: "BT", column: "chiBoBiXoa", display: "Chi bộ bị xóa" },
   { header: "BU", column: "quanHeGiaDinh", display: "Quan hệ gia đình" },
   { header: "BV", column: "trangThai", display: "Trạng thái" },
+  { header: "BW", column: "anh3x4", display: "Ảnh" },
 ];

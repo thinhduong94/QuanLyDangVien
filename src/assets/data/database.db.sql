@@ -83,7 +83,8 @@ CREATE TABLE IF NOT EXISTS 'dangvien' (
 	'thoiGianBiXoa' TEXT NULL,
 	'chiBoBiXoa' TEXT NULL,
 	'quanHeGiaDinh' TEXT NULL,
-	'trangThai' INTEGER NULL
+	'trangThai' INTEGER NULL,
+	'anh3x4' TEXT NULL
 );
 DROP TABLE IF EXISTS 'dangvien213';
 CREATE TABLE IF NOT EXISTS 'dangvien213' (

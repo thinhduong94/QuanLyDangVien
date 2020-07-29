@@ -119,7 +119,8 @@ export class DangVienService {
         thoiGianBiXoa,
         chiBoBiXoa,
         quanHeGiaDinh,
-        trangThai)
+        trangThai,
+        anh3x4)
 
         VALUES
 
@@ -195,7 +196,8 @@ export class DangVienService {
           $thoiGianBiXoa,
           $chiBoBiXoa,
           $quanHeGiaDinh,
-          $trangThai)`;
+          $trangThai,
+          $anh3x4)`;
 
     const values = {
       $dangBoTinh: obj.dangBoTinh,
@@ -271,6 +273,7 @@ export class DangVienService {
       $chiBoBiXoa: obj.chiBoBiXoa,
       $quanHeGiaDinh: obj.quanHeGiaDinh,
       $trangThai: 0,
+      $anh3x4: obj.anh3x4,
     };
 
     return TheDb.insert(sql, values).then((result) => {
@@ -359,7 +362,8 @@ export class DangVienService {
         kyLuat = $kyLuat,
         thoiGianBiXoa = $thoiGianBiXoa,
         chiBoBiXoa = $chiBoBiXoa,
-        quanHeGiaDinh = $quanHeGiaDinh
+        quanHeGiaDinh = $quanHeGiaDinh,
+        anh3x4 = $anh3x4
          WHERE id = $id`;
 
     const values = this.getValueObject(obj);
@@ -471,6 +475,7 @@ export class DangVienService {
       $thoiGianBiXoa: obj.thoiGianBiXoa,
       $chiBoBiXoa: obj.chiBoBiXoa,
       $quanHeGiaDinh: obj.quanHeGiaDinh,
+      $anh3x4: obj.anh3x4,
     };
   }
 }

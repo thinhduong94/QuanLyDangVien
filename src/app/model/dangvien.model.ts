@@ -74,4 +74,5 @@ export class DangVien {
   thoiGianBiXoa: string;
   chiBoBiXoa: string;
   quanHeGiaDinh: string;
+  anh3x4: string;
 }
