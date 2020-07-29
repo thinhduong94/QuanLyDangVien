@@ -137,6 +137,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "angular8"
+    }
+  },
+  "defaultProject": "angular8",
+  "cli": {
+    "analytics": "ccae7172-1aee-4ebb-8bc0-c30e7400da64"
+  }
 }

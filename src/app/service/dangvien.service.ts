@@ -120,7 +120,18 @@ export class DangVienService {
         chiBoBiXoa,
         quanHeGiaDinh,
         trangThai,
-        anh3x4)
+        anh3x4),
+        ngayQuyetDinhKetNap,
+        giaoDucPhoThong,
+        giaoDucNgheNghiep,
+        giaoDucDaiHocVaSauDaiHoc,
+        hocVi,
+        hocHam,
+        lyLuanChinhTri,
+        ngoaiNgu,
+        tinHoc,
+        trangThai)
+>>>>>>> nguyen
 
         VALUES
 
@@ -197,7 +208,17 @@ export class DangVienService {
           $chiBoBiXoa,
           $quanHeGiaDinh,
           $trangThai,
-          $anh3x4)`;
+          $anh3x4),
+          $ngayQuyetDinhKetNap,
+          $giaoDucPhoThong,
+          $giaoDucNgheNghiep,
+          $giaoDucDaiHocVaSauDaiHoc,
+          $hocVi,
+          $hocHam,
+          $lyLuanChinhTri,
+          $ngoaiNgu,
+          $tinHoc,
+          $trangThai)`;
 
     const values = {
       $dangBoTinh: obj.dangBoTinh,
@@ -272,6 +293,15 @@ export class DangVienService {
       $thoiGianBiXoa: obj.thoiGianBiXoa,
       $chiBoBiXoa: obj.chiBoBiXoa,
       $quanHeGiaDinh: obj.quanHeGiaDinh,
+      $ngayQuyetDinhKetNap: obj.ngayQuyetDinhKetNap,
+      $giaoDucPhoThong: obj.giaoDucPhoThong,
+      $giaoDucNgheNghiep: obj.giaoDucNgheNghiep,
+      $giaoDucDaiHocVaSauDaiHoc: obj.giaoDucDaiHocVaSauDaiHoc,
+      $hocVi: obj.hocVi,
+      $hocHam: obj.hocHam,
+      $lyLuanChinhTri: obj.lyLuanChinhTri,
+      $ngoaiNgu: obj.ngoaiNgu,
+      $tinHoc: obj.tinHoc,
       $trangThai: 0,
       $anh3x4: obj.anh3x4,
     };
@@ -363,8 +393,17 @@ export class DangVienService {
         thoiGianBiXoa = $thoiGianBiXoa,
         chiBoBiXoa = $chiBoBiXoa,
         quanHeGiaDinh = $quanHeGiaDinh,
-        anh3x4 = $anh3x4
-         WHERE id = $id`;
+        anh3x4 = $anh3x4,
+        ngayQuyetDinhKetNap = $ngayQuyetDinhKetNap,
+        giaoDucPhoThong = $giaoDucPhoThong,
+        giaoDucNgheNghiep = $giaoDucNgheNghiep,
+        giaoDucDaiHocVaSauDaiHoc = $giaoDucDaiHocVaSauDaiHoc,
+        hocVi = $hocVi,
+        hocHam = $hocHam,
+        lyLuanChinhTri = $lyLuanChinhTri,
+        ngoaiNgu = $ngoaiNgu,
+        tinHoc = $tinHoc,
+        WHERE id = $id`;
 
     const values = this.getValueObject(obj);
     return TheDb.update(sql, values).then((result) => {
@@ -476,6 +515,15 @@ export class DangVienService {
       $chiBoBiXoa: obj.chiBoBiXoa,
       $quanHeGiaDinh: obj.quanHeGiaDinh,
       $anh3x4: obj.anh3x4,
+      $ngayQuyetDinhKetNap: obj.ngayQuyetDinhKetNap,
+      $giaoDucPhoThong: obj.giaoDucPhoThong,
+      $giaoDucNgheNghiep: obj.giaoDucNgheNghiep,
+      $giaoDucDaiHocVaSauDaiHoc: obj.giaoDucDaiHocVaSauDaiHoc,
+      $hocVi: obj.hocVi,
+      $hocHam: obj.hocHam,
+      $lyLuanChinhTri: obj.lyLuanChinhTri,
+      $ngoaiNgu: obj.ngoaiNgu,
+      $tinHoc: obj.tinHoc
     };
   }
 }
