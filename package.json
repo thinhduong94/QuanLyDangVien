@@ -34,11 +34,13 @@
       "!**/assets/data",
       "!**/src"
     ],
-    "extraResources": [{
-      "from": "src/assets/data",
-      "to": "dist/assets/data",
-      "filter": "database*"
-    }]
+    "extraResources": [
+      {
+        "from": "src/assets/data",
+        "to": "dist/assets/data",
+        "filter": "database*"
+      }
+    ]
   },
   "dependencies": {
     "@angular-builders/custom-webpack": "^9.0.0",

@@ -10,20 +10,6 @@ import { DialogData } from "../../ChiBo/daiolog/chibo.daiolog";
 import { FormGroup, FormControl, FormBuilder, FormArray } from "@angular/forms";
 import { DangVienService } from "src/app/service/dangvien.service";
 import { ChiBoService } from "src/app/service/chibo.service";
-import {
-  Document,
-  Packer,
-  Paragraph,
-  TextRun,
-  UnderlineType,
-  AlignmentType,
-} from "docx";
-import * as fs from "fs";
-import * as jsPDF from "jspdf";
-// import * as d3 from "d3";
-import * as html2canvas from "html2canvas";
-import * as pdf from "html-pdf";
-import * as path from "path";
 import * as html2pdf from "html2pdf.js";
 @Component({
   selector: "dang-vien-form-dialog",

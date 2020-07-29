@@ -122,4 +122,17 @@ export class thongkeComponent implements OnInit {
       })
     });
   }
+  getTrinhDo(item : PhieuDangVienModel){
+    let trinhgDo = [];
+    if(item.trinhDo && item.trinhDo !== ""){
+      trinhgDo.push(item.trinhDo);
+    }
+    if(item.hocHam && item.hocHam !== ""){
+      trinhgDo.push(item.hocHam);
+    }
+    if(item.hocVi && item.hocVi !== ""){
+      trinhgDo.push(item.hocVi);
+    }
+    return trinhgDo.join(',');
+  }
 }
