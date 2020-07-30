@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild } from "@angular/core";
 import { TheDb } from "src/app/model/thedb";
 import { DangVienService } from "src/app/service/dangvien.service";
 import { MatTableDataSource } from "@angular/material/table";
-import { DangVien } from "src/app/model/dangvien.model";
+import { DangVienModel } from "src/app/model/dangvien.model";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatDialog } from "@angular/material/dialog";
@@ -34,14 +34,15 @@ export class DangVienComponent implements OnInit, OnDestroy {
     "tonGiao",
     "ngheNghiep",
     "ngayVaoDang",
+    "action",
   ];
-  dataSource = new MatTableDataSource<DangVien>([]);
+  dataSource = new MatTableDataSource<DangVienModel>([]);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   animal;
   name;
-  dangVienDangChon: DangVien;
-  danhSachDangVien: DangVien[] = [];
+  dangVienDangChon: DangVienModel;
+  danhSachDangVien: DangVienModel[] = [];
   ngOnDestroy() {}
   ngOnInit() {
     const checkDB = setInterval(() => {
@@ -61,7 +62,9 @@ export class DangVienComponent implements OnInit, OnDestroy {
   }
 
   loadData() {
-    this.dataSource = new MatTableDataSource<DangVien>(this.danhSachDangVien);
+    this.dataSource = new MatTableDataSource<DangVienModel>(
+      this.danhSachDangVien
+    );
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
@@ -88,7 +91,7 @@ export class DangVienComponent implements OnInit, OnDestroy {
   }
 
   exportDangVien() {
-    this.excelService.exportAsExcelFile(this.danhSachDangVien, "DangVien");
+    this.excelService.exportAsExcelFile(this.danhSachDangVien, "DangVienModel");
     const dialogRef = this.dialog.open(alertComponent, {
       width: "500px",
       data: { mess: "Đã hoàn thành" || null },
@@ -98,7 +101,7 @@ export class DangVienComponent implements OnInit, OnDestroy {
   importDangVien() {
     const dialogRef = this.dialog.open(importExcelComponent, {
       width: "500px",
-      data: { sheet: "DangVien" },
+      data: { sheet: "DangVienModel" },
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log(result);

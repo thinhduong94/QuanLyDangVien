@@ -1,0 +1,67 @@
+.field {
+  font-size: 14px;
+  font-weight: bold;
+  word-wrap: break-word;
+  height: 20px;
+  line-height: 10px;
+  margin-top: 0;
+  margin-bottom: 3px;
+}
+
+.field-title {
+  display: block;
+  width: fit-content;
+  float: left;
+  height: 16px;
+  padding-top: 4px;
+}
+
+.square {
+  border: 1px solid black;
+  width: 17px;
+  height: 17px;
+  display: inline-block;
+}
+
+.field-data {
+  display: block;
+  width: auto;
+  overflow: hidden;
+  border-bottom: 1px dotted black;
+  height: 20px;
+  padding-left: 5px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.field-container {
+  display: flex;
+  padding: 5px 10px;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+td {
+  height: 22px;
+  padding: 0;
+}
+
+.a4-height {
+  height: 842px;
+  border: 1px solid grey;
+}
+
+.unit {
+  position: absolute;
+  right: 0;
+  top: -5px;
+}
+
+.relative {
+  position: relative;
+}

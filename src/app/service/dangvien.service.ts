@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { TheDb } from "../model/thedb";
-import { DangVien } from "../model/dangvien.model";
+import { DangVienModel } from "../model/dangvien.model";
 
 @Injectable({
   providedIn: "root",
 })
 export class DangVienService {
-  public getBySoTheDangVien(soTheDangVien: number): Promise<DangVien> {
+  public getBySoTheDangVien(soTheDangVien: number): Promise<DangVienModel> {
     const sql = "SELECT * FROM dangvien WHERE soTheDangVien = $soTheDangVien";
     const values = { $soTheDangVien: soTheDangVien };
 
@@ -17,7 +17,7 @@ export class DangVienService {
     });
   }
 
-  public get(id: number): Promise<DangVien> {
+  public get(id: number): Promise<DangVienModel> {
     const sql = "SELECT * FROM dangvien WHERE id = $id";
     const values = { $id: id };
 
@@ -30,12 +30,12 @@ export class DangVienService {
     });
   }
 
-  public getAll(): Promise<DangVien[]> {
+  public getAll(): Promise<DangVienModel[]> {
     const sql = `SELECT * FROM dangvien where trangThai = 0`;
     const values = {};
 
     return TheDb.selectAll(sql, values).then((rows) => {
-      const chibos: DangVien[] = [];
+      const chibos: DangVienModel[] = [];
       for (const row of rows) {
         const dangvien = new DangVienService().fromRow(row);
         chibos.push(dangvien);
@@ -44,7 +44,7 @@ export class DangVienService {
     });
   }
 
-  public insert(obj: DangVien): Promise<void> {
+  public insert(obj: DangVienModel): Promise<void> {
     const sql = `
         INSERT INTO dangvien
         (dangBoTinh,
@@ -128,6 +128,14 @@ export class DangVienService {
         lyLuanChinhTri,
         ngoaiNgu,
         tinHoc,
+        canCuocCongDan,
+        nguoiGioiThieuMotLanHai,
+        chucVuNguoiGioiThieuMotLanHai,
+        nguoiGioiThieuHaiLanHai,
+        chucVuNguoiGioiThieuHaiLanHai,
+        thuongBinhLoai,
+        giaDinhLietSi,
+        giaDinhCoCongCachMang,
         trangThai)
 
         VALUES
@@ -213,6 +221,14 @@ export class DangVienService {
           $lyLuanChinhTri,
           $ngoaiNgu,
           $tinHoc,
+          $canCuocCongDan,
+          $nguoiGioiThieuMotLanHai,
+          $chucVuNguoiGioiThieuMotLanHai,
+          $nguoiGioiThieuHaiLanHai,
+          $chucVuNguoiGioiThieuHaiLanHai,
+          $thuongBinhLoai,
+          $giaDinhLietSi,
+          $giaDinhCoCongCachMang,
           $trangThai)`;
 
     const values = {
@@ -297,6 +313,14 @@ export class DangVienService {
       $lyLuanChinhTri: obj.lyLuanChinhTri,
       $ngoaiNgu: obj.ngoaiNgu,
       $tinHoc: obj.tinHoc,
+      $canCuocCongDan: obj.canCuocCongDan,
+      $nguoiGioiThieuMotLanHai: obj.nguoiGioiThieuMotLanHai,
+      $chucVuNguoiGioiThieuMotLanHai: obj.chucVuNguoiGioiThieuMotLanHai,
+      $nguoiGioiThieuHaiLanHai: obj.nguoiGioiThieuHaiLanHai,
+      $chucVuNguoiGioiThieuHaiLanHai: obj.chucVuNguoiGioiThieuHaiLanHai,
+      $thuongBinhLoai: obj.thuongBinhLoai,
+      $giaDinhLietSi: obj.giaDinhLietSi,
+      $giaDinhCoCongCachMang: obj.giaDinhCoCongCachMang,
       $trangThai: 0,
     };
 
@@ -311,7 +335,7 @@ export class DangVienService {
     });
   }
 
-  public update(obj: DangVien): Promise<void> {
+  public update(obj: DangVienModel): Promise<void> {
     const sql = `
         UPDATE dangvien
             SET 
@@ -396,6 +420,14 @@ export class DangVienService {
         lyLuanChinhTri = $lyLuanChinhTri,
         ngoaiNgu = $ngoaiNgu,
         tinHoc = $tinHoc,
+        canCuocCongDan = $canCuocCongDan,
+        nguoiGioiThieuMotLanHai = $nguoiGioiThieuMotLanHai,
+        chucVuNguoiGioiThieuMotLanHai=  $chucVuNguoiGioiThieuMotLanHai,
+        nguoiGioiThieuHaiLanHai=  $nguoiGioiThieuHaiLanHai,
+        chucVuNguoiGioiThieuHaiLanHai=  $chucVuNguoiGioiThieuHaiLanHai,
+        thuongBinhLoai = $thuongBinhLoai,
+        giaDinhLietSi = $giaDinhLietSi,
+        giaDinhCoCongCachMang = $giaDinhCoCongCachMang
          WHERE id = $id`;
 
     const values = this.getValueObject(obj);
@@ -427,8 +459,8 @@ export class DangVienService {
     });
   }
 
-  public fromRow(row: object): DangVien {
-    const obj = row as DangVien;
+  public fromRow(row: object): DangVienModel {
+    const obj = row as DangVienModel;
     return obj;
   }
 
@@ -516,6 +548,14 @@ export class DangVienService {
       $lyLuanChinhTri: obj.lyLuanChinhTri,
       $ngoaiNgu: obj.ngoaiNgu,
       $tinHoc: obj.tinHoc,
+      $canCuocCongDan: obj.canCuocCongDan,
+      $nguoiGioiThieuMotLanHai: obj.nguoiGioiThieuMotLanHai,
+      $chucVuNguoiGioiThieuMotLanHai: obj.chucVuNguoiGioiThieuMotLanHai,
+      $nguoiGioiThieuHaiLanHai: obj.nguoiGioiThieuHaiLanHai,
+      $chucVuNguoiGioiThieuHaiLanHai: obj.chucVuNguoiGioiThieuHaiLanHai,
+      $thuongBinhLoai: obj.thuongBinhLoai,
+      $giaDinhLietSi: obj.giaDinhLietSi,
+      $giaDinhCoCongCachMang: obj.giaDinhCoCongCachMang,
     };
   }
 }

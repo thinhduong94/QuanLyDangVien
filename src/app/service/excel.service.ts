@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import * as FileSaver from "file-saver";
 import * as xlsx from "xlsx";
 import { DangVienExcelMapping } from "../const/dang-vien-excel-mapping.const";
-import { DangVien } from "../model/dangvien.model";
 
 const Excel_TYPE =
   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";

@@ -1,4 +1,4 @@
-export class DangVien {
+export class DangVienModel {
   id: number;
   dangBoTinh: string;
   dangBoHuyen: string;
@@ -83,4 +83,13 @@ export class DangVien {
   lyLuanChinhTri: string;
   ngoaiNgu: string;
   tinHoc: string;
+
+  canCuocCongDan: string;
+  nguoiGioiThieuMotLanHai: string;
+  chucVuNguoiGioiThieuMotLanHai: string;
+  nguoiGioiThieuHaiLanHai: string;
+  chucVuNguoiGioiThieuHaiLanHai: string;
+  thuongBinhLoai: string;
+  giaDinhLietSi: string;
+  giaDinhCoCongCachMang: string;
 }
