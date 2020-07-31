@@ -13,6 +13,7 @@ export class thongkeComponent implements OnInit {
   @ViewChild('phieuDangVienRef', { static: false }) phieuDangVienRef: ElementRef;
   @ViewChild('tkDangVienRefBM2', { static: false }) tkDangVienRefBM2: ElementRef;
   @ViewChild('tkDangVienRefBM3', { static: false }) tkDangVienRefBM3: ElementRef;
+  @ViewChild('tkSoLieuDangVienRefBM5', { static: false }) tkSoLieuDangVienRefBM5: ElementRef;
   phieuDangVienModels : PhieuDangVienModel[] = [];
   tkDangVienDangQuanLyModels : PhieuDangVienModel[] = [];
   tkDangVienDangQuanLyDataBM3 : PhieuDangVienModel[] = [];
@@ -31,6 +32,7 @@ export class thongkeComponent implements OnInit {
   ngOnInit(): void {
     this.getPhieuDangVien();
     this.getTkDangVienDangQuanLy();
+    this.getSoLieuChiBo();
   }
   getPhieuDangVien(){
     this.thongKeService.getPhieuDangVien().then(data=>{
@@ -53,6 +55,9 @@ export class thongkeComponent implements OnInit {
   }
   tkDangVienBM3(){
     this.excelService.exportAsExcelFile(null,'tkDangVienBM3','html',this.tkDangVienRefBM3.nativeElement);
+  }
+  tkSoLieuDangVien(){
+    this.excelService.exportAsExcelFile(null,'tkSoLieuDangVien','html',this.tkSoLieuDangVienRefBM5.nativeElement);
   }
   chayBaoCaoBM3(){
     let temp = [...this.tkDangVienDangQuanLyDataBM3];
@@ -79,7 +84,6 @@ export class thongkeComponent implements OnInit {
    this.tkDangVienDangQuanLyModels = _temp;
   }
   getSoLieuChiBo(){
-    
     this.chiBoService.getAll().then(items=>{
       items.forEach(item=>{
         let soLuongCapUy = 0;
@@ -89,6 +93,9 @@ export class thongkeComponent implements OnInit {
         let soLuongDangVien = 0;
         let dangVienDuBi = 0;
         let huyHieuDang = 0;
+        let soCap = 0; 
+        let trungCap = 0 ; 
+        let caoCap = 0;
         this.tkDangVienDangQuanLyDataBM2.forEach(dv=>{
           if(dv.chiBo == item.maChiBo){
             soLuongDangVien++;
@@ -107,6 +114,15 @@ export class thongkeComponent implements OnInit {
             if(dv.huyHieu !== ''){
               huyHieuDang++;
             }
+            if(dv.lyLuanChinhTri === 'CC'){
+              caoCap++;
+            }
+            if(dv.lyLuanChinhTri === 'TC'){
+              trungCap++;
+            }
+            if(dv.lyLuanChinhTri === 'SC'){
+              soCap++;
+            }
           }
         });
         const obj = {} as SoLieuModel;
@@ -118,6 +134,9 @@ export class thongkeComponent implements OnInit {
         obj.duBi = duBi;
         obj.nu = nu;
         obj.soLuongCapUy = soLuongCapUy;
+        obj.caoCap = caoCap;
+        obj.trungCap = trungCap;
+        obj.soCap = soCap;
         this.soLieuModels.push(obj);
       })
     });

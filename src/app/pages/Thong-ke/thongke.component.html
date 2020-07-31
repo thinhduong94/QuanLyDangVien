@@ -316,8 +316,8 @@
                                 <td>{{item.tenChiBo}}</td>
                                 <td>{{item.tenDangDung}}</td>
                                 <td>{{item.soTheDangVien}}</td>
-                                <td>{{item.gioiTinh === 'Nam' ? 'X' : ''}}</td>
-                                <td>{{item.gioiTinh === 'Nu' ? 'X' : ''}}</td>
+                                <td>{{item.gioiTinh === 'Nam' ? item.ngaySinh : ''}}</td>
+                                <td>{{item.gioiTinh === 'Nu' ? item.ngaySinh : ''}}</td>
                                 <td>{{item.thuongTru}}</td>
                                 <td>{{item.tamTru}}</td>
                                 <td>{{item.danToc}}</td>
@@ -377,11 +377,36 @@
             Xếp loại
         </mat-tab>
         <mat-tab label="Số liệu" style="position: relative;">
-            <button style="position: absolute;top: 10px;right: 10px;" (click)="phieuDangVien()"
+            <button style="position: absolute;top: 10px;right: 10px;" (click)="tkSoLieuDangVien()"
                 class="btn btn-success">Xuất ra tập tin</button>
-            <h4>THỐNG KÊ SỐ LIỆU ĐẢNG VIÊN</h4>
-            <table>
+            <table #tkSoLieuDangVienRefBM5>
                 <thead>
+                    <tr>
+                        <th colspan="6">ĐẢNG BỘ QUẬN 5</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th colspan="9">ĐẢNG CỘNG SẢN VIỆT NAM</th>
+                    </tr>
+                    <tr>
+                        <th colspan="6">ĐẢNG UỶ PHƯỜNG 10</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th colspan="9"></th>
+                    </tr>
+                    <tr>
+                        <th colspan="6">*</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th colspan="9">Phường 10, ngày ... tháng … năm …</th>
+                    </tr>
+                    <tr>
+                        <th colspan="18">
+                            <h4>THỐNG KÊ SỐ LIỆU ĐẢNG VIÊN</h4>
+                        </th>
+                    </tr>
                     <tr>
                         <th rowspan="2">STT</th>
                         <th rowspan="2">CHI BỘ</th>
