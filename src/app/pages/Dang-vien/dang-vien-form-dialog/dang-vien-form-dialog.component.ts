@@ -281,16 +281,15 @@ export class DangVienFormDialog implements OnInit {
   }
 
   preview() {
-    var mimeType = this.fileData.type;
-    if (mimeType.match(/image\/*/) == null) {
-      return;
+    const { type = "" } = this.fileData || {};
+    var mimeType = type;
+    if (mimeType.match(/image\/*/)) {
+      var reader = new FileReader();
+      reader.readAsDataURL(this.fileData);
+      reader.onload = (_event) => {
+        this.anh3x4 = reader.result;
+      };
     }
-
-    var reader = new FileReader();
-    reader.readAsDataURL(this.fileData);
-    reader.onload = (_event) => {
-      this.anh3x4 = reader.result;
-    };
 
     const dialogRef = this.dialog.open(DangVienPdf, {
       data: { dangvien: this.dangVienForm.value },
