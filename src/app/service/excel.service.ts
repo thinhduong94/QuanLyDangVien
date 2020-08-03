@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
 import * as xlsx from "xlsx";
 import { DangVienExcelMapping } from "../const/dang-vien-excel-mapping.const";
-import * as moment from 'moment';
+import * as moment from "moment";
+
 const Excel_TYPE =
   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
 const Excel_EXTENSION = ".xlsx";
@@ -11,14 +12,14 @@ const Excel_EXTENSION = ".xlsx";
 export class ExcelService {
   constructor() {}
 
-  public exportAsExcelFile(json: any[], sheet: string,type?,html?): void {
+  public exportAsExcelFile(json: any[], sheet: string, type?, html?): void {
     let ws: xlsx.WorkSheet = null;
-    if(type ==='html'){
+    if (type === "html") {
       ws = xlsx.utils.table_to_sheet(html);
-    }else{
+    } else {
       ws = xlsx.utils.json_to_sheet(json);
     }
-    
+
     const wb: xlsx.WorkBook = xlsx.utils.book_new();
     if (sheet === "DangVien") {
       DangVienExcelMapping.forEach((mapping) => {
@@ -26,7 +27,7 @@ export class ExcelService {
       });
     }
     xlsx.utils.book_append_sheet(wb, ws, sheet);
-    const now = moment().format('MM-DD-YYYY');
+    const now = moment().format("MM-DD-YYYY");
     xlsx.writeFile(wb, `${sheet}_${now}.xlsx`);
   }
 

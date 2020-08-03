@@ -16,7 +16,8 @@ import { dangvien213CreateDaiolog } from "./pages/DangVien213/daiolog/dangvien21
 import { DangVien213Component } from "./pages/DangVien213/dangvien213.component";
 import { alertComponent } from "./pages/share/alert/alert.component";
 import { importExcelComponent } from "./pages/share/importExcel/importExcel.component";
-import { thongkeComponent } from './pages/Thong-ke/thongke.component';
+import { thongkeComponent } from "./pages/Thong-ke/thongke.component";
+import { DangVienPdf } from "./pages/Dang-vien/dang-vien-pdf/dang-vien-pdf.component";
 @NgModule({
   imports: [
     BrowserModule,
@@ -48,7 +49,8 @@ import { thongkeComponent } from './pages/Thong-ke/thongke.component';
     dangvien213CreateDaiolog,
     alertComponent,
     importExcelComponent,
-    thongkeComponent
+    thongkeComponent,
+    DangVienPdf,
   ],
   providers: [],
   bootstrap: [AppComponent],

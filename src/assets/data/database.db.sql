@@ -94,6 +94,14 @@ CREATE TABLE IF NOT EXISTS 'dangvien' (
 	'lyLuanChinhTri' TEXT NULL,
 	'ngoaiNgu' TEXT NULL,
 	'tinHoc' TEXT NULL,
+	'canCuocCongDan' TEXT NULL,
+	'nguoiGioiThieuMotLanHai' TEXT NULL,
+	'chucVuNguoiGioiThieuMotLanHai' TEXT NULL,
+	'nguoiGioiThieuHaiLanHai' TEXT NULL,
+	'chucVuNguoiGioiThieuHaiLanHai' TEXT NULL,
+	'thuongBinhLoai' TEXT NULL,
+	'giaDinhLietSi' TEXT NULL,
+	'giaDinhCoCongCachMang' TEXT NULL,
 	'trangThai' INTEGER NULL
 );
 DROP TABLE IF EXISTS 'dangvien213';
