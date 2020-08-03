@@ -1,8 +1,7 @@
 import { Injectable } from "@angular/core";
 import { TheDb } from "../model/thedb";
-import { DangVien } from "../model/dangvien.model";
 export interface PhieuDangVienModel {
-  tenChiBo : string;
+  tenChiBo: string;
   id: number;
   dangBoTinh: string;
   dangBoHuyen: string;
@@ -92,37 +91,36 @@ export interface PhieuDangVienOptionModel {
   chiBo: string;
   kyLuat: string;
   trinhDoChuyenMon: string;
-  trinhDoChinhTri:string;
-  gioiTinh:string;
-  danToc:string;
-  tuoiDang:string;
-  tinhTrangDangVien:string;
-  xepLoaiDangVien:string;
+  trinhDoChinhTri: string;
+  gioiTinh: string;
+  danToc: string;
+  tuoiDang: string;
+  tinhTrangDangVien: string;
+  xepLoaiDangVien: string;
 }
 export interface SoLieuModel {
-  chibo:string;
-  soLuongCapUy:number;
-  dangSo:number;
-  nu:number;
-  danTocKhac:number;
-  duBi:number;
-  mienSinhHoat:number;
-  sinhHoatTam:number;
-  dangVienDuBi:number;
-  dangVienNhanHuyHieuDang:number;
-  xuatSac:number;
-  tot:number;
-  hoanThanh:number;
-  khongHoanThanh:number;
-  soCap:number;
-  trungCap:number;
-  caoCap:number;
+  chibo: string;
+  soLuongCapUy: number;
+  dangSo: number;
+  nu: number;
+  danTocKhac: number;
+  duBi: number;
+  mienSinhHoat: number;
+  sinhHoatTam: number;
+  dangVienDuBi: number;
+  dangVienNhanHuyHieuDang: number;
+  xuatSac: number;
+  tot: number;
+  hoanThanh: number;
+  khongHoanThanh: number;
+  soCap: number;
+  trungCap: number;
+  caoCap: number;
 }
 @Injectable({
   providedIn: "root",
 })
 export class ThongKeService {
-
   public getPhieuDangVien(): Promise<PhieuDangVienModel[]> {
     const sql = `SELECT 
     chibo.tenChiBo  ,
@@ -141,7 +139,7 @@ export class ThongKeService {
     });
   }
 
-  public getTkDangVienDangQuanLy(option:any): Promise<PhieuDangVienModel[]> {
+  public getTkDangVienDangQuanLy(option: any): Promise<PhieuDangVienModel[]> {
     const sql = `SELECT 
     chibo.tenChiBo,
     dangvien.*
