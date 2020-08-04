@@ -1,5 +1,5 @@
 .field {
-  font-size: 14px;
+  font-size: 11px;
   font-weight: bold;
   word-wrap: break-word;
   height: 20px;
@@ -18,8 +18,8 @@
 
 .square {
   border: 1px solid black;
-  width: 17px;
-  height: 17px;
+  width: 13px;
+  height: 13px;
   display: inline-block;
 }
 
@@ -30,15 +30,21 @@
   border-bottom: 1px dotted black;
   height: 20px;
   padding-left: 5px;
-  font-size: 14px;
-  text-align: center;
+  font-size: 12px;
+  text-align: left;
+  font-weight: normal;
 }
 
 .field-container {
   display: flex;
   padding: 5px 10px;
+  font-size: 11px;
 }
-
+.header {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
 table,
 th,
 td {
@@ -64,4 +70,105 @@ td {
 
 .relative {
   position: relative;
+}
+
+table {
+  margin: 5px;
+}
+
+.page-title {
+  text-decoration: underline;
+  text-align: center;
+  margin-bottom: 0;
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+.code-title {
+  text-align: right;
+  padding-right: 20px;
+  margin: 0;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.top-right-section {
+  width: 50%;
+  padding-right: 20px;
+}
+
+.pl {
+  padding-left: 25px;
+}
+
+.ly-lich {
+  display: inline-block;
+  margin-left: 10px;
+  text-align: right;
+  width: 73.5%;
+}
+
+.the-dang-vien {
+  display: inline-block;
+  margin-left: 10px;
+  text-align: right;
+  width: 57.5%;
+}
+
+.square-section {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.page-name {
+  font-size: 35px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+  width: 60%;
+}
+
+.image-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  width: 3cm;
+  height: 4cm;
+}
+
+.image-size {
+  width: 3cm;
+  height: 4cm;
+}
+
+.flex {
+  display: flex;
+}
+
+.page-container {
+  width: 674px;
+  overflow: auto;
+  max-height: 90vh;
+}
+
+.page {
+  width: 674px;
+}
+
+.footer {
+  width: 30%;
+  text-align: center;
+}
+
+.footer-title {
+  font-size: 14px;
+}
+
+.mid-footer {
+  width: 40%;
+  text-align: center;
+  margin: 0 10px;
 }

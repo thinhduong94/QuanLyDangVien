@@ -22,6 +22,8 @@ export class DangVienPdf implements OnInit {
       console.log("this.data", this.data);
       this.dangvien = this.data["dangvien"];
     }
+
+    console.log("imgbase64", !!this.imgBase64);
   }
   generateDoc() {
     // const doc = new Document();
