@@ -2,12 +2,11 @@
   <button mat-button (click)="generateDoc()">Generate Doc</button>
 </div>
 <div class="page-container">
-
   <page id="page1" class="page">
     <p class="page-title">ĐẢNG CỘNG SẢN VIỆT NAM</p>
     <p class="code-title">Mẫu 2 -HSĐV</p>
     <div class="flex">
-      <div style="width: 50%; padding: 10px;">
+      <div style="width: 50%">
         <div class="field-container">
           <div class="full-width">
             <span class="field field-title">ĐẢNG BỘ TỈNH<small>(tương
@@ -42,20 +41,17 @@
       <div class="top-right-section">
         <p class="field pl">SỐ LÝ LỊCH:
           <span class="ly-lich">
-            <span class="square"></span> <span class="square"></span> <span class="square"></span> <span
-              class="square"></span> <span class="square"></span> <span class="square"></span>
+            <span class="square" *ngFor="let lyLichleft of lyLichArrLeft">{{lyLichleft}}</span>
             <span class="square-section">
-              <span class="square"></span> <span class="square"></span> <span class="square"></span>
+              <span class="square" *ngFor="let lyLichRight of lyLichArrRight">{{lyLichRight}}</span>
             </span>
           </span>
         </p>
         <p class="field pl">SỐ THẺ ĐẢNG VIÊN:
           <span class="the-dang-vien">
-            <span class="square"></span> <span class="square"></span>
-
+            <span class="square" *ngFor="let dvLeft of theDangVienLeft">{{dvLeft}}</span>
             <span class="square-section">
-              <span class="square"></span> <span class="square"></span> <span class="square"></span>
-              <span class="square"></span> <span class="square"></span> <span class="square"></span>
+              <span class="square" *ngFor="let dvRight of theDangVienRight">{{dvRight}}</span>
             </span>
           </span>
         </p>
@@ -67,8 +63,8 @@
           </div>
           <div *ngIf="!imgBase64" class="image-section">
             <p>Ảnh 3x4</p>
-            <img *ngIf="!!imgBase64" class="image-size" [src]="imgBase64">
           </div>
+          <img *ngIf="imgBase64" class="image-size" [src]="imgBase64">
         </div>
       </div>
     </div>
@@ -273,7 +269,7 @@
         <span class="field-data">{{dangvien.soCmnd}}</span>
       </div>
       <div class="field" style="width:50%">
-        <span class="field field-title">Được miễn công tác và SHD ngày:
+        <span class="field field-title">20) Được miễn công tác và SHD ngày:
         </span> <span class="field-data">{{dangvien.mienCongTacNgay}}</span></div>
     </div>
     <div class="field-container">
@@ -282,38 +278,37 @@
       </div>
     </div>
 
-    <p style="margin:0;text-align: center;font-size: 20px;">20)TÓM TẮT QUÁ TRÌNH HOẠT ĐỘNG VÀ CÔNG TÁC</p>
-    <table class="full-width">
-      <tr>
-        <th>Từ tháng,năm đến tháng năm</th>
-        <th>Làm gì, chức vụ, đơn vị công tác<i>(Đảng, chính quyền, đoàn thể, kinh tế, văn hóa, xã hội ...)</i></th>
-      </tr>
-      <tr style="height: 600px;">
-        <td colspan="2">{{dangvien.quaTrinhHoatDongVaCongTac}}</td>
-      </tr>
-    </table>
-    <p class="header">22) ĐÀO TẠO, BỒI DƯỠNG VỀ CHUYÊN MÔN, NGHIỆP VỤ, LÝ LUẬN CHÍNH TRỊ,
-      NGOẠI NGỮ</p>
-    <table class="full-width">
-      <tr>
-        <th>Tên trường</th>
-        <th>Ngành học hoặc tên lớp học</th>
-        <th>Từ tháng/năm đến tháng/năm</th>
-        <th>Hình thức học</th>
-        <th>Văn bằng, chứng chỉ, trình độ gì</th>
-      </tr>
-      <tr style="height: 300px;">
-        <td colspan="5">{{dangvien.daoTao}}</td>
-      </tr>
-    </table>
-    <div class="field-container">
-      <div class="full-width">
-        <span class="field field-title">23) Khen thưởng</span><span class="field-data"></span>
-      </div>
+    <p class="header" style="margin-top:30px">21)TÓM TẮT QUÁ TRÌNH HOẠT ĐỘNG VÀ CÔNG TÁC</p>
+    <div class="fiedl-container">
+      <table>
+        <tr>
+          <th>Từ tháng,năm đến tháng năm</th>
+          <th>Làm gì, chức vụ, đơn vị công tác<i>(Đảng, chính quyền, đoàn thể, kinh tế, văn hóa, xã hội ...)</i></th>
+        </tr>
+        <tr style="height: 1065px;">
+          <td colspan="2">{{dangvien.quaTrinhHoatDongVaCongTac}}</td>
+        </tr>
+      </table>
+    </div>
+
+    <p class="header">22) ĐÀO TẠO, BỒI DƯỠNG VỀ CHUYÊN MÔN, NGHIỆP VỤ, LÝ LUẬN CHÍNH TRỊ,NGOẠI NGỮ</p>
+    <div>
+      <table>
+        <tr>
+          <th>Tên trường</th>
+          <th>Ngành học hoặc tên lớp học</th>
+          <th>Từ tháng/năm đến tháng/năm</th>
+          <th>Hình thức học</th>
+          <th>Văn bằng, chứng chỉ, trình độ gì</th>
+        </tr>
+        <tr style="height: 200px;">
+          <td colspan="5">{{dangvien.daoTao}}</td>
+        </tr>
+      </table>
     </div>
     <div class="field-container">
       <div class="full-width">
-        <span class="field-data"></span>
+        <span class="field field-title">23) Khen thưởng</span><span class="field-data"></span>
       </div>
     </div>
     <div class="field-container">
@@ -361,11 +356,6 @@
       <div class="full-width">
         <span class="field field-title">26) Kỷ luật<small><i>(Đảng, chính quyền, pháp luật)</i></small></span><span
           class="field-data"></span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div class="full-width">
-        <span class="field-data"></span>
       </div>
     </div>
     <p class="header">27) ĐẶC ĐIỂM LỊCH SỬ BẢN THÂN</p>
@@ -506,7 +496,7 @@
     </div>
     <div class="field-container">
       <div class="full-width">
-        <span class="field field-title">c) Có người ở nước ngoài<small><i>(tên người, quan hệ gì, ở nước nào
+        <span class="field field-title">c) Có người thân ở nước ngoài<small><i>(tên người, quan hệ gì, ở nước nào
               ...)</i></small>:</span>
         <span class="field-data">{{dangvien.coNguoiThanNuocNgoai}}</span>
       </div>
@@ -521,22 +511,24 @@
         <span class="field-data"></span>
       </div>
     </div>
-    <p class="header">29) QUAN HỆ GIA ĐÌNH
+    <p class="header" style="margin-top:10px">29) QUAN HỆ GIA ĐÌNH
       cha,mẹ đẻ;cha, mẹ vợ(chồng);các con;anh chị em ruột
     </p>
-    <table class="full-width">
-      <tr>
-        <th>Quan hệ</th>
-        <th>HỌ VÀ TÊN</th>
-        <th>Năm sinh</th>
-        <th>Quê quán, nơi ở hiện nay<small><i>(trong, ngoài nước)</i></small>,nghề nghiệp, chức danh, chức vụ, đơn vị
-          công
-          tác</th>
-      </tr>
-      <tr>
-        <td colspan="4" style="text-align: center;">{{dangvien.quanHeGiaDinh}}</td>
-      </tr>
-    </table>
+    <div class="field-container">
+      <table>
+        <tr>
+          <th>Quan hệ</th>
+          <th>HỌ VÀ TÊN</th>
+          <th>Năm sinh</th>
+          <th>Quê quán, nơi ở hiện nay<small><i>(trong, ngoài nước)</i></small>,nghề nghiệp, chức danh, chức vụ, đơn vị
+            công
+            tác</th>
+        </tr>
+        <tr style="height: 550px;">
+          <td colspan="4" style="text-align: center;">{{dangvien.quanHeGiaDinh}}</td>
+        </tr>
+      </table>
+    </div>
     <p class="header">30) HOÀN CẢNH KINH TẾ CỦA BẢN THÂN VÀ GIA ĐÌNH</p>
     <div class="field-container">
       <div style="width:60%" class="relative">

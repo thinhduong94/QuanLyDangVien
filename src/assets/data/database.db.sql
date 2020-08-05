@@ -83,7 +83,6 @@ CREATE TABLE IF NOT EXISTS 'dangvien' (
 	'thoiGianBiXoa' TEXT NULL,
 	'chiBoBiXoa' TEXT NULL,
 	'quanHeGiaDinh' TEXT NULL,
-	'trangThai' INTEGER NULL,
 	'anh3x4' TEXT NULL,
 	'ngayQuyetDinhKetNap' TEXT NULL,
 	'giaoDucPhoThong' TEXT NULL,
