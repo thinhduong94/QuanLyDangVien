@@ -1,0 +1,182 @@
+.field {
+  font-size: 11px;
+  font-weight: bold;
+  word-wrap: break-word;
+  height: 20px;
+  line-height: 10px;
+  margin-top: 0;
+  margin-bottom: 3px;
+}
+
+.field-title {
+  display: block;
+  width: fit-content;
+  float: left;
+  height: 16px;
+  padding-top: 4px;
+}
+
+.square {
+  border: 1px solid black;
+  width: 13px;
+  height: 13px;
+  display: inline-block;
+  text-align: center;
+}
+
+.field-data {
+  display: block;
+  width: auto;
+  overflow: hidden;
+  border-bottom: 1px dotted black;
+  height: 15px;
+  padding-left: 5px;
+  font-size: 12px;
+  text-align: left;
+  font-weight: normal;
+}
+
+.field-container {
+  display: flex;
+  padding: 5px 10px;
+  font-size: 11px;
+}
+.header {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+td {
+  height: 22px;
+  padding: 0;
+}
+
+.a4-height {
+  height: 842px;
+  border: 1px solid grey;
+}
+
+.unit {
+  position: absolute;
+  right: 0;
+  top: -5px;
+}
+
+.relative {
+  position: relative;
+}
+
+table {
+  margin: 0 10px;
+  width: 99%;
+  font-size: 11px;
+}
+
+.page-title {
+  text-decoration: underline;
+  text-align: center;
+  margin-bottom: 0;
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+.code-title {
+  text-align: right;
+  padding-right: 20px;
+  margin: 0;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.top-right-section {
+  width: 50%;
+  padding-right: 20px;
+}
+
+.pl {
+  padding-left: 25px;
+}
+
+.ly-lich {
+  display: inline-block;
+  margin-left: 10px;
+  text-align: right;
+  width: 73.5%;
+}
+
+.the-dang-vien {
+  display: inline-block;
+  margin-left: 10px;
+  text-align: right;
+  width: 57.5%;
+}
+
+.square-section {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.page-name {
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+  width: 60%;
+}
+
+.image-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  width: 3cm;
+  height: 4cm;
+}
+
+.image-size {
+  width: 3cm;
+  height: 4cm;
+}
+
+.flex {
+  display: flex;
+}
+
+.page-container {
+  width: 674px;
+  overflow-y: scroll;
+  max-height: 90vh;
+}
+
+.page {
+  width: 595px;
+}
+
+.footer {
+  width: 30%;
+  text-align: center;
+}
+
+.footer-title {
+  font-size: 14px;
+}
+
+.mid-footer {
+  width: 40%;
+  text-align: center;
+  margin: 0 10px;
+}
+
+input[type="checkbox"] {
+  margin: 0 5px;
+}

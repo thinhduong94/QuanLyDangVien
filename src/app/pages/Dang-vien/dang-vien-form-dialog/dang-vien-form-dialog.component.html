@@ -54,7 +54,7 @@
             Ảnh<br />
             (3 x 4)
           </p>
-          <img *ngIf="anh3x4" [src]="anh3x4" height="110px" width="90px"/>
+          <img *ngIf="anh3x4" [src]="anh3x4" height="110px" width="90px" />
         </div>
       </div>
     </div>
@@ -211,13 +211,29 @@
       <mat-label>Giáo dục đại học và sau đại học</mat-label>
       <input matInput type="text" formControlName="giaoDucDaiHocVaSauDaiHoc">
     </mat-form-field>
-    <mat-form-field appearance="legacy" class="full-width">
+    <mat-form-field appearance="legacy" style="width: 50%;">
       <mat-label>18) Trình trạng sức khỏe bản thân</mat-label>
       <input matInput type="text" formControlName="tinhTrangSucKhoe">
     </mat-form-field>
     <mat-form-field appearance="legacy" style="width: 50%;">
+      <mat-label>- Thương binh loại:</mat-label>
+      <input matInput type="text" formControlName="thuongBinhLoai">
+    </mat-form-field>
+    <div appearance="legacy" class="sub-field">
+      <mat-label>Gia đình liệt sĩ</mat-label>
+      <mat-checkbox matInput formControlName="giaDinhLietSi"></mat-checkbox>
+    </div>
+    <div appearance="legacy" class="sub-field">
+      <mat-label>Gia đình có công với cách mạng:</mat-label>
+      <mat-checkbox matInput formControlName="giaDinhCoCongCachMang"></mat-checkbox>
+    </div>
+    <mat-form-field appearance="legacy" style="width: 50%;">
       <mat-label>19) Số chứng minh ND</mat-label>
       <input matInput type="text" formControlName="soCmnd">
+    </mat-form-field>
+    <mat-form-field appearance="legacy" style="width: 100%;">
+      <mat-label>(hoặc số căn cước công dân):</mat-label>
+      <input matInput type="text" formControlName="canCuocCongDan">
     </mat-form-field>
     <mat-form-field appearance="legacy" style="width: 50%;">
       <mat-label>20) Được miễn công tác và SHD ngày</mat-label>
@@ -281,19 +297,19 @@
       </mat-form-field>
       <mat-form-field appearance="legacy" style="width:60%">
         <mat-label>Người giới thiệu 1</mat-label>
-        <input matInput type="text" formControlName="nguoiGioiThieuMot">
+        <input matInput type="text" formControlName="nguoiGioiThieuMotLanHai">
       </mat-form-field>
       <mat-form-field appearance="legacy" style="width:40%">
         <mat-label>chức vụ, đơn vị</mat-label>
-        <input matInput type="text" formControlName="chucVuNguoiGioiThieuMot">
+        <input matInput type="text" formControlName="chucVuNguoiGioiThieuMotLanHai">
       </mat-form-field>
       <mat-form-field appearance="legacy" style="width:60%">
         <mat-label>Người giới thiệu 2</mat-label>
-        <input matInput type="text" formControlName="nguoiGioiThieuHai">
+        <input matInput type="text" formControlName="nguoiGioiThieuHaiLanHai">
       </mat-form-field>
       <mat-form-field appearance="legacy" style="width:40%">
         <mat-label>chức vụ, đơn vị</mat-label>
-        <input matInput type="text" formControlName="chucVuNguoiGioiThieuHai">
+        <input matInput type="text" formControlName="chucVuNguoiGioiThieuHaiLanHai">
       </mat-form-field>
       <mat-form-field appearance="legacy" style="width:60%">
         <mat-label>Ngày chính thức lần thứ 2</mat-label>
@@ -394,4 +410,5 @@
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Đóng</button>
   <button mat-button [mat-dialog-close]="true" (click)="onSaveClick()" cdkFocusInitial>Lưu</button>
+  <button mat-button mat-dialog-close (click)="preview()">Preview PDF</button>
 </mat-dialog-actions>

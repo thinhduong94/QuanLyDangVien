@@ -5,12 +5,17 @@ import {
   ViewChild,
   ElementRef,
 } from "@angular/core";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialog,
+} from "@angular/material/dialog";
 import { DialogData } from "../../ChiBo/daiolog/chibo.daiolog";
 import { FormGroup, FormControl, FormBuilder, FormArray } from "@angular/forms";
 import { DangVienService } from "src/app/service/dangvien.service";
 import { ChiBoService } from "src/app/service/chibo.service";
 import * as html2pdf from "html2pdf.js";
+import { DangVienPdf } from "../dang-vien-pdf/dang-vien-pdf.component";
 @Component({
   selector: "dang-vien-form-dialog",
   templateUrl: "dang-vien-form-dialog.component.html",
@@ -22,8 +27,9 @@ export class DangVienFormDialog implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     public fb: FormBuilder,
     private dangVienService: DangVienService,
-    private chiboService: ChiBoService
-  ) { }
+    private chiboService: ChiBoService,
+    public dialog: MatDialog
+  ) {}
   fileData: File = null;
   anh3x4: any = null;
   @ViewChild("topdf") toPdf: ElementRef;
@@ -136,6 +142,16 @@ export class DangVienFormDialog implements OnInit {
           lyLuanChinhTri: foundDangVien.lyLuanChinhTri,
           ngoaiNgu: foundDangVien.ngoaiNgu,
           tinHoc: foundDangVien.tinHoc,
+          canCuocCongDan: foundDangVien.canCuocCongDan,
+          nguoiGioiThieuMotLanHai: foundDangVien.nguoiGioiThieuMotLanHai,
+          chucVuNguoiGioiThieuMotLanHai:
+            foundDangVien.chucVuNguoiGioiThieuMotLanHai,
+          nguoiGioiThieuHaiLanHai: foundDangVien.nguoiGioiThieuHaiLanHai,
+          chucVuNguoiGioiThieuHaiLanHai:
+            foundDangVien.chucVuNguoiGioiThieuHaiLanHai,
+          thuongBinhLoai: foundDangVien.thuongBinhLoai,
+          giaDinhLietSi: foundDangVien.giaDinhLietSi,
+          giaDinhCoCongCachMang: foundDangVien.giaDinhCoCongCachMang,
         });
         this.anh3x4 = foundDangVien.anh3x4;
       });
@@ -217,7 +233,6 @@ export class DangVienFormDialog implements OnInit {
       ngayChinhThucVaoLanHai: new FormControl(""),
       chiBoChinhThucVaoDangLanHai: new FormControl(""),
       kyLuat: new FormControl(""),
-
       ngayQuyetDinhKetNap: new FormControl(""),
       giaoDucPhoThong: new FormControl(""),
       giaoDucNgheNghiep: new FormControl(""),
@@ -227,6 +242,15 @@ export class DangVienFormDialog implements OnInit {
       lyLuanChinhTri: new FormControl(""),
       ngoaiNgu: new FormControl(""),
       tinHoc: new FormControl(""),
+
+      canCuocCongDan: new FormControl(""),
+      nguoiGioiThieuMotLanHai: new FormControl(""),
+      chucVuNguoiGioiThieuMotLanHai: new FormControl(""),
+      nguoiGioiThieuHaiLanHai: new FormControl(""),
+      chucVuNguoiGioiThieuHaiLanHai: new FormControl(""),
+      thuongBinhLoai: new FormControl(""),
+      giaDinhLietSi: new FormControl(""),
+      giaDinhCoCongCachMang: new FormControl(""),
     });
   }
 
@@ -257,108 +281,18 @@ export class DangVienFormDialog implements OnInit {
   }
 
   preview() {
-    var mimeType = this.fileData.type;
-    if (mimeType.match(/image\/*/) == null) {
-      return;
+    const { type = "" } = this.fileData || {};
+    var mimeType = type;
+    if (mimeType.match(/image\/*/)) {
+      var reader = new FileReader();
+      reader.readAsDataURL(this.fileData);
+      reader.onload = (_event) => {
+        this.anh3x4 = reader.result;
+      };
     }
 
-    var reader = new FileReader();
-    reader.readAsDataURL(this.fileData);
-    reader.onload = (_event) => {
-      this.anh3x4 = reader.result;
-    }
-  }
-  generateDoc() {
-    // const doc = new Document();
-    // const dangVienFormValue = this.dangVienForm.value;
-    // doc.addSection({
-    //   properties: {},
-    //   children: [
-    //     new Paragraph({
-    //       children: [
-    //         new TextRun({
-    //           text: "Đảng cộng sản việt nam",
-    //           bold: true,
-    //           size: 70,
-    //           underline: { type: UnderlineType.SINGLE, color: "990011" },
-    //         }),
-    //       ],
-    //       alignment: AlignmentType.CENTER,
-    //     }),
-    //     new Paragraph({
-    //       children: [
-    //         new TextRun({
-    //           text: "ĐẢNG BỘ TỈNH",
-    //           size: 16,
-    //         }),
-    //         new TextRun({
-    //           text: dangVienFormValue.dangBoTinh,
-    //           size: 16,
-    //         }),
-    //       ],
-    //     }),
-    //   ],
-    // });
-    // // Used to export the file into a .docx file
-    // Packer.toBuffer(doc).then((buffer) => {
-    //   fs.writeFileSync("My Document.docx", buffer);
-    // });
-
-    const element = document.getElementById("page1");
-    const worker = html2pdf(element, "A4", "en", false, "UTF-8");
-    const opt = {
-      margin: 1,
-      filename: "myfile.pdf",
-      image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-    };
-    worker.set(opt).from(element).save();
-
-    // const pdf = new jsPDF("p", "pt", "a4");
-    // const template = `<DOCTYPE !html><header></header><body><h1>Hello</h1></body><footer></footer>`;
-    // pdf.addHTML(template, () => {
-    //   pdf.save("web.pdf");
-    // });
-
-    // const doc = new jsPDF("p", "pt", "a4");
-
-    // const specialElementHandlers = {
-    //   "#editor": function (element, renderer) {
-    //     return true;
-    //   },
-    // };
-
-    // const pdfTable = this.toPdf.nativeElement;
-
-    // doc.fromHTML(pdfTable.innerHTML, 15, 15, {
-    //   width: 200,
-    //   elementHandlers: specialElementHandlers,
-    // });
-
-    // doc.save("myfile.pdf");
-
-    // const html = fs.readFileSync(
-    //   path.resolve(
-    //     __dirname,
-    //     "../src/app/pages/Dang-vien/dang-vien-form-dialog/test.html"
-    //   ),
-    //   "utf8"
-    // );
-    // const options = {
-    //   phantomPath: path.resolve(
-    //     __dirname,
-    //     "../node_modules/phantomjs/bin/phantomjs"
-    //   ),
-    //   format: "A4",
-    //   orientation: "portrait",
-    //   type: "pdf",
-    // };
-    // console.log("html", html);
-
-    // pdf.create(html, options).toFile("./test.pdf", (err, res) => {
-    //   if (err) return console.log(err);
-    //   console.log(res); // { filename: '/app/businesscard.pdf' }
-    // });
+    const dialogRef = this.dialog.open(DangVienPdf, {
+      data: { dangvien: this.dangVienForm.value },
+    });
   }
 }
