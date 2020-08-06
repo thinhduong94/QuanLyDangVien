@@ -67,7 +67,8 @@ export class ExcelService {
     const dangVienSheet = workbook.Sheets[sheetName] || {};
     let data = [];
     if (Object.keys(dangVienSheet).length) {
-      const valueLength = +dangVienSheet["!ref"].slice(-1);
+      const sheetRef = dangVienSheet["!ref"];
+      const valueLength = +sheetRef.slice(5, sheetRef.length);
       // loop through row
       for (let i = 2; i <= valueLength; i++) {
         //loop thourgh colum base on db field
