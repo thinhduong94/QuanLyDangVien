@@ -120,7 +120,7 @@ export class DangVienService {
         chiBoBiXoa,
         quanHeGiaDinh,
         trangThai,
-        anh3x4),
+        anh3x4,
         ngayQuyetDinhKetNap,
         giaoDucPhoThong,
         giaoDucNgheNghiep,
@@ -139,7 +139,6 @@ export class DangVienService {
         giaDinhLietSi,
         giaDinhCoCongCachMang,
         trangThai)
->>>>>>> nguyen
 
         VALUES
 
@@ -216,7 +215,7 @@ export class DangVienService {
           $chiBoBiXoa,
           $quanHeGiaDinh,
           $trangThai,
-          $anh3x4),
+          $anh3x4,
           $ngayQuyetDinhKetNap,
           $giaoDucPhoThong,
           $giaoDucNgheNghiep,

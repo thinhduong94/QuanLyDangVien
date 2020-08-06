@@ -91,7 +91,7 @@ export class DangVienComponent implements OnInit, OnDestroy {
   }
 
   exportDangVien() {
-    this.excelService.exportAsExcelFile(this.danhSachDangVien, "DangVienModel");
+    this.excelService.exportAsExcelFile(this.danhSachDangVien, "DangVien");
     const dialogRef = this.dialog.open(alertComponent, {
       width: "500px",
       data: { mess: "Đã hoàn thành" || null },
@@ -101,7 +101,7 @@ export class DangVienComponent implements OnInit, OnDestroy {
   importDangVien() {
     const dialogRef = this.dialog.open(importExcelComponent, {
       width: "500px",
-      data: { sheet: "DangVienModel" },
+      data: { sheet: "DangVien" },
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log(result);
