@@ -14,13 +14,17 @@ export class thongkeComponent implements OnInit {
   @ViewChild('tkDangVienRefBM2', { static: false }) tkDangVienRefBM2: ElementRef;
   @ViewChild('tkDangVienRefBM3', { static: false }) tkDangVienRefBM3: ElementRef;
   @ViewChild('tkSoLieuDangVienRefBM5', { static: false }) tkSoLieuDangVienRefBM5: ElementRef;
+  @ViewChild('tkDsNhanHuyHieuDangRef', { static: false }) tkDsNhanHuyHieuDangRef: ElementRef;
   phieuDangVienModels : PhieuDangVienModel[] = [];
   tkDangVienDangQuanLyModels : PhieuDangVienModel[] = [];
   tkDangVienDangQuanLyDataBM3 : PhieuDangVienModel[] = [];
-  tkDangVienDangQuanLyDataBM2 : PhieuDangVienModel[] = [];  
+  tkDangVienDangQuanLyDataBM2 : PhieuDangVienModel[] = []; 
+  tkDsNhanHuyHieuDang : PhieuDangVienModel[] = [];  
   phieuDangVienOptionModel = {} as PhieuDangVienOptionModel;
+  monthCurrent = new Date().getMonth();
   soLieuModel = {} as SoLieuModel;
   soLieuModels : SoLieuModel[] = [];
+  tuoiDangTron = [10,15,20,25,30,35,40,45,50,55,60,65,70];
   constructor(
     private thongKeService : ThongKeService,
     private chiBoService : ChiBoService,
@@ -42,10 +46,21 @@ export class thongkeComponent implements OnInit {
   getTkDangVienDangQuanLy(){
     const option = {};
     this.thongKeService.getTkDangVienDangQuanLy(option).then(data=>{
+      this.caculateTuoiDang(data);
       this.tkDangVienDangQuanLyModels = data;
       this.tkDangVienDangQuanLyDataBM3 = data;
       this.tkDangVienDangQuanLyDataBM2 = data;
+      this.tkDsNhanHuyHieuDang = this.filterDsNhanHuyHieuDang(data);
     })
+  }
+  filterDsNhanHuyHieuDang(ds){
+    return ds.filter((item)=>this.tuoiDangTron.includes(item.tuoiDang));
+  }
+  caculateTuoiDang(data){
+    const getAge = (ngayVaoDang) => Math.floor((new Date().getTime() - new Date(ngayVaoDang).getTime()) / 3.15576e+10);
+    data.forEach(dv => {
+      dv.tuoiDang = getAge(dv.ngayVaoDang);
+    });
   }
   phieuDangVien(){
     this.excelService.exportAsExcelFile(null,'phieuDangVien','html',this.phieuDangVienRef.nativeElement);
@@ -58,6 +73,9 @@ export class thongkeComponent implements OnInit {
   }
   tkSoLieuDangVien(){
     this.excelService.exportAsExcelFile(null,'tkSoLieuDangVien','html',this.tkSoLieuDangVienRefBM5.nativeElement);
+  }
+  tkDanhSachNhanHuyHieuDang(){
+    this.excelService.exportAsExcelFile(null,'tkDanhSachNhanHuyHieuDang','html',this.tkDsNhanHuyHieuDangRef.nativeElement);
   }
   chayBaoCaoBM3(){
     let temp = [...this.tkDangVienDangQuanLyDataBM3];
@@ -77,7 +95,7 @@ export class thongkeComponent implements OnInit {
     console.log(this.phieuDangVienOptionModel);
     const _temp = temp.filter((item)=>
       ((!option.chiBo || option.chiBo === "") ? true : option.chiBo === item.chiBo) &&
-      ((!option.tuoiDang || option.tuoiDang === "") ? true : option.tuoiDang === item['tuoiDang']) &&
+      ((!option.tuoiDang) ? true : option.tuoiDang.toString() === item.tuoiDang.toString()) &&
       ((!option.tinhTrangDangVien || option.tinhTrangDangVien === "") ? true : option.tinhTrangDangVien === item['tinhTrangDangVien']) &&
       ((!option.xepLoaiDangVien || option.xepLoaiDangVien === "") ? true : option.xepLoaiDangVien === item['xepLoaiDangVien'])
     );

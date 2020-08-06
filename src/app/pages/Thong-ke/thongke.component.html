@@ -59,7 +59,7 @@
                                 <th rowspan="2">TRÌNH ĐỘ NGOẠI NGỮ</th>
                                 <th rowspan="2">LÝ LUẬN CHÍNH TRỊ (CC, TC, SC)</th>
                                 <th rowspan="2">CHÍNH SÁCH CÓ CÔNG (TB, LS, CCCM)</th>
-                                <th colspan="2">CHỨC VỤ HIỆN NAY</th>
+                                <th colspan="2">TÌNH TRẠNG QUẢN LÝ</th>
                                 <th rowspan="2">ĐÃ NHẬN HUY HIỆU ĐẢNG (70, 65, 60, 55, 50, 45, 40, 30)</th>
                                 <th rowspan="2">KHEN THƯỞNG</th>
                                 <th rowspan="2">KỶ LUẬT (KTr, CCa, CCh, KT)</th>
@@ -201,12 +201,12 @@
                                 <td>{{item.danToc}}</td>
                                 <td>{{item.tonGiao}}</td>
                                 <td>{{item.trinhDo}}</td>
-                                <td>11</td>
+                                <td>{{item.lyLuanChinhTri}}</td>
                                 <td>12</td>
                                 <td>13</td>
                                 <td>{{item.ngayVaoDang}}</td>
                                 <td>{{item.ngayChinhThucVaoDang}}</td>
-                                <td>16</td>
+                                <td>{{item.tuoiDang}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -328,18 +328,50 @@
                                 <td>--</td>
                                 <td>{{item.ngayVaoDang}}</td>
                                 <td>{{item.ngayChinhThucVaoDang}}</td>
-                                <td>--</td>
+                                <td>{{item.tuoiDang}}</td>
                             </tr>
                         </tbody>
                     </table>
                 </mat-tab>
                 <mat-tab label="Huy hiệu Đảng" style="position: relative;">
-                    <button style="position: absolute;top: 10px;right: 10px;" (click)="phieuDangVien()"
+                    <button style="position: absolute;top: 10px;right: 10px;" (click)="tkDanhSachNhanHuyHieuDang()"
                         class="btn btn-success">Xuất ra tập tin</button>
-                    <h4>DANH SÁCH ĐẢNG VIÊN</h4>
-                    <h5>Đề nghị tặng Huy hiệu đảng ĐỢT THÁNG …</h5>
-                    <table>
+                    <table #tkDsNhanHuyHieuDangRef>
                         <thead>
+                            <tr>
+                                <th colspan="6">
+                                    <h4>QUẬN ỦY QUẬN 5</h4>
+                                </th>
+                                <th colspan="5">
+                                    <h4>ĐẢNG CỘNG SẢN VIỆT NAM</h4>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th colspan="6">
+                                    <h4>ĐẢNG ỦY PHƯỜNG 10</h4>
+                                </th>
+                                <th colspan="5">
+                                    <h4></h4>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th colspan="6">
+                                    <h4>*</h4>
+                                </th>
+                                <th colspan="5">
+                                    <h4>Phường 10, ngày ... tháng ... năm …</h4>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th colspan="11">
+                                    <h4>DANH SÁCH ĐẢNG VIÊN</h4>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th colspan="11">
+                                    <h5>Đề nghị tặng Huy hiệu đảng ĐỢT THÁNG {{monthCurrent}}</h5>
+                                </th>
+                            </tr>
                             <tr>
                                 <th>TUỔI ĐẢNG (Phải tròn so với ĐỢT THÁNG)</th>
                                 <th>HỌ TÊN KHAI SINH</th>
@@ -355,18 +387,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>10</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                            <tr *ngFor="let item of tkDsNhanHuyHieuDang; let i = index">
+                                <td>{{item.tuoiDang}}</td>
+                                <td>{{item.tenKhaiSinh}}</td>
+                                <td>{{item.tenDangDung}}</td>
+                                <td>{{item.ngaySinh}}</td>
+                                <td>{{item.queQuan}}</td>
+                                <td>{{item.ngayQuyetDinhKetNap}}</td>
+                                <td>{{item.ngayVaoDang}}</td>
+                                <td>{{item.ngayChinhThucVaoDang}}</td>
+                                <td>{{item.soTheDangVien}}</td>
+                                <td>{{item.tenChiBo}}</td>
+                                <td>{{item.ghiChu}}</td>
                             </tr>
                         </tbody>
                     </table>

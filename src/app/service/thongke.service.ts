@@ -86,6 +86,8 @@ export interface PhieuDangVienModel {
   lyLuanChinhTri: string;
   ngoaiNgu: string;
   tinHoc: string;
+  tuoiDang: number;
+  ghiChu:string;
 }
 export interface PhieuDangVienOptionModel {
   chiBo: string;
