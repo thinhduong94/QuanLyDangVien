@@ -15,7 +15,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { MatSelectModule } from "@angular/material/select";
 import { MatListModule } from "@angular/material/list";
 import { MatRadioModule } from "@angular/material/radio";
-import { CustomMatPaginatorIntl } from './service/CustomMatPaginatorIntl.service';
+import { CustomMatPaginatorIntl } from './service/customMatPaginatorIntl.service';
 @NgModule({
   imports: [
     MatSliderModule,
