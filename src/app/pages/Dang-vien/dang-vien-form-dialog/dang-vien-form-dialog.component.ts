@@ -290,7 +290,7 @@ export class DangVienFormDialog implements OnInit {
         this.anh3x4 = reader.result;
       };
     }
-
+    this.onSaveClick();
     const dialogRef = this.dialog.open(DangVienPdf, {
       data: { dangvien: this.dangVienForm.value },
     });

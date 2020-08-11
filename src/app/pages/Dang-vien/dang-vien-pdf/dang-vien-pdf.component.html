@@ -1,5 +1,6 @@
 <div>
-  <button mat-button (click)="generateDoc()">Generate Doc</button>
+  <button mat-button mat-dialog-close (click)="generateDoc()">In file pdf</button>
+  <button mat-button mat-dialog-close (click)="backToDangVienForm()">Trở về phiếu đảng viên</button>
 </div>
 <div class="page-container">
   <page id="page1" class="page">
@@ -248,7 +249,8 @@
     </div>
     <div class="field-container">
       <div style="width:50%">
-        <span class="field field-title">18) Tình trạng sức khỏe bản thân:</span><span class="field-data">{{dangvien.tinhTrangSucKhoe}}</span>
+        <span class="field field-title">18) Tình trạng sức khỏe bản thân:</span><span
+          class="field-data">{{dangvien.tinhTrangSucKhoe}}</span>
       </div>
       <div class="field" style="width:50%">
         <span class="field field-title"> -Thương binh loại
@@ -274,25 +276,26 @@
     </div>
     <div class="field-container">
       <div style="width:50%">
-        <span class="field field-title">(hoặc số căn cước công dân)</span><span class="field-data">{{dangvien.canCuocCongDan}}</span>
+        <span class="field field-title">(hoặc số căn cước công dân)</span><span
+          class="field-data">{{dangvien.canCuocCongDan}}</span>
       </div>
     </div>
 
     <p class="header" style="margin-top:30px">21)TÓM TẮT QUÁ TRÌNH HOẠT ĐỘNG VÀ CÔNG TÁC</p>
-    <div class="fiedl-container">
+    <div class="field-container">
       <table>
         <tr>
           <th>Từ tháng,năm đến tháng năm</th>
           <th>Làm gì, chức vụ, đơn vị công tác<i>(Đảng, chính quyền, đoàn thể, kinh tế, văn hóa, xã hội ...)</i></th>
         </tr>
-        <tr style="height: 1065px;">
-          <td colspan="2">{{dangvien.quaTrinhHoatDongVaCongTac}}</td>
+        <tr style="height: 1060px;">
+          <td colspan="2"><textarea class="txt-area">{{dangvien.quaTrinhHoatDongVaCongTac}}</textarea></td>
         </tr>
       </table>
     </div>
 
     <p class="header">22) ĐÀO TẠO, BỒI DƯỠNG VỀ CHUYÊN MÔN, NGHIỆP VỤ, LÝ LUẬN CHÍNH TRỊ,NGOẠI NGỮ</p>
-    <div>
+    <div class="field-container">
       <table>
         <tr>
           <th>Tên trường</th>
@@ -302,7 +305,7 @@
           <th>Văn bằng, chứng chỉ, trình độ gì</th>
         </tr>
         <tr style="height: 200px;">
-          <td colspan="5">{{dangvien.daoTao}}</td>
+          <td colspan="5"><textarea class="txt-area">{{dangvien.daoTao}}</textarea></td>
         </tr>
       </table>
     </div>
@@ -529,7 +532,8 @@
             tác</th>
         </tr>
         <tr style="height: 550px;">
-          <td colspan="4" style="text-align: center;">{{dangvien.quanHeGiaDinh}}</td>
+          <td colspan="4" style="text-align: center;">
+            <textarea class="txt-area">{{dangvien.quanHeGiaDinh}}</textarea></td>
         </tr>
       </table>
     </div>
