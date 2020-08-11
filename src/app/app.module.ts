@@ -18,6 +18,7 @@ import { alertComponent } from "./pages/share/alert/alert.component";
 import { importExcelComponent } from "./pages/share/importExcel/importExcel.component";
 import { thongkeComponent } from "./pages/Thong-ke/thongke.component";
 import { DangVienPdf } from "./pages/Dang-vien/dang-vien-pdf/dang-vien-pdf.component";
+import { confirmComponent } from './pages/share/confirm/confirm.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -51,6 +52,7 @@ import { DangVienPdf } from "./pages/Dang-vien/dang-vien-pdf/dang-vien-pdf.compo
     importExcelComponent,
     thongkeComponent,
     DangVienPdf,
+    confirmComponent
   ],
   providers: [],
   bootstrap: [AppComponent],

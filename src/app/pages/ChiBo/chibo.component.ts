@@ -11,6 +11,7 @@ import { imageComponent } from '../share/image/image.component';
 import { alertComponent } from '../share/alert/alert.component';
 import { ExcelService } from 'src/app/service/excel.service';
 import { importExcelComponent } from '../share/importExcel/importExcel.component';
+import { confirmComponent } from '../share/confirm/confirm.component';
 @Component({
   selector: 'app-chibo',
   templateUrl: './chibo.component.html',
@@ -66,9 +67,18 @@ export class ChiBoComponent implements OnInit {
     this.openDialog(id);
   }
   public removeItem(id:number){
-    this.chiBoService.delete(id).then(()=>{
-      this.getChidos();
-    })
+    const mess = "Bạn có muốn xoá chi bộ này không ?";
+    const dialogRef = this.dialog.open(confirmComponent, {
+      data: {mess: mess || null}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result === 'yes'){
+        this.chiBoService.delete(id).then(()=>{
+          this.getChidos();
+        });
+      }
+      console.log('The dialog was closed');
+    });
   }
   public openImgDialog(img?:string): void {
     const dialogRef = this.dialog.open(imageComponent, {

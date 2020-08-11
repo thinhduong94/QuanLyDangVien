@@ -10,6 +10,7 @@ import { DangVienFormDialog } from "./dang-vien-form-dialog/dang-vien-form-dialo
 import { ExcelService } from "src/app/service/excel.service";
 import { alertComponent } from "../share/alert/alert.component";
 import { importExcelComponent } from "../share/importExcel/importExcel.component";
+import { confirmComponent } from '../share/confirm/confirm.component';
 
 @Component({
   selector: "dang-vien",
@@ -70,8 +71,17 @@ export class DangVienComponent implements OnInit, OnDestroy {
   }
 
   deleteDangVien(id: number) {
-    this.dangVienService.delete(id).then(() => {
-      this.getDangVien();
+    const mess = "Bạn có muốn xoá đảng viên này không ?";
+    const dialogRef = this.dialog.open(confirmComponent, {
+      data: {mess: mess || null}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result === 'yes'){
+        this.dangVienService.delete(id).then(() => {
+          this.getDangVien();
+        });
+      }
+      console.log('The dialog was closed');
     });
   }
 

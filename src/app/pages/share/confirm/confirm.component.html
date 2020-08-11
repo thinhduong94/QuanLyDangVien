@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>{{title}}</h1>
+<mat-dialog-content class="mat-typography">
+    <span>{{mess}}</span>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick('no')">Đóng</button>
+  <button mat-button (click)="onNoClick('yes')">Chấp nhận</button>
+</mat-dialog-actions>
