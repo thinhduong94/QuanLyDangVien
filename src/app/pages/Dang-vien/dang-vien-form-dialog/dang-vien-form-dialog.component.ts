@@ -49,6 +49,30 @@ export class DangVienFormDialog implements OnInit {
     { value: "85", display: "85 năm" },
     { value: "90", display: "90 năm" },
   ];
+  danhSachKyLuat = [
+    { value: "khientrach", display: "Khiển trách" },
+    { value: "canhcao", display: "Cảnh cáo" },
+    { value: "cachchuc", display: "Cách chức" },
+    { value: "khaitru", display: "Khai trừ" },
+  ];
+  danhSachTinhTrangQuanLy = [
+    { value: "dangquanli", display: "Đang quản lí" },
+    { value: "chuyendi", display: "Chuyển đi" },
+    { value: "khaitru", display: "Khai trừ" },
+    { value: "xoaten", display: "Xóa tên" },
+    { value: "xinrakhoidang", display: "Xin ra khỏi đảng" },
+    { value: "chet", display: "chết" },
+  ];
+  danhSachDanToc = [
+    { value: "kinh", display: "Kinh" },
+    { value: "hoa", display: "Hoa" },
+    { value: "khac", display: "Khác" },
+  ];
+  danhSachLyLuanChinhTri = [
+    { value: "socap", display: "Sơ cấp" },
+    { value: "trungcap", display: "Trung cấp" },
+    { value: "caocap", display: "Cao cấp" },
+  ];
   ngOnInit() {
     this.initForm();
     this.loadChiBoDropDown();
@@ -152,6 +176,7 @@ export class DangVienFormDialog implements OnInit {
           thuongBinhLoai: foundDangVien.thuongBinhLoai,
           giaDinhLietSi: foundDangVien.giaDinhLietSi,
           giaDinhCoCongCachMang: foundDangVien.giaDinhCoCongCachMang,
+          tinhTrangQuanLy: foundDangVien.tinhTrangQuanLy,
         });
         this.anh3x4 = foundDangVien.anh3x4;
       });
@@ -242,7 +267,6 @@ export class DangVienFormDialog implements OnInit {
       lyLuanChinhTri: new FormControl(""),
       ngoaiNgu: new FormControl(""),
       tinHoc: new FormControl(""),
-
       canCuocCongDan: new FormControl(""),
       nguoiGioiThieuMotLanHai: new FormControl(""),
       chucVuNguoiGioiThieuMotLanHai: new FormControl(""),
@@ -251,13 +275,13 @@ export class DangVienFormDialog implements OnInit {
       thuongBinhLoai: new FormControl(""),
       giaDinhLietSi: new FormControl(""),
       giaDinhCoCongCachMang: new FormControl(""),
+      tinhTrangQuanLy: new FormControl(""),
     });
   }
 
   onSaveClick() {
     const dangVienFormValue = this.dangVienForm.value;
     dangVienFormValue.anh3x4 = this.anh3x4;
-    console.log("dangVienFormValue", dangVienFormValue);
     if (this.data.id) {
       dangVienFormValue.id = this.data.id;
       this.dangVienService.update(dangVienFormValue).then((response) => {

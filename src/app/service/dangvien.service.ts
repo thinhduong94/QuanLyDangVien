@@ -138,6 +138,7 @@ export class DangVienService {
         thuongBinhLoai,
         giaDinhLietSi,
         giaDinhCoCongCachMang,
+        tinhTrangQuanLy,
         trangThai)
 
         VALUES
@@ -233,6 +234,7 @@ export class DangVienService {
           $thuongBinhLoai,
           $giaDinhLietSi,
           $giaDinhCoCongCachMang,
+          $tinhTrangQuanLy,
           $trangThai)`;
 
     const values = {
@@ -325,6 +327,7 @@ export class DangVienService {
       $thuongBinhLoai: obj.thuongBinhLoai,
       $giaDinhLietSi: obj.giaDinhLietSi,
       $giaDinhCoCongCachMang: obj.giaDinhCoCongCachMang,
+      $tinhTrangQuanLy: obj.tinhTrangQuanLy,
       $trangThai: 0,
       $anh3x4: obj.anh3x4,
     };
@@ -433,7 +436,8 @@ export class DangVienService {
         chucVuNguoiGioiThieuHaiLanHai=  $chucVuNguoiGioiThieuHaiLanHai,
         thuongBinhLoai = $thuongBinhLoai,
         giaDinhLietSi = $giaDinhLietSi,
-        giaDinhCoCongCachMang = $giaDinhCoCongCachMang
+        giaDinhCoCongCachMang = $giaDinhCoCongCachMang,
+        tinhTrangQuanLy = $tinhTrangQuanLy
          WHERE id = $id`;
 
     const values = this.getValueObject(obj);
@@ -563,6 +567,7 @@ export class DangVienService {
       $thuongBinhLoai: obj.thuongBinhLoai,
       $giaDinhLietSi: obj.giaDinhLietSi,
       $giaDinhCoCongCachMang: obj.giaDinhCoCongCachMang,
+      $tinhTrangQuanLy: obj.tinhTrangQuanLy,
     };
   }
 }

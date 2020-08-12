@@ -12,11 +12,7 @@
       </mat-form-field>
       <mat-form-field class="full-width" appearance="legacy">
         <mat-label>Đảng bộ,chi bộ cơ sở</mat-label>
-        <mat-select formControlName="chiBoCoSo">
-          <mat-option *ngFor="let cb of chibos" [value]="cb.maChiBo">
-            {{cb.tenChiBo}}
-          </mat-option>
-        </mat-select>
+        <input matInput type="text" formControlName="chiBoCoSo">
       </mat-form-field>
       <mat-form-field class="full-width" appearance="legacy">
         <mat-label>Đảng bộ, bộ phận</mat-label>
@@ -94,7 +90,11 @@
     </mat-form-field>
     <mat-form-field appearance="legacy" class="full-width">
       <mat-label>08) Dân tộc</mat-label>
-      <input matInput type="text" formControlName="danToc">
+      <mat-select formControlName="danToc">
+        <mat-option *ngFor="let dantoc of danhSachDanToc" [value]="dantoc.value">
+          {{dantoc.display}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <mat-form-field appearance="legacy" class="full-width">
       <mat-label>09) Tôn giáo</mat-label>
@@ -114,11 +114,7 @@
     </mat-form-field>
     <mat-form-field appearance="legacy" style="width:60%">
       <mat-label>Tại chi bộ</mat-label>
-      <mat-select formControlName="chiBoVaoDang">
-        <mat-option *ngFor="let cb of chibos" [value]="cb.maChiBo">
-          {{cb.tenChiBo}}
-        </mat-option>
-      </mat-select>
+      <input matInput type="text" formControlName="chiBoVaoDang">
     </mat-form-field>
     <mat-form-field appearance="legacy" style="width:50%;padding-left: 25px;">
       <mat-label>Người giới thiệu thứ 1:</mat-label>
@@ -146,11 +142,7 @@
     </mat-form-field>
     <mat-form-field appearance="legacy" style="width:60%">
       <mat-label>Tại chi bộ</mat-label>
-      <mat-select formControlName="chiBoChinhThucVaoDang">
-        <mat-option *ngFor="let cb of chibos" [value]="cb.maChiBo">
-          {{cb.tenChiBo}}
-        </mat-option>
-      </mat-select>
+      <input matInput type="text" formControlName="chiBoChinhThucVaoDang">
     </mat-form-field>
     <mat-form-field appearance="legacy" style="width: 50%;">
       <mat-label>13) Ngày tuyển dụng</mat-label>
@@ -197,7 +189,11 @@
     </mat-form-field>
     <mat-form-field appearance="legacy" style="width: 50%;">
       <mat-label>Lý luận chính trị</mat-label>
-      <input matInput type="text" formControlName="lyLuanChinhTri">
+      <mat-select formControlName="lyLuanChinhTri">
+        <mat-option *ngFor="let lyluan of danhSachLyLuanChinhTri" [value]="lyluan.value">
+          {{lyluan.display}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <mat-form-field appearance="legacy" style="width: 50%;">
       <mat-label>Ngoại ngữ</mat-label>
@@ -245,14 +241,14 @@
     </mat-form-field> -->
     <h1 style="text-align:center">21) Tóm tắt quá trình hoạt động và công tác</h1>
     <textarea class="full-width" rows="5" formControlName="quaTrinhHoatDongVaCongTac"
-    placeholder="Từ tháng, năm đến tháng năm - Làm nghề gì, chức vụ, đơn vị công tác (Đảng, chính quyền, đoàn thể, kinh tế, văn hoá, xã hội...)"></textarea>
+      placeholder="Từ tháng, năm đến tháng năm - Làm nghề gì, chức vụ, đơn vị công tác (Đảng, chính quyền, đoàn thể, kinh tế, văn hoá, xã hội...)"></textarea>
     <!-- <mat-form-field appearance="legacy" class="full-width">
       <mat-label>22) Đào tạo bồi dưỡng về chuyên môn, nghiệp vụ, lý luận chính trị, ngoại ngữ</mat-label>
       <input matInput type="text" formControlName="daoTao">
     </mat-form-field> -->
     <h1 style="text-align:center">22) Đào tạo bồi dưỡng về chuyên môn, nghiệp vụ, lý luận chính trị, ngoại ngữ</h1>
     <textarea class="full-width" rows="5" formControlName="daoTao"
-    placeholder="Tên trường - Ngành học hoặc tên lớp học - Từ tháng, năm đến tháng, năm - Hình thức học - Văn bằng, chứng chỉ, trình độ"></textarea>
+      placeholder="Tên trường - Ngành học hoặc tên lớp học - Từ tháng, năm đến tháng, năm - Hình thức học - Văn bằng, chứng chỉ, trình độ"></textarea>
     <mat-form-field appearance="legacy" class="full-width">
       <mat-label>23) Khen thưởng</mat-label>
       <input matInput type="text" formControlName="khenThuong">
@@ -269,7 +265,11 @@
     </mat-form-field>
     <mat-form-field appearance="legacy" class="full-width">
       <mat-label>26) Kỷ luật</mat-label>
-      <input matInput type="text" formControlName="kyLuat">
+      <mat-select formControlName="kyLuat">
+        <mat-option *ngFor="let kyluat of danhSachKyLuat" [value]="kyluat.value">
+          {{kyluat.display}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <h1 style="text-align:center">27) Đặc điểm lịch sử bản thân</h1>
     <div>
@@ -280,11 +280,7 @@
       </mat-form-field>
       <mat-form-field appearance="legacy" style="width:60%">
         <mat-label>Tại chi bộ</mat-label>
-        <mat-select formControlName="chiBoBiXoa">
-          <mat-option *ngFor="let cb of chibos" [value]="cb.maChiBo">
-            {{cb.tenChiBo}}
-          </mat-option>
-        </mat-select>
+        <input matInput type="text" formControlName="chiBoBiXoa">
       </mat-form-field>
     </div>
     <div>
@@ -295,11 +291,7 @@
       </mat-form-field>
       <mat-form-field appearance="legacy" style="width:40%">
         <mat-label>Tại chi bộ</mat-label>
-        <mat-select formControlName="chiBoVaoDangLanHai">
-          <mat-option *ngFor="let cb of chibos" [value]="cb.maChiBo">
-            {{cb.tenChiBo}}
-          </mat-option>
-        </mat-select>
+        <input matInput type="text" formControlName="chiBoVaoDangLanHai">
       </mat-form-field>
       <mat-form-field appearance="legacy" style="width:60%">
         <mat-label>Người giới thiệu 1</mat-label>
@@ -323,11 +315,7 @@
       </mat-form-field>
       <mat-form-field appearance="legacy" style="width:40%">
         <mat-label>Tại chi bộ</mat-label>
-        <mat-select formControlName="chiBoChinhThucVaoDangLanHai">
-          <mat-option *ngFor="let cb of chibos" [value]="cb.maChiBo">
-            {{cb.tenChiBo}}
-          </mat-option>
-        </mat-select>
+        <input matInput type="text" formControlName="chiBoChinhThucVaoDangLanHai">
       </mat-form-field>
     </div>
     <mat-form-field appearance="legacy" class="full-width">
@@ -410,6 +398,14 @@
     <mat-form-field appearance="legacy" style="width:50%">
       <mat-label>Giá trị</mat-label>
       <input matInput type="text" formControlName="giaTriTaiSan">
+    </mat-form-field>
+    <mat-form-field appearance="legacy" class="full-width">
+      <mat-label>Tình trạng quản lý</mat-label>
+      <mat-select formControlName="tinhTrangQuanLy">
+        <mat-option *ngFor="let tinhTrang of danhSachTinhTrangQuanLy" [value]="tinhTrang.value">
+          {{tinhTrang.display}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
 </div>

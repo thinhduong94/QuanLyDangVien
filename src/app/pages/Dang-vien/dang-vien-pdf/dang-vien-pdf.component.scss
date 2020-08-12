@@ -38,7 +38,7 @@
 
 .field-container {
   display: flex;
-  padding: 5px 10px;
+  padding: 5px 15px;
   font-size: 11px;
 }
 .header {
@@ -83,7 +83,7 @@ table {
   text-decoration: underline;
   text-align: center;
   margin-bottom: 0;
-  margin-top: 5px;
+  margin-top: 10px;
   font-size: 20px;
 }
 
@@ -152,8 +152,8 @@ table {
 }
 
 .page-container {
-  // width: 674px;
-  width: 595px;
+  width: 674px;
+  // width: 595px;
   overflow-y: scroll;
   max-height: 90vh;
 }
