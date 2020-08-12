@@ -4,6 +4,7 @@ import { ExcelService } from 'src/app/service/excel.service';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { SlowBuffer } from 'buffer';
 import { ChiBoService } from 'src/app/service/chibo.service';
+import { DanhSachKyLuat, DanhSachTinhTrangDangVien , DanhSachXepLoai , XepLoai, DangQuanLi, QuanLy, KhongQuanLy, LyLuanChinhTri, DanToc, DanhSachTinhTrangQuanLy } from 'src/app/const/drop-down-data.const';
 @Component({
   selector: 'app-thongke',
   templateUrl: './thongke.component.html',
@@ -24,12 +25,16 @@ export class thongkeComponent implements OnInit {
   monthCurrent = new Date().getMonth();
   soLieuModel = {} as SoLieuModel;
   soLieuModels : SoLieuModel[] = [];
+  chibos = [];
   tuoiDangTron = [10,15,20,25,30,35,40,45,50,55,60,65,70];
+  danhSachKyLuat = [];
+  tinhTrangDangVien = [];
+  xepLoai = [];
   constructor(
     private thongKeService : ThongKeService,
     private chiBoService : ChiBoService,
     private excelService: ExcelService,
-    public fb: FormBuilder,
+    private fb: FormBuilder
   ){
 
   }
@@ -37,6 +42,7 @@ export class thongkeComponent implements OnInit {
     this.getPhieuDangVien();
     this.getTkDangVienDangQuanLy();
     this.getSoLieuChiBo();
+    this.loadDropDown();
   }
   getPhieuDangVien(){
     this.thongKeService.getPhieuDangVien().then(data=>{
@@ -90,13 +96,14 @@ export class thongkeComponent implements OnInit {
    this.tkDangVienDangQuanLyModels = _temp;
   }
   chayBaoCaoBM2(){
+    const TinhTrangQianlyMappingFunc = (tinhtrang) => tinhtrang === DangQuanLi ? QuanLy : KhongQuanLy;
     let temp = [...this.tkDangVienDangQuanLyDataBM2];
     let option = this.phieuDangVienOptionModel;
     console.log(this.phieuDangVienOptionModel);
     const _temp = temp.filter((item)=>
       ((!option.chiBo || option.chiBo === "") ? true : option.chiBo === item.chiBo) &&
       ((!option.tuoiDang) ? true : option.tuoiDang.toString() === item.tuoiDang.toString()) &&
-      ((!option.tinhTrangDangVien || option.tinhTrangDangVien === "") ? true : option.tinhTrangDangVien === item['tinhTrangDangVien']) &&
+      ((!option.tinhTrangDangVien || option.tinhTrangDangVien === "") ? true : option.tinhTrangDangVien === TinhTrangQianlyMappingFunc(item.tinhTrangQuanLy)) &&
       ((!option.xepLoaiDangVien || option.xepLoaiDangVien === "") ? true : option.xepLoaiDangVien === item['xepLoaiDangVien'])
     );
    this.tkDangVienDangQuanLyModels = _temp;
@@ -112,8 +119,12 @@ export class thongkeComponent implements OnInit {
         let dangVienDuBi = 0;
         let huyHieuDang = 0;
         let soCap = 0; 
-        let trungCap = 0 ; 
+        let trungCap = 0; 
         let caoCap = 0;
+        let hoanThanhXuatSac = 0; 
+        let hoanThanhTot = 0; 
+        let hoanThanh = 0;
+        let khongHoanThanh = 0;
         this.tkDangVienDangQuanLyDataBM2.forEach(dv=>{
           if(dv.chiBo == item.maChiBo){
             soLuongDangVien++;
@@ -123,7 +134,7 @@ export class thongkeComponent implements OnInit {
             if(dv.gioiTinh === 'Nu'){
               nu++;
             }
-            if(dv.danToc !== 'Kinh'){
+            if(dv.danToc !== DanToc.Kinh){
               danTocKhac++;
             }
             if(dv.ngayChinhThucVaoDang === ''){
@@ -132,14 +143,26 @@ export class thongkeComponent implements OnInit {
             if(dv.huyHieu !== ''){
               huyHieuDang++;
             }
-            if(dv.lyLuanChinhTri === 'CC'){
+            if(dv.lyLuanChinhTri === LyLuanChinhTri.CaoCap){
               caoCap++;
             }
-            if(dv.lyLuanChinhTri === 'TC'){
+            if(dv.lyLuanChinhTri === LyLuanChinhTri.TrungCap){
               trungCap++;
             }
-            if(dv.lyLuanChinhTri === 'SC'){
+            if(dv.lyLuanChinhTri === LyLuanChinhTri.SoCap){
               soCap++;
+            }
+            if(dv['xepLoaiDangVien'] === XepLoai.HoanThanh){
+              hoanThanh++;
+            }
+            if(dv['xepLoaiDangVien'] === XepLoai.HoanThanhTot){
+              hoanThanhTot++;
+            }
+            if(dv['xepLoaiDangVien'] === XepLoai.HoanThanhXuatSac){
+              hoanThanhXuatSac++;
+            }
+            if(dv['xepLoaiDangVien'] === XepLoai.KhongHoanThanh){
+              khongHoanThanh++;
             }
           }
         });
@@ -155,6 +178,10 @@ export class thongkeComponent implements OnInit {
         obj.caoCap = caoCap;
         obj.trungCap = trungCap;
         obj.soCap = soCap;
+        obj.hoanThanh = hoanThanh;
+        obj.hoanThanhTot = hoanThanhTot;
+        obj.hoanThanhXuatSac = hoanThanhXuatSac;
+        obj.khongHoanThanh = khongHoanThanh;
         this.soLieuModels.push(obj);
       })
     });
@@ -171,5 +198,17 @@ export class thongkeComponent implements OnInit {
       trinhgDo.push(item.hocVi);
     }
     return trinhgDo.join(',');
+  }
+  loadDropDown() {
+    this.danhSachKyLuat = DanhSachKyLuat;
+    this.tinhTrangDangVien = DanhSachTinhTrangQuanLy;
+    this.xepLoai = DanhSachXepLoai;
+    this.chiBoService.getAll().then((result) => {
+      this.chibos = result;
+      this.chibos.push({
+        maChiBo:'',
+        tenChiBo:'Chọn tất cả'
+      })
+    });
   }
 }

@@ -88,6 +88,7 @@ export interface PhieuDangVienModel {
   tinHoc: string;
   tuoiDang: number;
   ghiChu:string;
+  tinhTrangQuanLy:string;
 }
 export interface PhieuDangVienOptionModel {
   chiBo: string;
@@ -111,13 +112,14 @@ export interface SoLieuModel {
   sinhHoatTam: number;
   dangVienDuBi: number;
   dangVienNhanHuyHieuDang: number;
-  xuatSac: number;
-  tot: number;
+  hoanThanhXuatSac: number;
+  hoanThanhTot: number;
   hoanThanh: number;
   khongHoanThanh: number;
   soCap: number;
   trungCap: number;
   caoCap: number;
+
 }
 @Injectable({
   providedIn: "root",
