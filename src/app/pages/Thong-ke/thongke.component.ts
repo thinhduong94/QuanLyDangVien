@@ -4,7 +4,7 @@ import { ExcelService } from 'src/app/service/excel.service';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { SlowBuffer } from 'buffer';
 import { ChiBoService } from 'src/app/service/chibo.service';
-import { DanhSachKyLuat, DanhSachTinhTrangDangVien , DanhSachXepLoai , XepLoai, DangQuanLi, QuanLy, KhongQuanLy, LyLuanChinhTri, DanToc, DanhSachTinhTrangQuanLy } from 'src/app/const/drop-down-data.const';
+import { DanhSachKyLuat, DanhSachTinhTrangDangVien , DanhSachXepLoai , XepLoai, DangQuanLi, QuanLy, KhongQuanLy, LyLuanChinhTri, DanToc, DanhSachTinhTrangQuanLy, DotTangHuyHieuDang } from 'src/app/const/drop-down-data.const';
 @Component({
   selector: 'app-thongke',
   templateUrl: './thongke.component.html',
@@ -20,6 +20,7 @@ export class thongkeComponent implements OnInit {
   tkDangVienDangQuanLyModels : PhieuDangVienModel[] = [];
   tkDangVienDangQuanLyDataBM3 : PhieuDangVienModel[] = [];
   tkDangVienDangQuanLyDataBM2 : PhieuDangVienModel[] = []; 
+  tkDangVienDangQuanLyDataBM1 : PhieuDangVienModel[] = []; 
   tkDsNhanHuyHieuDang : PhieuDangVienModel[] = [];  
   phieuDangVienOptionModel = {} as PhieuDangVienOptionModel;
   monthCurrent = new Date().getMonth();
@@ -30,6 +31,8 @@ export class thongkeComponent implements OnInit {
   danhSachKyLuat = [];
   tinhTrangDangVien = [];
   xepLoai = [];
+  dotTangHuyHieuDang = [];
+  nam =[];
   constructor(
     private thongKeService : ThongKeService,
     private chiBoService : ChiBoService,
@@ -56,7 +59,8 @@ export class thongkeComponent implements OnInit {
       this.tkDangVienDangQuanLyModels = data;
       this.tkDangVienDangQuanLyDataBM3 = data;
       this.tkDangVienDangQuanLyDataBM2 = data;
-      this.tkDsNhanHuyHieuDang = this.filterDsNhanHuyHieuDang(data);
+      this.tkDangVienDangQuanLyDataBM1 = data;
+      this.tkDsNhanHuyHieuDang = data;
     })
   }
   filterDsNhanHuyHieuDang(ds){
@@ -84,7 +88,7 @@ export class thongkeComponent implements OnInit {
     this.excelService.exportAsExcelFile(null,'tkDanhSachNhanHuyHieuDang','html',this.tkDsNhanHuyHieuDangRef.nativeElement);
   }
   chayBaoCaoBM3(){
-    let temp = [...this.tkDangVienDangQuanLyDataBM3];
+    let temp = [...this.tkDangVienDangQuanLyModels];
     let option = this.phieuDangVienOptionModel;
     console.log(this.phieuDangVienOptionModel);
     const _temp = temp.filter((item)=>
@@ -93,11 +97,11 @@ export class thongkeComponent implements OnInit {
       ((option.danToc && option.danToc !== "") ? option.danToc === item.danToc : true ) &&
       ((option.kyLuat && option.kyLuat !== "") ? option.kyLuat === item.kyLuat : true)
     );
-   this.tkDangVienDangQuanLyModels = _temp;
+   this.tkDangVienDangQuanLyDataBM3 = _temp;
   }
   chayBaoCaoBM2(){
     const TinhTrangQianlyMappingFunc = (tinhtrang) => tinhtrang === DangQuanLi ? QuanLy : KhongQuanLy;
-    let temp = [...this.tkDangVienDangQuanLyDataBM2];
+    let temp = [...this.tkDangVienDangQuanLyModels];
     let option = this.phieuDangVienOptionModel;
     console.log(this.phieuDangVienOptionModel);
     const _temp = temp.filter((item)=>
@@ -106,7 +110,36 @@ export class thongkeComponent implements OnInit {
       ((!option.tinhTrangDangVien || option.tinhTrangDangVien === "") ? true : option.tinhTrangDangVien === TinhTrangQianlyMappingFunc(item.tinhTrangQuanLy)) &&
       ((!option.xepLoaiDangVien || option.xepLoaiDangVien === "") ? true : option.xepLoaiDangVien === item['xepLoaiDangVien'])
     );
-   this.tkDangVienDangQuanLyModels = _temp;
+   this.tkDangVienDangQuanLyDataBM2 = _temp;
+  }
+  chayBaoCaoBM1(){
+    const TinhTrangQianlyMappingFunc = (tinhtrang) => tinhtrang === DangQuanLi ? QuanLy : KhongQuanLy;
+    let temp = [...this.tkDangVienDangQuanLyModels];
+    let option = this.phieuDangVienOptionModel;
+    console.log(this.phieuDangVienOptionModel);
+    const _temp = temp.filter((item)=>
+      ((!option.chiBo || option.chiBo === "") ? true : option.chiBo === item.chiBo) &&
+      ((!option.tuoiDang) ? true : option.tuoiDang.toString() === item.tuoiDang.toString()) &&
+      ((!option.tinhTrangDangVien || option.tinhTrangDangVien === "") ? true : option.tinhTrangDangVien === TinhTrangQianlyMappingFunc(item.tinhTrangQuanLy)) &&
+      ((!option.xepLoaiDangVien || option.xepLoaiDangVien === "") ? true : option.xepLoaiDangVien === item['xepLoaiDangVien'])
+    );
+   this.tkDangVienDangQuanLyDataBM1 = _temp;
+  }
+  chayBaoCaoDanhHieuDang(){
+    let temp = [...this.tkDangVienDangQuanLyModels];
+    let option = this.phieuDangVienOptionModel;
+    let date = `${option.dot}/${option.nam}`;
+    const _temp = [];
+    if(option.dot !== "" && option.nam !== ""){
+      const getAge = (ngayVaoDang) => Math.floor((new Date(date).getTime() - new Date(ngayVaoDang).getTime()) / 3.15576e+10);
+      temp.forEach(dv=>{
+        dv.tuoiDang = getAge(dv.ngayVaoDang).toString();
+        if(dv.tuoiDang !== dv.danhHieu && this.tuoiDangTron.includes(Number.parseInt(dv.tuoiDang))){
+          _temp.push(dv);
+        }
+      });
+    }
+    this.tkDsNhanHuyHieuDang = _temp;
   }
   getSoLieuChiBo(){
     this.chiBoService.getAll().then(items=>{
@@ -203,6 +236,8 @@ export class thongkeComponent implements OnInit {
     this.danhSachKyLuat = DanhSachKyLuat;
     this.tinhTrangDangVien = DanhSachTinhTrangQuanLy;
     this.xepLoai = DanhSachXepLoai;
+    this.dotTangHuyHieuDang = DotTangHuyHieuDang;
+    this.nam = this.createArrayYear();
     this.chiBoService.getAll().then((result) => {
       this.chibos = result;
       this.chibos.push({
@@ -210,5 +245,15 @@ export class thongkeComponent implements OnInit {
         tenChiBo:'Chọn tất cả'
       })
     });
+  }
+  createArrayYear (){
+    let start = 1700;
+    let duration = 2000;
+    let array = [];
+    for(let i = 0;i<duration;i++){
+      start++;
+      array.push(start);
+    }
+    return array;
   }
 }

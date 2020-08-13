@@ -6,8 +6,28 @@
         <mat-tab label="Danh sách">
             <mat-tab-group>
                 <mat-tab label="Chi bộ (BM1)" style="position: relative;">
-                    <button style="position: absolute;top: 10px;right: 10px;" (click)="phieuDangVien()"
-                        class="btn btn-success">Xuất ra tập tin</button>
+                    <div class="inputGroup">
+                        <mat-form-field class="inputitem" appearance="legacy">
+                            <mat-label>Chi bộ</mat-label>
+                            <mat-select [(ngModel)]="phieuDangVienOptionModel.chiBo">
+                                <mat-option *ngFor="let cb of chibos" [value]="cb.maChiBo">
+                                {{cb.tenChiBo}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="inputitem" appearance="legacy">
+                            <mat-label>Tình trạng Đảng viên</mat-label>
+                            <mat-select [(ngModel)]="phieuDangVienOptionModel.tinhTrangDangVien">
+                                <mat-option *ngFor="let data of tinhTrangDangVien" [value]="data.value">
+                                    {{data.display}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="buttonGroup">
+                        <button (click)="chayBaoCaoBM1()" class="btn btn-secondary">Chạy</button>
+                        <button (click)="phieuDangVien()" style="margin-right: 10px" class="btn btn-success">Xuất ra tập tin</button>
+                    </div>
                     <table #phieuDangVienRef>
                         <thead>
                             <tr>
@@ -37,6 +57,11 @@
                                 <th colspan="25">
                                     PHIẾU ĐẢNG VIÊN
                                 </th>
+                            </tr>
+                            <tr>
+                                <th colspan="6">Chi bộ: {{phieuDangVienOptionModel.chiBo}}</th>
+                                <th colspan="6">Tình trạng Đảng viên: {{phieuDangVienOptionModel.tinhTrangDangVien}}</th>
+                                <th colspan="13"></th>
                             </tr>
                             <tr>
                                 <th rowspan="2">CHI BỘ</th>
@@ -72,7 +97,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let item of phieuDangVienModels">
+                            <tr *ngFor="let item of tkDangVienDangQuanLyDataBM1">
                                 <td>{{item.tenChiBo}}</td>
                                 <td>{{item.tenKhaiSinh}}</td>
                                 <td>{{item.tenDangDung}}</td>
@@ -101,6 +126,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    <span *ngIf="tkDangVienDangQuanLyDataBM1.length ===0">Không có dữ liệu được tìm thấy .</span>
                 </mat-tab>
                 <mat-tab label="Đảng viên (BM2)">
                     <div class="inputGroup">
@@ -194,7 +220,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let item of tkDangVienDangQuanLyModels; let i = index">
+                            <tr *ngFor="let item of tkDangVienDangQuanLyDataBM2; let i = index">
                                 <td>{{(i+1)}}</td>
                                 <td>{{item.tenChiBo}}</td>
                                 <td>{{item.tenDangDung}}</td>
@@ -215,6 +241,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    <span *ngIf="tkDangVienDangQuanLyDataBM2.length === 0">Không có dữ liệu được tìm thấy .</span>
                 </mat-tab>
                 <mat-tab label="Thống kê ĐK (BM3)">
                     <div class="inputGroup">
@@ -310,7 +337,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let item of tkDangVienDangQuanLyModels; let i = index">
+                            <tr *ngFor="let item of tkDangVienDangQuanLyDataBM3; let i = index">
                                 <td>{{(i+1)}}</td>
                                 <td>{{item.tenChiBo}}</td>
                                 <td>{{item.tenDangDung}}</td>
@@ -331,10 +358,31 @@
                             </tr>
                         </tbody>
                     </table>
+                    <span *ngIf="tkDangVienDangQuanLyDataBM3.length === 0">Không có dữ liệu được tìm thấy .</span>
                 </mat-tab>
                 <mat-tab label="Huy hiệu Đảng" style="position: relative;">
-                    <button style="position: absolute;top: 10px;right: 10px;" (click)="tkDanhSachNhanHuyHieuDang()"
-                        class="btn btn-success">Xuất ra tập tin</button>
+                    <div class="inputGroup">
+                        <mat-form-field class="inputitem" appearance="legacy">
+                            <mat-label>Đợt</mat-label>
+                            <mat-select [(ngModel)]="phieuDangVienOptionModel.dot">
+                                <mat-option *ngFor="let data of dotTangHuyHieuDang" [value]="data.value">
+                                {{data.display}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="inputitem" appearance="legacy">
+                            <mat-label>Năm</mat-label>
+                            <mat-select [(ngModel)]="phieuDangVienOptionModel.nam">
+                                <mat-option *ngFor="let data of nam" [value]="data">
+                                    {{data}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="buttonGroup">
+                        <button (click)="chayBaoCaoDanhHieuDang()" class="btn btn-secondary">Chạy</button>
+                        <button (click)="tkDanhSachNhanHuyHieuDang()" style="margin-right: 10px" class="btn btn-success">Xuất ra tập tin</button>
+                    </div>
                     <table #tkDsNhanHuyHieuDangRef>
                         <thead>
                             <tr>
@@ -368,7 +416,7 @@
                             </tr>
                             <tr>
                                 <th colspan="11">
-                                    <h5>Đề nghị tặng Huy hiệu đảng ĐỢT THÁNG {{monthCurrent}}</h5>
+                                    <h5>Đề nghị tặng Huy hiệu đảng ĐỢT THÁNG {{phieuDangVienOptionModel.dot}}</h5>
                                 </th>
                             </tr>
                             <tr>
@@ -401,6 +449,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    <span *ngIf="tkDsNhanHuyHieuDang.length === 0">Không có dữ liệu được tìm thấy .</span>
                 </mat-tab>
             </mat-tab-group>
         </mat-tab>
@@ -482,6 +531,7 @@
                     </tr>
                 </tbody>
             </table>
+            <span *ngIf="soLieuModels.length === 0">Không có dữ liệu được tìm thấy .</span>
         </mat-tab>
     </mat-tab-group>
 </div>

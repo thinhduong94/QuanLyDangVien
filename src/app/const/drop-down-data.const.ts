@@ -72,3 +72,9 @@ export enum XepLoai {
     HoanThanh = "hoanthanh",
     KhongHoanThanh = "khonghoanthanh"
 }
+export const DotTangHuyHieuDang = [
+    { value: "03/31", display: "Đợt 1: 1/1 - 31/3" },
+    { value: "05/31", display: "Đợt 2: 1/4 - 31/5" },
+    { value: "09/30", display: "Đợt 3: 1/6 - 30/9" },
+    { value: "12/31", display: "Đợt 4: 1/10 - 31/12"}
+];
