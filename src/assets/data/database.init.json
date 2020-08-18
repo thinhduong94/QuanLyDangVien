@@ -236,6 +236,55 @@
         "quanHeGiaDinh": "",
         "trangThai": ""
       }
+    ],
+    "danhgia": [{
+        "maChiBo": "1",
+        "soTheDangVien": "",
+        "namDanhGia": "2020",
+        "danhGia": "hoanthanhxuatsac"
+      }, {
+        "maChiBo": "2",
+        "soTheDangVien": "",
+        "namDanhGia": "2020",
+        "danhGia": "hoanthanhtot"
+      }, {
+        "maChiBo": "3",
+        "soTheDangVien": "",
+        "namDanhGia": "2020",
+        "danhGia": "hoanthanh"
+      }, {
+        "maChiBo": "4",
+        "soTheDangVien": "",
+        "namDanhGia": "2020",
+        "danhGia": "khonghoanthanh"
+      }, {
+        "maChiBo": "5",
+        "soTheDangVien": "",
+        "namDanhGia": "2020",
+        "danhGia": "hoanhthanh"
+      }, {
+        "maChiBo": "6",
+        "soTheDangVien": "",
+        "namDanhGia": "2020",
+        "danhGia": "hoanthanhtot"
+      }, {
+        "maChiBo": "6",
+        "soTheDangVien": "",
+        "namDanhGia": "2019",
+        "danhGia": "khonghoanthanh"
+      },
+      {
+        "maChiBo": "",
+        "soTheDangVien": "22222",
+        "namDanhGia": "2019",
+        "danhGia": "khonghoanthanh"
+      },
+      {
+        "maChiBo": "",
+        "soTheDangVien": "22222",
+        "namDanhGia": "2020",
+        "danhGia": "hoanthanh"
+      }
     ]
   }
 }

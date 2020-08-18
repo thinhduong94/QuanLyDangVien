@@ -18,7 +18,9 @@ import { alertComponent } from "./pages/share/alert/alert.component";
 import { importExcelComponent } from "./pages/share/importExcel/importExcel.component";
 import { thongkeComponent } from "./pages/Thong-ke/thongke.component";
 import { DangVienPdf } from "./pages/Dang-vien/dang-vien-pdf/dang-vien-pdf.component";
-import { confirmComponent } from './pages/share/confirm/confirm.component';
+import { confirmComponent } from "./pages/share/confirm/confirm.component";
+import { DanhGiaComponent } from "./pages/Danh-gia/danh-gia.component";
+import { YearPickerComponent } from "./pages/Danh-gia/year-picker/year-picker.component";
 @NgModule({
   imports: [
     BrowserModule,
@@ -52,7 +54,9 @@ import { confirmComponent } from './pages/share/confirm/confirm.component';
     importExcelComponent,
     thongkeComponent,
     DangVienPdf,
-    confirmComponent
+    confirmComponent,
+    DanhGiaComponent,
+    YearPickerComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

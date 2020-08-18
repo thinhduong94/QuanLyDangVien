@@ -1,0 +1,35 @@
+<div class="danhgia-container">
+  <p>Đánh giá năm {{selectedYear}}</p>
+  <div>
+    <year-picker></year-picker>
+  </div>
+  <div *ngIf="isShow" [formGroup]="danhGiaFormGroup">
+    <div class="flex" *ngFor="let data of displayData">
+      <label *ngIf="data.soTheDangVien">{{data.tenDangDung}}</label>
+      <div *ngIf="data.soTheDangVien">
+        <mat-form-field appearance="legacy" style="width: 50%;">
+          <mat-label>Xếp hạng loại</mat-label>
+          <mat-select formControlName="{{data.soTheDangVien}}">
+            <mat-option *ngFor="let xeploai of danhSachXepLoai" [value]="xeploai.value">
+              {{xeploai.display}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <label *ngIf="data.maChiBo">{{data.tenChiBo}}</label>
+      <div *ngIf="data.maChiBo">
+        <mat-form-field appearance="legacy" style="width: 50%;">
+          <mat-label>Xếp hạng loại</mat-label>
+          <mat-select formControlName="{{data.maChiBo}}">
+            <mat-option *ngFor="let xeploai of danhSachXepLoai" [value]="xeploai.value">
+              {{xeploai.display}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="danhgia-bottom">
+    <button mat-button (click)="onSaveClick()" cdkFocusInitial>Lưu</button>
+  </div>
+</div>

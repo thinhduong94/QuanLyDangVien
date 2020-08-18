@@ -1,0 +1,13 @@
+.danhgia-container {
+  max-height: 100vh;
+  overflow: auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex > div,
+label {
+  width: 50%;
+}

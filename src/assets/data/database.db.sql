@@ -119,4 +119,12 @@ CREATE TABLE IF NOT EXISTS 'dangvien213' (
 	`ghiChu` TEXT NULL,
 	`trangThai` INTEGER NULL
 );
+DROP TABLE IF EXISTS 'danhgia';
+CREATE TABLE IF NOT EXISTS 'danhgia' (
+	`id` INTEGER PRIMARY KEY AUTOINCREMENT,
+	`maChiBo` TEXT NULL,
+	`soTheDangVien` TEXT NULL,
+	`namDanhGia` TEXT NULL,
+	`danhGia` TEXT NULL
+);
 COMMIT;
