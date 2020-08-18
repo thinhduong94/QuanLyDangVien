@@ -9,7 +9,7 @@
                     <div class="inputGroup">
                         <mat-form-field class="inputitem" appearance="legacy">
                             <mat-label>Chi bộ</mat-label>
-                            <mat-select [(ngModel)]="phieuDangVienOptionModel.chiBo">
+                            <mat-select [(ngModel)]="phieuDangVienOptionModel.chiBo" (ngModelChange)="selectChiBo()">
                                 <mat-option *ngFor="let cb of chibos" [value]="cb.maChiBo">
                                 {{cb.tenChiBo}}
                                 </mat-option>
@@ -17,7 +17,7 @@
                         </mat-form-field>
                         <mat-form-field class="inputitem" appearance="legacy">
                             <mat-label>Tình trạng Đảng viên</mat-label>
-                            <mat-select [(ngModel)]="phieuDangVienOptionModel.tinhTrangDangVien">
+                            <mat-select [(ngModel)]="phieuDangVienOptionModel.tinhTrangDangVien" (ngModelChange)="selectTinhTrangDangVien()">
                                 <mat-option *ngFor="let data of tinhTrangDangVien" [value]="data.value">
                                     {{data.display}}
                                 </mat-option>
@@ -59,8 +59,8 @@
                                 </th>
                             </tr>
                             <tr>
-                                <th colspan="6">Chi bộ: {{phieuDangVienOptionModel.chiBo}}</th>
-                                <th colspan="6">Tình trạng Đảng viên: {{phieuDangVienOptionModel.tinhTrangDangVien}}</th>
+                                <th colspan="6">Chi bộ: {{displayChiBoText}}</th>
+                                <th colspan="6">Tình trạng Đảng viên: {{displayTinhTrangDangVienText}}</th>
                                 <th colspan="13"></th>
                             </tr>
                             <tr>
@@ -132,7 +132,7 @@
                     <div class="inputGroup">
                         <mat-form-field class="inputitem" appearance="legacy">
                             <mat-label>Chi bộ</mat-label>
-                            <mat-select [(ngModel)]="phieuDangVienOptionModel.chiBo">
+                            <mat-select [(ngModel)]="phieuDangVienOptionModel.chiBo" (ngModelChange)="selectChiBo()">
                                 <mat-option *ngFor="let cb of chibos" [value]="cb.maChiBo">
                                 {{cb.tenChiBo}}
                                 </mat-option>
@@ -140,7 +140,7 @@
                         </mat-form-field>
                         <mat-form-field class="inputitem" appearance="legacy">
                             <mat-label>Tình trạng Đảng viên</mat-label>
-                            <mat-select [(ngModel)]="phieuDangVienOptionModel.tinhTrangDangVien">
+                            <mat-select [(ngModel)]="phieuDangVienOptionModel.tinhTrangDangVien" (ngModelChange)="selectTinhTrangDangVien()">
                                 <mat-option *ngFor="let data of tinhTrangDangVien" [value]="data.value">
                                     {{data.display}}
                                 </mat-option>
@@ -188,9 +188,9 @@
                                 </th>
                             </tr>
                             <tr>
-                                <th colspan="4">Chi bộ: {{phieuDangVienOptionModel.chiBo}}</th>
+                                <th colspan="4">Chi bộ: {{displayChiBoText}}</th>
                                 <th colspan="4"></th>
-                                <th colspan="4">Tình trạng Đảng viên: {{phieuDangVienOptionModel.tinhTrangDangVien}}
+                                <th colspan="4">Tình trạng Đảng viên: {{displayTinhTrangDangVienText}}
                                 </th>
                                 <th colspan="5">Xếp loại Đảng viên: {{phieuDangVienOptionModel.xepLoaiDangVien}}</th>
                             </tr>
@@ -247,7 +247,7 @@
                     <div class="inputGroup">
                         <mat-form-field class="inputitem" appearance="legacy">
                             <mat-label>Chi bộ</mat-label>
-                            <mat-select [(ngModel)]="phieuDangVienOptionModel.chiBo">
+                            <mat-select [(ngModel)]="phieuDangVienOptionModel.chiBo" (ngModelChange)="selectChiBo()">
                                 <mat-option *ngFor="let cb of chibos" [value]="cb.maChiBo">
                                 {{cb.tenChiBo}}
                                 </mat-option>
@@ -262,7 +262,7 @@
                     <div class="inputGroup">
                         <mat-form-field class="inputitem" appearance="legacy">
                             <mat-label>Kỷ luật</mat-label>
-                            <mat-select [(ngModel)]="phieuDangVienOptionModel.kyLuat">
+                            <mat-select [(ngModel)]="phieuDangVienOptionModel.kyLuat" (ngModelChange)="selectKyLuat()">
                                 <mat-option *ngFor="let kyluat of danhSachKyLuat" [value]="kyluat.value">
                                 {{kyluat.display}}
                                 </mat-option>
@@ -302,14 +302,14 @@
                                 </th>
                             </tr>
                             <tr>
-                                <th colspan="3">Chi bộ: {{phieuDangVienOptionModel.chiBo}}</th>
+                                <th colspan="3">Chi bộ: {{displayChiBoText}}</th>
                                 <th colspan="3">Giới tính: {{phieuDangVienOptionModel.gioiTinh}}</th>
                                 <th colspan="2"></th>
                                 <th colspan="4">
                                 </th>
                                 <th colspan="3">
                                 </th>
-                                <th colspan="2">Kỷ luật: {{phieuDangVienOptionModel.kyLuat}}</th>
+                                <th colspan="2">Kỷ luật: {{displayKyLuatText}}</th>
                             </tr>
                             <tr>
                                 <th rowspan="2">STT</th>

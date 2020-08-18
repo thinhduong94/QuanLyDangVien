@@ -33,6 +33,9 @@ export class thongkeComponent implements OnInit {
   xepLoai = [];
   dotTangHuyHieuDang = [];
   nam =[];
+  displayChiBoText = '';
+  displayKyLuatText = '';
+  displayTinhTrangDangVienText = '';
   constructor(
     private thongKeService : ThongKeService,
     private chiBoService : ChiBoService,
@@ -46,6 +49,7 @@ export class thongkeComponent implements OnInit {
     this.getTkDangVienDangQuanLy();
     this.getSoLieuChiBo();
     this.loadDropDown();
+    this.phieuDangVienOptionModel.nam = new Date().getFullYear().toString();
   }
   getPhieuDangVien(){
     this.thongKeService.getPhieuDangVien().then(data=>{
@@ -234,7 +238,7 @@ export class thongkeComponent implements OnInit {
   }
   loadDropDown() {
     this.danhSachKyLuat = DanhSachKyLuat;
-    this.tinhTrangDangVien = DanhSachTinhTrangQuanLy;
+    this.tinhTrangDangVien = DanhSachTinhTrangDangVien;
     this.xepLoai = DanhSachXepLoai;
     this.dotTangHuyHieuDang = DotTangHuyHieuDang;
     this.nam = this.createArrayYear();
@@ -247,13 +251,22 @@ export class thongkeComponent implements OnInit {
     });
   }
   createArrayYear (){
-    let start = 1700;
-    let duration = 2000;
+    let start = 1900;
+    let duration = 1000;
     let array = [];
     for(let i = 0;i<duration;i++){
       start++;
       array.push(start);
     }
     return array;
+  }
+  selectChiBo(){
+    this.displayChiBoText = this.chibos.find(item=>item.maChiBo === this.phieuDangVienOptionModel.chiBo)?.tenChiBo || '';
+  }
+  selectKyLuat(){
+    this.displayKyLuatText = this.danhSachKyLuat.find(item=>item.value === this.phieuDangVienOptionModel.kyLuat)?.display || '';
+  }
+  selectTinhTrangDangVien(){
+    this.displayTinhTrangDangVienText = this.tinhTrangDangVien.find(item => item.value === this.phieuDangVienOptionModel.tinhTrangDangVien)?.display || '';
   }
 }
