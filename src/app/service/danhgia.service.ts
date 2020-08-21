@@ -100,6 +100,25 @@ export class DanhGiaService {
     });
   }
 
+  public upsertDanhGiaList(objArray: DanhGiaModel[]) {
+    let sql = `
+    INSERT OR REPLACE INTO danhgia
+     (id, maChiBo, soTheDangVien, namDanhGia, danhGia) 
+    VALUES `;
+    objArray.forEach((obj) => {
+      const id = obj.id || "NULL";
+      const maChiBo = obj.maChiBo || "";
+      const soTheDangVien = obj.soTheDangVien || "";
+      const danhGia = obj.danhGia || "";
+      const namDanhGia = obj.namDanhGia || "";
+      sql += `(${id},'${maChiBo}','${soTheDangVien}','${namDanhGia}','${danhGia}'),`;
+    });
+    sql = sql.slice(0, -1);
+    console.log("sql query", sql);
+    return TheDb.query(sql).then((result) => {
+      console.log("query result", result);
+    });
+  }
   public delete(id: number): Promise<void> {
     const sql = `
             UPDATE danhgia

@@ -55,55 +55,65 @@ export class DanhGiaComponent implements OnInit, OnDestroy {
       .then((allChiBo) => {
         this.displayData = this.displayData.concat(allChiBo);
         this.displayData.forEach((data) => {
-          this.initSetValueForDanhGia("maChiBo", data, currentYearDanhGia);
-          this.initSetValueForDanhGia(
-            "soTheDangVien",
-            data,
-            currentYearDanhGia
-          );
+          this.initSetValueForDanhGia(data, currentYearDanhGia);
         });
         this.danhGiaFormGroup = new FormGroup(this.dynamicForm);
         this.isShow = true;
       });
   }
 
-  initSetValueForDanhGia(type, data, currentYearDanhGia) {
-    const currentDanhGia = currentYearDanhGia.find(
-      (danhgia) => danhgia[type] === data[type]
-    );
-    this.dynamicForm[data[type]] = new FormControl("");
-    if (currentDanhGia) {
-      this.dynamicForm[data[type]].setValue(currentDanhGia.danhGia);
-    }
+  initSetValueForDanhGia(data, currentYearDanhGia) {
+    ["maChiBo", "soTheDangVien"].forEach((type) => {
+      if (data[type]) {
+        const currentDanhGia = currentYearDanhGia.find(
+          (danhgia) => danhgia[type] === data[type]
+        );
+        this.dynamicForm[data[type]] = new FormControl("");
+        if (currentDanhGia) {
+          this.dynamicForm[data[type]].setValue(currentDanhGia.danhGia);
+        }
+      }
+    });
   }
   ngOnDestroy() {
     this.yearSubscription.unsubscribe();
   }
 
   onSaveClick() {
-    this.displayData.forEach((data) => {
-      this.insertOrUpdateDanhGia(data);
-    });
+    this.upsertDanhGia();
     this.danhGiaService.getAll().then((result) => (this.allDanhGia = result));
   }
 
-  insertOrUpdateDanhGia(data: any) {
-    const code = data.maChiBo || data.soTheDangVien;
-    const type = data.maChiBo ? "maChiBo" : "soTheDangVien";
-    this.danhGiaService
-      .getByCode(type, code, this.selectedYear)
-      .then((result) => {
-        if (result) {
-          result.danhGia = this.danhGiaFormGroup.controls[code].value;
-          this.danhGiaService.update(result);
-        } else {
-          const danhGia = new DanhGiaModel();
-          danhGia[type] = code;
-          danhGia.namDanhGia = this.selectedYear;
-          danhGia.danhGia = this.danhGiaFormGroup.controls[code].value;
-          this.danhGiaService.insert(danhGia);
-        }
-      });
+  upsertDanhGia() {
+    const currentYearDanhGia = this.allDanhGia.filter(
+      (danhGia) => danhGia.namDanhGia === this.selectedYear
+    );
+    currentYearDanhGia.forEach((data) => {
+      const type = this.getRecordType(data);
+      data.danhGia = this.danhGiaFormGroup.controls[data[type]].value;
+      data.namDanhGia = this.selectedYear;
+    });
+    this.displayData.forEach((data) => {
+      const type = this.getRecordType(data);
+      const code = data.maChiBo || data.soTheDangVien;
+      if (
+        !currentYearDanhGia.find(
+          (danhGia) =>
+            danhGia.maChiBo === code || danhGia.soTheDangVien === code
+        )
+      ) {
+        const newDanhGia = new DanhGiaModel();
+        newDanhGia.danhGia = this.danhGiaFormGroup.controls[data[type]].value;
+        newDanhGia[type] = data[type];
+        newDanhGia.namDanhGia = this.selectedYear;
+        currentYearDanhGia.push(newDanhGia);
+      }
+    });
+    this.danhGiaService.upsertDanhGiaList(currentYearDanhGia);
+  }
+
+  getRecordType(data) {
+    return data.maChiBo ? "maChiBo" : "soTheDangVien";
   }
 
   loadDanhGiaByYear() {
