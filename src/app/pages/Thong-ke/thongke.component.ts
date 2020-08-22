@@ -5,6 +5,9 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { SlowBuffer } from 'buffer';
 import { ChiBoService } from 'src/app/service/chibo.service';
 import { DanhSachKyLuat, DanhSachTinhTrangDangVien , DanhSachXepLoai , XepLoai, DangQuanLi, QuanLy, KhongQuanLy, LyLuanChinhTri, DanToc, DanhSachTinhTrangQuanLy, DotTangHuyHieuDang } from 'src/app/const/drop-down-data.const';
+import { DanhGiaService } from 'src/app/service/danhgia.service';
+import { forkJoin } from 'rxjs';
+import { DanhGiaModel } from 'src/app/model/danhgia.model';
 @Component({
   selector: 'app-thongke',
   templateUrl: './thongke.component.html',
@@ -36,20 +39,21 @@ export class thongkeComponent implements OnInit {
   displayChiBoText = '';
   displayKyLuatText = '';
   displayTinhTrangDangVienText = '';
+  displayXepLoaiDangVienText = '';
   constructor(
     private thongKeService : ThongKeService,
     private chiBoService : ChiBoService,
     private excelService: ExcelService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private danhGiaService: DanhGiaService
   ){
 
   }
   ngOnInit(): void {
+    this.phieuDangVienOptionModel.nam = new Date().getFullYear().toString();
     this.getPhieuDangVien();
     this.getTkDangVienDangQuanLy();
-    this.getSoLieuChiBo();
     this.loadDropDown();
-    this.phieuDangVienOptionModel.nam = new Date().getFullYear().toString();
   }
   getPhieuDangVien(){
     this.thongKeService.getPhieuDangVien().then(data=>{
@@ -58,14 +62,24 @@ export class thongkeComponent implements OnInit {
   }
   getTkDangVienDangQuanLy(){
     const option = {};
-    this.thongKeService.getTkDangVienDangQuanLy(option).then(data=>{
-      this.caculateTuoiDang(data);
-      this.tkDangVienDangQuanLyModels = data;
-      this.tkDangVienDangQuanLyDataBM3 = data;
-      this.tkDangVienDangQuanLyDataBM2 = data;
-      this.tkDangVienDangQuanLyDataBM1 = data;
-      this.tkDsNhanHuyHieuDang = data;
+    this.thongKeService.getTkDangVienDangQuanLy(option).then(dangvien=>{
+      this.danhGiaService.getAll().then(danhgia=>{
+        this.caculateTuoiDang(dangvien);
+        this.megreDangGiaWithDangVien(dangvien,danhgia);
+        this.tkDangVienDangQuanLyModels = dangvien;
+        this.tkDangVienDangQuanLyDataBM3 = dangvien;
+        this.tkDangVienDangQuanLyDataBM2 = dangvien;
+        this.tkDangVienDangQuanLyDataBM1 = dangvien;
+        this.tkDsNhanHuyHieuDang = dangvien;
+        this.getSoLieuChiBo();
+      });
     })
+  }
+  megreDangGiaWithDangVien(dangvien : Array<PhieuDangVienModel> ,danhgia : Array<DanhGiaModel>){
+    dangvien.forEach(dv => {
+      const xepLoaiDv = danhgia.find(dg=>dg.soTheDangVien === dv.soTheDangVien && dg.namDanhGia === new Date().getFullYear().toString())?.danhGia || '';
+      dv.xepLoai = xepLoaiDv;
+    });
   }
   filterDsNhanHuyHieuDang(ds){
     return ds.filter((item)=>this.tuoiDangTron.includes(item.tuoiDang));
@@ -112,7 +126,7 @@ export class thongkeComponent implements OnInit {
       ((!option.chiBo || option.chiBo === "") ? true : option.chiBo === item.chiBo) &&
       ((!option.tuoiDang) ? true : option.tuoiDang.toString() === item.tuoiDang.toString()) &&
       ((!option.tinhTrangDangVien || option.tinhTrangDangVien === "") ? true : option.tinhTrangDangVien === TinhTrangQianlyMappingFunc(item.tinhTrangQuanLy)) &&
-      ((!option.xepLoaiDangVien || option.xepLoaiDangVien === "") ? true : option.xepLoaiDangVien === item['xepLoaiDangVien'])
+      ((!option.xepLoaiDangVien || option.xepLoaiDangVien === "") ? true : option.xepLoaiDangVien === item.xepLoai)
     );
    this.tkDangVienDangQuanLyDataBM2 = _temp;
   }
@@ -125,7 +139,7 @@ export class thongkeComponent implements OnInit {
       ((!option.chiBo || option.chiBo === "") ? true : option.chiBo === item.chiBo) &&
       ((!option.tuoiDang) ? true : option.tuoiDang.toString() === item.tuoiDang.toString()) &&
       ((!option.tinhTrangDangVien || option.tinhTrangDangVien === "") ? true : option.tinhTrangDangVien === TinhTrangQianlyMappingFunc(item.tinhTrangQuanLy)) &&
-      ((!option.xepLoaiDangVien || option.xepLoaiDangVien === "") ? true : option.xepLoaiDangVien === item['xepLoaiDangVien'])
+      ((!option.xepLoaiDangVien || option.xepLoaiDangVien === "") ? true : option.xepLoaiDangVien === item.xepLoai)
     );
    this.tkDangVienDangQuanLyDataBM1 = _temp;
   }
@@ -189,16 +203,16 @@ export class thongkeComponent implements OnInit {
             if(dv.lyLuanChinhTri === LyLuanChinhTri.SoCap){
               soCap++;
             }
-            if(dv['xepLoaiDangVien'] === XepLoai.HoanThanh){
+            if(dv.xepLoai === XepLoai.HoanThanh){
               hoanThanh++;
             }
-            if(dv['xepLoaiDangVien'] === XepLoai.HoanThanhTot){
+            if(dv.xepLoai === XepLoai.HoanThanhTot){
               hoanThanhTot++;
             }
-            if(dv['xepLoaiDangVien'] === XepLoai.HoanThanhXuatSac){
+            if(dv.xepLoai === XepLoai.HoanThanhXuatSac){
               hoanThanhXuatSac++;
             }
-            if(dv['xepLoaiDangVien'] === XepLoai.KhongHoanThanh){
+            if(dv.xepLoai === XepLoai.KhongHoanThanh){
               khongHoanThanh++;
             }
           }
@@ -268,5 +282,11 @@ export class thongkeComponent implements OnInit {
   }
   selectTinhTrangDangVien(){
     this.displayTinhTrangDangVienText = this.tinhTrangDangVien.find(item => item.value === this.phieuDangVienOptionModel.tinhTrangDangVien)?.display || '';
+  }
+  selectXepLoaiDangVien(){
+    this.displayXepLoaiDangVienText = this.xepLoai.find(item => item.value === this.phieuDangVienOptionModel.xepLoaiDangVien)?.display || '';
+  }
+  isQuanLy(tinhtrang:string){
+    return tinhtrang === DangQuanLi ? true : false;
   }
 }

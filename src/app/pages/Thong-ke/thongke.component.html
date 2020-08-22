@@ -118,8 +118,8 @@
                                 <td>{{item.ngoaiNgu}}</td>
                                 <td>{{item.lyLuanChinhTri}}</td>
                                 <td>--</td>
-                                <td>--</td>
-                                <td>--</td>
+                                <td>{{isQuanLy(item.tinhTrangQuanLy) ? item.tinhTrangQuanLy : '' }}</td>
+                                <td>{{!isQuanLy(item.tinhTrangQuanLy) ? item.tinhTrangQuanLy : ''}}</td>
                                 <td>{{item.huyHieu}}</td>
                                 <td>{{item.khenThuong}}</td>
                                 <td>{{item.kyLuat}}</td>
@@ -148,7 +148,7 @@
                         </mat-form-field>
                         <mat-form-field class="inputitem" appearance="legacy">
                             <mat-label>Xếp loại Đảng viên</mat-label>
-                            <mat-select [(ngModel)]="phieuDangVienOptionModel.xepLoaiDangVien">
+                            <mat-select [(ngModel)]="phieuDangVienOptionModel.xepLoaiDangVien" (ngModelChange)="selectXepLoaiDangVien()">
                                 <mat-option *ngFor="let data of xepLoai" [value]="data.value">
                                     {{data.display}}
                                 </mat-option>
@@ -192,7 +192,7 @@
                                 <th colspan="4"></th>
                                 <th colspan="4">Tình trạng Đảng viên: {{displayTinhTrangDangVienText}}
                                 </th>
-                                <th colspan="5">Xếp loại Đảng viên: {{phieuDangVienOptionModel.xepLoaiDangVien}}</th>
+                                <th colspan="5">Xếp loại Đảng viên: {{displayXepLoaiDangVienText}}</th>
                             </tr>
                             <tr>
                                 <th rowspan="2">STT</th>
@@ -231,10 +231,10 @@
                                 <td>{{item.tamTru}}</td>
                                 <td>{{item.danToc}}</td>
                                 <td>{{item.tonGiao}}</td>
-                                <td>{{item.trinhDo}}</td>
+                                <td>{{getTrinhDo(item)}}</td>
                                 <td>{{item.lyLuanChinhTri}}</td>
-                                <td>12</td>
-                                <td>13</td>
+                                <td>--</td>
+                                <td>--</td>
                                 <td>{{item.ngayVaoDang}}</td>
                                 <td>{{item.ngayChinhThucVaoDang}}</td>
                                 <td>{{item.tuoiDang}}</td>
@@ -348,8 +348,8 @@
                                 <td>{{item.tamTru}}</td>
                                 <td>{{item.danToc}}</td>
                                 <td>{{item.tonGiao}}</td>
-                                <td>{{item.trinhDo}}</td>
-                                <td>--</td>
+                                <td>{{getTrinhDo(item)}}</td>
+                                <td>{{item.lyLuanChinhTri}}</td>
                                 <td>--</td>
                                 <td>--</td>
                                 <td>{{item.ngayVaoDang}}</td>
@@ -372,7 +372,7 @@
                         </mat-form-field>
                         <mat-form-field class="inputitem" appearance="legacy">
                             <mat-label>Năm</mat-label>
-                            <mat-select [(ngModel)]="phieuDangVienOptionModel.nam">
+                            <mat-select [(ngModel)]="phieuDangVienOptionModel.nam" [placeholder]="phieuDangVienOptionModel.nam">
                                 <mat-option *ngFor="let data of nam" [value]="data">
                                     {{data}}
                                 </mat-option>
