@@ -454,7 +454,240 @@
             </mat-tab-group>
         </mat-tab>
         <mat-tab label="Xếp loại">
-            Xếp loại
+            <mat-tab-group>
+            <mat-tab label="Xếp Loại Đảng viên">
+                <div class="inputGroup">
+                    <mat-form-field class="inputitem" appearance="legacy">
+                        <mat-label>Chi bộ</mat-label>
+                        <mat-select [(ngModel)]="phieuDangVienOptionModel.chiBo" (ngModelChange)="selectChiBo()">
+                            <mat-option *ngFor="let cb of chibos" [value]="cb.maChiBo">
+                            {{cb.tenChiBo}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="inputitem" appearance="legacy">
+                        <mat-label>Năm</mat-label>
+                        <mat-select [(ngModel)]="phieuDangVienOptionModel.nam">
+                            <mat-option *ngFor="let data of nam" [value]="data">
+                                {{data}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="inputitem" appearance="legacy">
+                        <mat-label>Xếp loại Đảng viên</mat-label>
+                        <mat-select [(ngModel)]="phieuDangVienOptionModel.xepLoaiDangVien" (ngModelChange)="selectXepLoaiDangVien()">
+                            <mat-option *ngFor="let data of xepLoai" [value]="data.value">
+                                {{data.display}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="buttonGroup">
+                    <button (click)="chayXepLoaiDangVien()" class="btn btn-secondary">Chạy</button>
+                    <button (click)="tkXepLoaiDangVien()" style="margin-right: 10px" class="btn btn-success">Xuất ra tập tin</button>
+                </div>
+                <table #tkXepLoaiDangVienRef>
+                    <thead>
+                        <tr>
+                            <th colspan="6">ĐẢNG BỘ QUẬN 5</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th colspan="10">ĐẢNG CỘNG SẢN VIỆT NAM</th>
+                        </tr>
+                        <tr>
+                            <th colspan="6">ĐẢNG UỶ PHƯỜNG 10</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th colspan="10"></th>
+                        </tr>
+                        <tr>
+                            <th colspan="6">*</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th colspan="10">Phường 10, ngày ... tháng … năm …</th>
+                        </tr>
+                        <tr>
+                            <th colspan="19">
+                                <h4>Xếp Loại Đảng Viên</h4>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th colspan="4">Chi bộ: {{displayChiBoText}}</th>
+                            <th colspan="6"></th>
+                            <th colspan="4">Năm: {{this.phieuDangVienOptionModel.nam}}
+                            </th>
+                            <th colspan="5">Xếp loại Đảng viên: {{displayXepLoaiDangVienText}}</th>
+                        </tr>
+                        <tr>
+                            <th rowspan="2">STT</th>
+                            <th rowspan="2">CHI BỘ</th>
+                            <th rowspan="2">HỌ TÊN ĐANG DÙNG</th>
+                            <th rowspan="2">SỐ THẺ ĐẢNG</th>
+                            <th colspan="2">NGÀY, THÁNG, NĂM SINH</th>
+                            <th rowspan="2">ĐỊA CHỈ</th>
+                            <th rowspan="2">NƠI THỰC TẾ CƯ TRÚ</th>
+                            <th rowspan="2">DÂN TỘC</th>
+                            <th rowspan="2">TÔN GIÁO</th>
+                            <th colspan="2">TRÌNH ĐỘ</th>
+                            <th colspan="2">CHỨC VỤ HIỆN NAY</th>
+                            <th rowspan="2">NGÀY VÀO ĐẢNG</th>
+                            <th rowspan="2">NGÀY CHÍNH THỨC</th>
+                            <th rowspan="2">TUỔI ĐẢNG</th>
+                            <th rowspan="2">Xếp loại</th>
+                            <th rowspan="2">Năm</th>
+                        </tr>
+                        <tr>
+                            <th>NAM</th>
+                            <th>NỮ</th>
+                            <th>TRÌNH ĐỘ HỌC VẤN, HỌC VỊ, HỌC HÀM</th>
+                            <th>LÝ LUẬN CHÍNH TRỊ</th>
+                            <th>ĐẢNG</th>
+                            <th>CHÍNH QUYỀN, ĐOÀN THỂ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of tkXepLoaiDangVienData; let i = index">
+                            <td>{{(i+1)}}</td>
+                            <td>{{item.tenChiBo}}</td>
+                            <td>{{item.tenDangDung}}</td>
+                            <td>{{item.soTheDangVien}}</td>
+                            <td>{{item.gioiTinh === 'Nam' ? item.ngaySinh : ''}}</td>
+                            <td>{{item.gioiTinh === 'Nu' ? item.ngaySinh : ''}}</td>
+                            <td>{{item.thuongTru}}</td>
+                            <td>{{item.tamTru}}</td>
+                            <td>{{item.danToc}}</td>
+                            <td>{{item.tonGiao}}</td>
+                            <td>{{getTrinhDo(item)}}</td>
+                            <td>{{item.lyLuanChinhTri}}</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>{{item.ngayVaoDang}}</td>
+                            <td>{{item.ngayChinhThucVaoDang}}</td>
+                            <td>{{item.tuoiDang}}</td>
+                            <td>{{getTextXepLoai(item.xepLoai)}}</td>
+                            <td>{{item.namXepLoai}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span *ngIf="tkXepLoaiDangVienData.length === 0">Không có dữ liệu được tìm thấy .</span>
+            </mat-tab>
+            <mat-tab label="Xếp Loại Chi bộ" style="position: relative;">
+                <div class="inputGroup">
+                    <mat-form-field class="inputitem" appearance="legacy">
+                        <mat-label>Chi bộ</mat-label>
+                        <mat-select [(ngModel)]="phieuDangVienOptionModel.chiBo" (ngModelChange)="selectChiBo()">
+                            <mat-option *ngFor="let cb of chibos" [value]="cb.maChiBo">
+                            {{cb.tenChiBo}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="inputitem" appearance="legacy">
+                        <mat-label>Năm</mat-label>
+                        <mat-select [(ngModel)]="phieuDangVienOptionModel.nam">
+                            <mat-option *ngFor="let data of nam" [value]="data">
+                                {{data}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="inputitem" appearance="legacy">
+                        <mat-label>Xếp loại Chi Bộ</mat-label>
+                        <mat-select [(ngModel)]="phieuDangVienOptionModel.xepLoaiDangVien" (ngModelChange)="selectXepLoaiDangVien()">
+                            <mat-option *ngFor="let data of xepLoai" [value]="data.value">
+                                {{data.display}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="buttonGroup">
+                    <button (click)="chayXepLoaiChiBo()" class="btn btn-secondary">Chạy</button>
+                    <button (click)="tkXepLoaiChiBo()" style="margin-right: 10px" class="btn btn-success">Xuất ra tập tin</button>
+                </div>
+                <table #tkSoXepLoaiChiBoRef>
+                    <thead>
+                        <tr>
+                            <th colspan="5">ĐẢNG BỘ QUẬN 5</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th colspan="9">ĐẢNG CỘNG SẢN VIỆT NAM</th>
+                        </tr>
+                        <tr>
+                            <th colspan="5">ĐẢNG UỶ PHƯỜNG 10</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th colspan="9"></th>
+                        </tr>
+                        <tr>
+                            <th colspan="5">*</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th colspan="9">Phường 10, ngày ... tháng … năm …</th>
+                        </tr>
+                        <tr>
+                            <th colspan="17">
+                                <h4>Xếp Loại Chi Bộ</h4>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th colspan="4">Chi bộ: {{displayChiBoText}}</th>
+                            <th colspan="4"></th>
+                            <th colspan="4">Năm: {{this.phieuDangVienOptionModel.nam}}</th>
+                            <th colspan="5">Xếp loại Chi Bộ: {{displayXepLoaiDangVienText}}</th>
+                        </tr>
+                        <tr>
+                            <th rowspan="2">STT</th>
+                            <th rowspan="2">CHI BỘ</th>
+                            <th rowspan="2">ĐẢNG SỐ</th>
+                            <th rowspan="2">DÂN TỘC KHÁC</th>
+                            <th rowspan="2">MIỄN SINH HOẠT</th>
+                            <th rowspan="2">SINH HOẠT TẠM</th>
+                            <th rowspan="2">ĐẢNG VIÊN DỰ BỊ</th>
+                            <th rowspan="2">SỐ ĐẢNG VIÊN NHẬN HUY HIỆU ĐẢNG</th>
+                            <th colspan="4">XẾP LOẠI ĐẢNG VIÊN</th>
+                            <th colspan="3">LÝ LUẬN CHÍNH TRỊ</th>
+                            <th rowspan="2">Xếp loại</th>
+                            <th rowspan="2">Năm</th>
+                        </tr>
+                        <tr>
+                            <td>Xuất sắc</td>
+                            <td>Tốt</td>
+                            <td>Hoàn thành</td>
+                            <td>Không hoàn thành</td>
+                            <td>Sơ cấp</td>
+                            <td>Trung cấp</td>
+                            <td>Cao cấp</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of xepLoaiChiBoData; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{item.chibo}}</td>
+                            <td>{{item.dangSo}}</td>
+                            <td>{{item.danTocKhac}}</td>
+                            <td>{{item.mienSinhHoat}}</td>
+                            <td>{{item.sinhHoatTam}}</td>
+                            <td>{{item.dangVienDuBi}}</td>
+                            <td>{{item.dangVienNhanHuyHieuDang}}</td>
+                            <td>{{item.hoanThanhXuatSac}}</td>
+                            <td>{{item.hoanThanhTot}}</td>
+                            <td>{{item.hoanThanh}}</td>
+                            <td>{{item.khongHoanThanh}}</td>
+                            <td>{{item.soCap}}</td>
+                            <td>{{item.trungCap}}</td>
+                            <td>{{item.caoCap}}</td>
+                            <td>{{getTextXepLoai(item.xepLoai)}}</td>
+                            <td>{{item.namXepLoai}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span *ngIf="xepLoaiChiBoData.length === 0">Không có dữ liệu được tìm thấy .</span>
+            </mat-tab>
+        </mat-tab-group>
         </mat-tab>
         <mat-tab label="Số liệu" style="position: relative;">
             <button style="position: absolute;top: 10px;right: 10px;" (click)="tkSoLieuDangVien()"

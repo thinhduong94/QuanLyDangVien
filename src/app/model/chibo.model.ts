@@ -5,5 +5,7 @@ export interface ChiBo {
     qdThanhLap: string;
     ghiChu: string;
     trangThai:number;
+    xepLoai:string;
+    namXepLoai:string;
   }
   

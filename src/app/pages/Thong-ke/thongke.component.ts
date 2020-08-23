@@ -19,6 +19,8 @@ export class thongkeComponent implements OnInit {
   @ViewChild('tkDangVienRefBM3', { static: false }) tkDangVienRefBM3: ElementRef;
   @ViewChild('tkSoLieuDangVienRefBM5', { static: false }) tkSoLieuDangVienRefBM5: ElementRef;
   @ViewChild('tkDsNhanHuyHieuDangRef', { static: false }) tkDsNhanHuyHieuDangRef: ElementRef;
+  @ViewChild('tkXepLoaiDangVienRef', { static: false }) tkXepLoaiDangVienRef: ElementRef;
+  @ViewChild('tkSoXepLoaiChiBoRef', { static: false }) tkSoXepLoaiChiBoRef: ElementRef;
   phieuDangVienModels : PhieuDangVienModel[] = [];
   tkDangVienDangQuanLyModels : PhieuDangVienModel[] = [];
   tkDangVienDangQuanLyDataBM3 : PhieuDangVienModel[] = [];
@@ -29,6 +31,10 @@ export class thongkeComponent implements OnInit {
   monthCurrent = new Date().getMonth();
   soLieuModel = {} as SoLieuModel;
   soLieuModels : SoLieuModel[] = [];
+  xepLoaiChiBoData : SoLieuModel[] = [];
+  tkXepLoaiDangVienData : PhieuDangVienModel[] = []; 
+  xepLoaiChiBoDataOriginal : SoLieuModel[] = [];
+  tkXepLoaiDangVienDataOriginal : PhieuDangVienModel[] = []; 
   chibos = [];
   tuoiDangTron = [10,15,20,25,30,35,40,45,50,55,60,65,70];
   danhSachKyLuat = [];
@@ -71,14 +77,17 @@ export class thongkeComponent implements OnInit {
         this.tkDangVienDangQuanLyDataBM2 = dangvien;
         this.tkDangVienDangQuanLyDataBM1 = dangvien;
         this.tkDsNhanHuyHieuDang = dangvien;
-        this.getSoLieuChiBo();
+        this.tkXepLoaiDangVienDataOriginal = dangvien;
+        this.tkXepLoaiDangVienData = [...this.tkXepLoaiDangVienDataOriginal];
+        this.getSoLieuChiBo(danhgia);
       });
     })
   }
   megreDangGiaWithDangVien(dangvien : Array<PhieuDangVienModel> ,danhgia : Array<DanhGiaModel>){
     dangvien.forEach(dv => {
-      const xepLoaiDv = danhgia.find(dg=>dg.soTheDangVien === dv.soTheDangVien && dg.namDanhGia === new Date().getFullYear().toString())?.danhGia || '';
-      dv.xepLoai = xepLoaiDv;
+      const xepLoaiDv = danhgia.find(dg=>dg.soTheDangVien === dv.soTheDangVien && dg.namDanhGia === new Date().getFullYear().toString()) || {} as DanhGiaModel;
+      dv.xepLoai = xepLoaiDv.danhGia;
+      dv.namXepLoai = xepLoaiDv.namDanhGia;
     });
   }
   filterDsNhanHuyHieuDang(ds){
@@ -104,6 +113,34 @@ export class thongkeComponent implements OnInit {
   }
   tkDanhSachNhanHuyHieuDang(){
     this.excelService.exportAsExcelFile(null,'tkDanhSachNhanHuyHieuDang','html',this.tkDsNhanHuyHieuDangRef.nativeElement);
+  }
+  tkXepLoaiChiBo(){
+    this.excelService.exportAsExcelFile(null,'tkXepLoaiChiBo','html',this.tkXepLoaiDangVienRef.nativeElement);
+  }
+  tkXepLoaiDangVien(){
+    this.excelService.exportAsExcelFile(null,'tkXepLoaiDangVien','html',this.tkXepLoaiDangVienRef.nativeElement);
+  }
+  chayXepLoaiDangVien(){
+    let temp = [...this.tkXepLoaiDangVienDataOriginal];
+    let option = this.phieuDangVienOptionModel;
+    console.log(this.phieuDangVienOptionModel);
+    const _temp = temp.filter((item)=>
+      ((!option.chiBo || option.chiBo === "") ? true : option.chiBo === item.chiBo) &&
+      ((!option.nam || option.nam === "") ? true : option.nam == item.namXepLoai) &&
+      ((!option.xepLoaiDangVien || option.xepLoaiDangVien === "") ? true : option.xepLoaiDangVien === item.xepLoai)
+    );
+   this.tkXepLoaiDangVienData = _temp;
+  }
+  chayXepLoaiChiBo(){
+    let temp = [...this.xepLoaiChiBoDataOriginal];
+    let option = this.phieuDangVienOptionModel;
+    console.log(this.phieuDangVienOptionModel);
+    const _temp = temp.filter((item)=>
+      ((!option.chiBo || option.chiBo === "") ? true : option.chiBo === item.maChiBo) &&
+      ((!option.nam || option.nam === "") ? true : option.nam == item.namXepLoai) &&
+      ((!option.xepLoaiDangVien || option.xepLoaiDangVien === "") ? true : option.xepLoaiDangVien === item.xepLoai)
+    );
+   this.xepLoaiChiBoData = _temp;
   }
   chayBaoCaoBM3(){
     let temp = [...this.tkDangVienDangQuanLyModels];
@@ -152,16 +189,19 @@ export class thongkeComponent implements OnInit {
       const getAge = (ngayVaoDang) => Math.floor((new Date(date).getTime() - new Date(ngayVaoDang).getTime()) / 3.15576e+10);
       temp.forEach(dv=>{
         dv.tuoiDang = getAge(dv.ngayVaoDang).toString();
-        if(dv.tuoiDang !== dv.danhHieu && this.tuoiDangTron.includes(Number.parseInt(dv.tuoiDang))){
+        if(dv.tuoiDang !== dv.huyHieu && this.tuoiDangTron.includes(Number.parseInt(dv.tuoiDang))){
           _temp.push(dv);
         }
       });
     }
     this.tkDsNhanHuyHieuDang = _temp;
   }
-  getSoLieuChiBo(){
+  getSoLieuChiBo(danhgia){
     this.chiBoService.getAll().then(items=>{
       items.forEach(item=>{
+        const xepLoaiCb = danhgia.find(dg=>dg.maChiBo === item.maChiBo && dg.namDanhGia === new Date().getFullYear().toString()) || {} as DanhGiaModel;
+        item.xepLoai = xepLoaiCb.danhGia;
+        item.namXepLoai = xepLoaiCb.namDanhGia;
         let soLuongCapUy = 0;
         let nu = 0;
         let danTocKhac = 0;
@@ -188,10 +228,10 @@ export class thongkeComponent implements OnInit {
             if(dv.danToc !== DanToc.Kinh){
               danTocKhac++;
             }
-            if(dv.ngayChinhThucVaoDang === ''){
+            if(!dv.ngayChinhThucVaoDang || dv.ngayChinhThucVaoDang === ''){
               dangVienDuBi++;
             }
-            if(dv.huyHieu !== ''){
+            if(dv.huyHieu && dv.huyHieu !== ''){
               huyHieuDang++;
             }
             if(dv.lyLuanChinhTri === LyLuanChinhTri.CaoCap){
@@ -218,6 +258,7 @@ export class thongkeComponent implements OnInit {
           }
         });
         const obj = {} as SoLieuModel;
+        obj.maChiBo = item.maChiBo;
         obj.chibo = item.tenChiBo;
         obj.danTocKhac = danTocKhac;
         obj.dangVienDuBi = dangVienDuBi;
@@ -234,6 +275,8 @@ export class thongkeComponent implements OnInit {
         obj.hoanThanhXuatSac = hoanThanhXuatSac;
         obj.khongHoanThanh = khongHoanThanh;
         this.soLieuModels.push(obj);
+        this.xepLoaiChiBoDataOriginal.push(obj);
+        this.xepLoaiChiBoData.push(obj);
       })
     });
   }
@@ -288,5 +331,8 @@ export class thongkeComponent implements OnInit {
   }
   isQuanLy(tinhtrang:string){
     return tinhtrang === DangQuanLi ? true : false;
+  }
+  getTextXepLoai(xepLoai:string){
+    return this.xepLoai.find(item => item.value === xepLoai)?.display || '';
   }
 }
