@@ -123,11 +123,14 @@ export class DanhGiaComponent implements OnInit, OnDestroy {
     );
     cloneData.forEach((data) => {
       const code = data.maChiBo || data.soTheDangVien;
-      const foundDanhGia = currentYearDanhGia.find(
-        (danhGia) => danhGia.maChiBo === code || danhGia.soTheDangVien === code
-      );
-      const value = foundDanhGia ? foundDanhGia.danhGia : "";
-      this.danhGiaFormGroup.controls[code].setValue(value);
+      if (code && this.danhGiaFormGroup.controls[code]) {
+        const foundDanhGia = currentYearDanhGia.find(
+          (danhGia) =>
+            danhGia.maChiBo === code || danhGia.soTheDangVien === code
+        );
+        const value = foundDanhGia ? foundDanhGia.danhGia : "";
+        this.danhGiaFormGroup.controls[code].setValue(value);
+      }
     });
     this.displayData = cloneData;
   }

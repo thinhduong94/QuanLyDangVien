@@ -1,43 +1,59 @@
-.header-page{
-    width: 100%;
-    background: #3f51b5;
-    color: #ffffff;
-    line-height: 50px;
-    text-align: center;
+.header-page {
+  width: 100%;
+  background: #3f51b5;
+  color: #ffffff;
+  line-height: 50px;
+  text-align: center;
 }
-.header-page span{
-    font-size: 20px;
-    font-weight: 500;
+
+.header-page span {
+  font-size: 20px;
+  font-weight: 500;
 }
+
 .content-page {
-    max-height: 100%;
-    overflow: auto;
-    padding: 10px;
-    
+  max-height: calc(100% - 52px);
+  overflow: auto;
+  padding: 10px;
+
 }
+
 table {
-    width: 100%;
+  width: 100%;
 }
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
 }
+
 table th {
-    text-align: center;
+  text-align: center;
 }
-h3 , h4 , h5{
-    text-align: center;
+
+h3,
+h4,
+h5 {
+  text-align: center;
 }
-.inputGroup{
-    width: 100%;margin-top: 10px;
+
+.inputGroup {
+  width: 100%;
+  margin-top: 10px;
 }
-.inputitem{
-    width: 20%;padding-right: 10px;
-    float: left;
+
+.inputitem {
+  width: 20%;
+  padding-right: 10px;
+  float: left;
 }
-.buttonGroup{
-    width: 100%;
+
+.buttonGroup {
+  width: 100%;
 }
-.buttonGroup button{
-    float: right;
+
+.buttonGroup button {
+  float: right;
 }

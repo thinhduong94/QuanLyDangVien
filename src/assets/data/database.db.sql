@@ -53,6 +53,7 @@ CREATE TABLE IF NOT EXISTS 'dangvien' (
 	'boPhan' TEXT NULL,
 	'mienCongTacNgay' TEXT NULL,
 	'ngayKhoiPhucDang' TEXT NULL,
+	'chiBoKhoiPhucDang' TEXT NULL,
 	'biXuLyTheoPhapLuat' TEXT NULL,
 	'lamViecTrongCheDoCu' TEXT NULL,
 	'daDiNuocNgoai' TEXT NULL,

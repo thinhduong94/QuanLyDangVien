@@ -44,6 +44,7 @@ export class DangVienModel {
   boPhan: string;
   mienCongTacNgay: string;
   ngayKhoiPhucDang: string;
+  chiBoKhoiPhucDang: string;
   biXuLyTheoPhapLuat: string;
   lamViecTrongCheDoCu: string;
   daDiNuocNgoai: string;
@@ -84,7 +85,6 @@ export class DangVienModel {
   lyLuanChinhTri: string;
   ngoaiNgu: string;
   tinHoc: string;
-
   canCuocCongDan: string;
   nguoiGioiThieuMotLanHai: string;
   chucVuNguoiGioiThieuMotLanHai: string;

@@ -1,8 +1,8 @@
-<div class="danhgia-container">
-  <p>Đánh giá năm {{selectedYear}}</p>
-  <div>
-    <year-picker></year-picker>
-  </div>
+<div class="header-page">
+  <span>Đánh giá năm {{selectedYear}}</span>
+</div>
+<div class="content-page">
+  <year-picker></year-picker>
   <div *ngIf="isShow" [formGroup]="danhGiaFormGroup">
     <div class="flex" *ngFor="let data of displayData">
       <label *ngIf="data.soTheDangVien">{{data.tenDangDung}}</label>
