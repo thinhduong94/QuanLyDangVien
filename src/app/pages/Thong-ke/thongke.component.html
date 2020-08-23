@@ -255,8 +255,11 @@
                         </mat-form-field>
                         <mat-form-field class="inputitem" appearance="legacy">
                             <mat-label>Giới tính</mat-label>
-                            <input matInput type="text" placeholder=""
-                                [(ngModel)]="phieuDangVienOptionModel.gioiTinh" />
+                            <mat-select [(ngModel)]="phieuDangVienOptionModel.gioiTinh" (ngModelChange)="selectGioiTinh()">
+                                <mat-option *ngFor="let cb of gioiTinh" [value]="cb.value">
+                                {{cb.display}}
+                                </mat-option>
+                            </mat-select>
                         </mat-form-field>
                     </div>
                     <div class="inputGroup">
@@ -303,7 +306,7 @@
                             </tr>
                             <tr>
                                 <th colspan="3">Chi bộ: {{displayChiBoText}}</th>
-                                <th colspan="3">Giới tính: {{phieuDangVienOptionModel.gioiTinh}}</th>
+                                <th colspan="3">Giới tính: {{displayGioiTinhText}}</th>
                                 <th colspan="2"></th>
                                 <th colspan="4">
                                 </th>

@@ -82,6 +82,7 @@ export const DotTangHuyHieuDang = [
 export const DanhSachGioiTinh = [
   { value: "nam", display: "Nam" },
   { value: "nu", display: "Nữ" },
+  { value: "", display: "Chọn tất cả" }
 ];
 
 export enum GioiTinh {

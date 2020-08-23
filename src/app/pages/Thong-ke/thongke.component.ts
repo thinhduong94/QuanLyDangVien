@@ -4,7 +4,7 @@ import { ExcelService } from 'src/app/service/excel.service';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { SlowBuffer } from 'buffer';
 import { ChiBoService } from 'src/app/service/chibo.service';
-import { DanhSachKyLuat, DanhSachTinhTrangDangVien , DanhSachXepLoai , XepLoai, DangQuanLi, QuanLy, KhongQuanLy, LyLuanChinhTri, DanToc, DanhSachTinhTrangQuanLy, DotTangHuyHieuDang } from 'src/app/const/drop-down-data.const';
+import { DanhSachKyLuat, DanhSachTinhTrangDangVien , DanhSachXepLoai , XepLoai, DangQuanLi, QuanLy, KhongQuanLy, LyLuanChinhTri, DanToc, DanhSachTinhTrangQuanLy, DotTangHuyHieuDang, GioiTinh, DanhSachGioiTinh } from 'src/app/const/drop-down-data.const';
 import { DanhGiaService } from 'src/app/service/danhgia.service';
 import { forkJoin } from 'rxjs';
 import { DanhGiaModel } from 'src/app/model/danhgia.model';
@@ -41,11 +41,13 @@ export class thongkeComponent implements OnInit {
   tinhTrangDangVien = [];
   xepLoai = [];
   dotTangHuyHieuDang = [];
+  gioiTinh = [];
   nam =[];
   displayChiBoText = '';
   displayKyLuatText = '';
   displayTinhTrangDangVienText = '';
   displayXepLoaiDangVienText = '';
+  displayGioiTinhText = '';
   constructor(
     private thongKeService : ThongKeService,
     private chiBoService : ChiBoService,
@@ -85,7 +87,7 @@ export class thongkeComponent implements OnInit {
   }
   megreDangGiaWithDangVien(dangvien : Array<PhieuDangVienModel> ,danhgia : Array<DanhGiaModel>){
     dangvien.forEach(dv => {
-      const xepLoaiDv = danhgia.find(dg=>dg.soTheDangVien === dv.soTheDangVien && dg.namDanhGia === new Date().getFullYear().toString()) || {} as DanhGiaModel;
+      const xepLoaiDv = danhgia.find(dg=>dg.soTheDangVien === dv.soTheDangVien && dg.namDanhGia === this.phieuDangVienOptionModel.nam) || {} as DanhGiaModel;
       dv.xepLoai = xepLoaiDv.danhGia;
       dv.namXepLoai = xepLoaiDv.namDanhGia;
     });
@@ -199,7 +201,7 @@ export class thongkeComponent implements OnInit {
   getSoLieuChiBo(danhgia){
     this.chiBoService.getAll().then(items=>{
       items.forEach(item=>{
-        const xepLoaiCb = danhgia.find(dg=>dg.maChiBo === item.maChiBo && dg.namDanhGia === new Date().getFullYear().toString()) || {} as DanhGiaModel;
+        const xepLoaiCb = danhgia.find(dg=>dg.maChiBo === item.maChiBo && dg.namDanhGia === this.phieuDangVienOptionModel.nam) || {} as DanhGiaModel;
         let xepLoai = xepLoaiCb.danhGia;
         let namXepLoai = xepLoaiCb.namDanhGia;
         let soLuongCapUy = 0;
@@ -300,6 +302,7 @@ export class thongkeComponent implements OnInit {
     this.tinhTrangDangVien = DanhSachTinhTrangDangVien;
     this.xepLoai = DanhSachXepLoai;
     this.dotTangHuyHieuDang = DotTangHuyHieuDang;
+    this.gioiTinh = DanhSachGioiTinh;
     this.nam = this.createArrayYear();
     this.chiBoService.getAll().then((result) => {
       this.chibos = result;
@@ -330,6 +333,9 @@ export class thongkeComponent implements OnInit {
   }
   selectXepLoaiDangVien(){
     this.displayXepLoaiDangVienText = this.xepLoai.find(item => item.value === this.phieuDangVienOptionModel.xepLoaiDangVien)?.display || '';
+  }
+  selectGioiTinh(){
+    this.displayGioiTinhText = this.gioiTinh.find(item => item.value === this.phieuDangVienOptionModel.gioiTinh)?.display || '';
   }
   isQuanLy(tinhtrang:string){
     return tinhtrang === DangQuanLi ? true : false;
