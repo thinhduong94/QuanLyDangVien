@@ -77,11 +77,11 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
       
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        <mat-paginator pageSize=10 [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     </div>
 </div>
 <div class="bottom-page">
     <button mat-fab color="accent" (click)="openDialog()" aria-label="Example icon button with a bookmark icon">
-        <mat-icon>plus_one</mat-icon>
+      Tạo mới
     </button>
 </div>

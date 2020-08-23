@@ -16,6 +16,7 @@ import { DangVienService } from "src/app/service/dangvien.service";
 import { ChiBoService } from "src/app/service/chibo.service";
 import * as html2pdf from "html2pdf.js";
 import { DangVienPdf } from "../dang-vien-pdf/dang-vien-pdf.component";
+import { DanhSachGioiTinh } from "src/app/const/drop-down-data.const";
 @Component({
   selector: "dang-vien-form-dialog",
   templateUrl: "dang-vien-form-dialog.component.html",
@@ -61,7 +62,7 @@ export class DangVienFormDialog implements OnInit {
     { value: "khaitru", display: "Khai trừ" },
     { value: "xoaten", display: "Xóa tên" },
     { value: "xinrakhoidang", display: "Xin ra khỏi đảng" },
-    { value: "chet", display: "chết" },
+    { value: "chet", display: "Chết" },
   ];
   danhSachDanToc = [
     { value: "kinh", display: "Kinh" },
@@ -73,6 +74,7 @@ export class DangVienFormDialog implements OnInit {
     { value: "trungcap", display: "Trung cấp" },
     { value: "caocap", display: "Cao cấp" },
   ];
+  danhSachGioiTinh = DanhSachGioiTinh;
   ngOnInit() {
     this.initForm();
     this.loadChiBoDropDown();
@@ -80,7 +82,7 @@ export class DangVienFormDialog implements OnInit {
   }
 
   loadDangVienData() {
-    if (this.data.id) {
+    if (this.data.id || this.data.id === 0) {
       this.dangVienService.get(this.data.id).then((foundDangVien) => {
         this.dangVienForm.patchValue({
           dangBoTinh: foundDangVien.dangBoTinh,
@@ -126,6 +128,7 @@ export class DangVienFormDialog implements OnInit {
           ngaySinh: foundDangVien.ngaySinh,
           mienCongTacNgay: foundDangVien.mienCongTacNgay,
           ngayKhoiPhucDang: foundDangVien.ngayKhoiPhucDang,
+          chiBoKhoiPhucDang: foundDangVien.chiBoKhoiPhucDang,
           biXuLyTheoPhapLuat: foundDangVien.biXuLyTheoPhapLuat,
           lamViecTrongCheDoCu: foundDangVien.lamViecTrongCheDoCu,
           daDiNuocNgoai: foundDangVien.daDiNuocNgoai,
@@ -228,6 +231,7 @@ export class DangVienFormDialog implements OnInit {
       ngaySinh: new FormControl(""),
       mienCongTacNgay: new FormControl(""),
       ngayKhoiPhucDang: new FormControl(""),
+      chiBoKhoiPhucDang: new FormControl(""),
       biXuLyTheoPhapLuat: new FormControl(""),
       lamViecTrongCheDoCu: new FormControl(""),
       daDiNuocNgoai: new FormControl(""),
@@ -282,7 +286,7 @@ export class DangVienFormDialog implements OnInit {
   onSaveClick() {
     const dangVienFormValue = this.dangVienForm.value;
     dangVienFormValue.anh3x4 = this.anh3x4;
-    if (this.data.id) {
+    if (this.data.id || this.data.id === 0) {
       dangVienFormValue.id = this.data.id;
       this.dangVienService.update(dangVienFormValue).then((response) => {
         this.dialogRef.close();
@@ -301,7 +305,6 @@ export class DangVienFormDialog implements OnInit {
   }
   fileProgress(fileInput: any) {
     this.fileData = <File>fileInput.target.files[0];
-    this.preview();
   }
 
   preview() {

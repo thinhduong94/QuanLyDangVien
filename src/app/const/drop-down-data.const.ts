@@ -26,7 +26,7 @@ export const DanhSachTinhTrangQuanLy = [
   { value: "khaitru", display: "Khai trừ" },
   { value: "xoaten", display: "Xóa tên" },
   { value: "xinrakhoidang", display: "Xin ra khỏi đảng" },
-  { value: "chet", display: "chết" },
+  { value: "chet", display: "Chết" },
   { value: "", display: "Chọn tất cả" },
 ];
 export const DanhSachDanToc = [
@@ -78,3 +78,13 @@ export const DotTangHuyHieuDang = [
   { value: "09/30", display: "Đợt 3: 1/6 - 30/9" },
   { value: "12/31", display: "Đợt 4: 1/10 - 31/12" },
 ];
+
+export const DanhSachGioiTinh = [
+  { value: "nam", display: "Nam" },
+  { value: "nu", display: "Nữ" },
+];
+
+export enum GioiTinh {
+  Nam = "nam",
+  Nu = "nu",
+}

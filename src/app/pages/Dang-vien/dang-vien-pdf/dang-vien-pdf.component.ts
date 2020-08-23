@@ -41,7 +41,7 @@ export class DangVienPdf implements OnInit {
     this.theDangVienRight = soTheDangVien.split("").slice(2, 8);
     this.fillEmptySquare(this.theDangVienLeft, 2);
     this.fillEmptySquare(this.theDangVienRight, 6);
-    console.log("imgbase64", !!this.imgBase64);
+    this.imgBase64 = dangVien.anh3x4;
   }
 
   generateDoc() {
