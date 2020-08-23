@@ -26,7 +26,7 @@ export const DanhSachTinhTrangQuanLy = [
   { value: "khaitru", display: "Khai trừ" },
   { value: "xoaten", display: "Xóa tên" },
   { value: "xinrakhoidang", display: "Xin ra khỏi đảng" },
-  { value: "chet", display: "chết" },
+  { value: "chet", display: "Chết" },
   { value: "", display: "Chọn tất cả" },
 ];
 export const DanhSachDanToc = [

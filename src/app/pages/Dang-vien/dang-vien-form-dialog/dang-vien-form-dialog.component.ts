@@ -61,7 +61,7 @@ export class DangVienFormDialog implements OnInit {
     { value: "khaitru", display: "Khai trừ" },
     { value: "xoaten", display: "Xóa tên" },
     { value: "xinrakhoidang", display: "Xin ra khỏi đảng" },
-    { value: "chet", display: "chết" },
+    { value: "chet", display: "Chết" },
   ];
   danhSachDanToc = [
     { value: "kinh", display: "Kinh" },
