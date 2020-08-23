@@ -200,8 +200,8 @@ export class thongkeComponent implements OnInit {
     this.chiBoService.getAll().then(items=>{
       items.forEach(item=>{
         const xepLoaiCb = danhgia.find(dg=>dg.maChiBo === item.maChiBo && dg.namDanhGia === new Date().getFullYear().toString()) || {} as DanhGiaModel;
-        item.xepLoai = xepLoaiCb.danhGia;
-        item.namXepLoai = xepLoaiCb.namDanhGia;
+        let xepLoai = xepLoaiCb.danhGia;
+        let namXepLoai = xepLoaiCb.namDanhGia;
         let soLuongCapUy = 0;
         let nu = 0;
         let danTocKhac = 0;
@@ -274,6 +274,8 @@ export class thongkeComponent implements OnInit {
         obj.hoanThanhTot = hoanThanhTot;
         obj.hoanThanhXuatSac = hoanThanhXuatSac;
         obj.khongHoanThanh = khongHoanThanh;
+        obj.xepLoai = xepLoai;
+        obj.namXepLoai = namXepLoai;
         this.soLieuModels.push(obj);
         this.xepLoaiChiBoDataOriginal.push(obj);
         this.xepLoaiChiBoData.push(obj);
