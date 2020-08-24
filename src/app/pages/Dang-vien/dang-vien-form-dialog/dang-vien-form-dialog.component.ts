@@ -305,9 +305,6 @@ export class DangVienFormDialog implements OnInit {
   }
   fileProgress(fileInput: any) {
     this.fileData = <File>fileInput.target.files[0];
-  }
-
-  preview() {
     const { type = "" } = this.fileData || {};
     var mimeType = type;
     if (mimeType.match(/image\/*/)) {
@@ -317,6 +314,9 @@ export class DangVienFormDialog implements OnInit {
         this.anh3x4 = reader.result;
       };
     }
+  }
+
+  preview() {
     this.onSaveClick();
     const dialogRef = this.dialog.open(DangVienPdf, {
       data: { dangvien: this.dangVienForm.value },

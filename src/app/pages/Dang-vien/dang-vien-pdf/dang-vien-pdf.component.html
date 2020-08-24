@@ -28,8 +28,7 @@
         </div>
         <div class="field-container">
           <div class="full-width">
-            <span class="field field-title">ĐẢNG BỘ BỘ PHẬN:</span><span
-              class="field-data">{{dangvien.boPhan}}</span>
+            <span class="field field-title">ĐẢNG BỘ BỘ PHẬN:</span><span class="field-data">{{dangvien.boPhan}}</span>
           </div>
         </div>
         <div class="field-container">
@@ -259,11 +258,11 @@
     <div class="field-container">
       <div style="width:50%">
         <span class="field field-title">- Gia đình liệt sỹ</span><input type="checkbox"
-          [checked]='dangvien.giaDinhLietSi' onclick="return false;"/>
+          [checked]='dangvien.giaDinhLietSi' onclick="return false;" />
       </div>
       <div class="field" style="width:50%">
         <span class="field field-title">- Gia đình có công với CM
-        </span> <input type="checkbox" [checked]='dangvien.giaDinhCoCongCachMang' onclick="return false;"/></div>
+        </span> <input type="checkbox" [checked]='dangvien.giaDinhCoCongCachMang' onclick="return false;" /></div>
     </div>
     <div class="field-container">
       <div style="width:50%">
@@ -312,35 +311,36 @@
     </div>
     <div class="field-container">
       <div class="full-width">
-        <span class="field field-title">23) Khen thưởng</span><span class="field-data multi-row-span">{{dangvien.khenThuong}}</span>
+        <span class="field field-title">23) Khen thưởng</span><span
+          class="field-data multi-row-span">{{dangvien.khenThuong}}</span>
       </div>
     </div>
     <div class="field-container">
       <div class="full-width">
         <span class="field field-title">24) đã được tặng huy hiệu đảng:</span>
-        <input type="checkbox" onclick="return false;">
+        <input type="checkbox" [checked]="this.dangvien.huyHieu === '30'" onclick="return false;">
         <label>30 năm</label>
-        <input type="checkbox" onclick="return false;">
+        <input type="checkbox" [checked]="this.dangvien.huyHieu === '40'" onclick="return false;">
         <label>40 năm</label>
-        <input type="checkbox" onclick="return false;">
+        <input type="checkbox" [checked]="this.dangvien.huyHieu === '45'" onclick="return false;">
         <label>45 năm</label>
-        <input type="checkbox" onclick="return false;">
+        <input type="checkbox" [checked]="this.dangvien.huyHieu === '50'" onclick="return false;">
         <label>50 năm</label>
-        <input type="checkbox" onclick="return false;">
+        <input type="checkbox" [checked]="this.dangvien.huyHieu === '55'" onclick="return false;">
         <label>55 năm</label>
-        <input type="checkbox" onclick="return false;">
+        <input type="checkbox" [checked]="this.dangvien.huyHieu === '60'" onclick="return false;">
         <label>60 năm</label>
-        <input type="checkbox" onclick="return false;">
+        <input type="checkbox" [checked]="this.dangvien.huyHieu === '65'" onclick="return false;">
         <label>65 năm</label>
-        <input type="checkbox" onclick="return false;">
+        <input type="checkbox" [checked]="this.dangvien.huyHieu === '70'" onclick="return false;">
         <label>70 năm</label>
-        <input type="checkbox" onclick="return false;">
+        <input type="checkbox" [checked]="this.dangvien.huyHieu === '75'" onclick="return false;">
         <label>75 năm</label>
-        <input type="checkbox" onclick="return false;">
+        <input type="checkbox" [checked]="this.dangvien.huyHieu === '80'" onclick="return false;">
         <label>80 năm</label>
-        <input type="checkbox" onclick="return false;">
+        <input type="checkbox" [checked]="this.dangvien.huyHieu === '85'" onclick="return false;">
         <label>85 năm</label>
-        <input type="checkbox" onclick="return false;">
+        <input type="checkbox" [checked]="this.dangvien.huyHieu === '90'" onclick="return false;">
         <label>90 năm</label>
       </div>
     </div>

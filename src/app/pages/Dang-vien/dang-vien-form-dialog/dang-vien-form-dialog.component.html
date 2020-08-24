@@ -355,13 +355,15 @@
     <h1 style="text-align:center">29) Quan hệ gia đình</h1>
     <textarea class="full-width" rows="5" formControlName="quanHeGiaDinh"></textarea>
     <h1 style="text-align:center">30) Hoàn cảnh kinh tế của bản thân và gia đình</h1>
-    <mat-form-field appearance="legacy" style="width:70%;padding-right:0">
+    <mat-form-field appearance="legacy" style="width:70%;">
       <mat-label>Tổng thu nhập của hộ gia đình<i>(trong 1 năm)</i></mat-label>
-      <input matInput type="text" formControlName="tongThuNhap">
+      <input class="unit-field" matInput type="text" formControlName="tongThuNhap">
+      <span class="unit">đồng</span>
     </mat-form-field>
-    <mat-form-field appearance="legacy" style="width:30%;padding-left:0">
+    <mat-form-field appearance="legacy" style="width:30%;">
       <mat-label>bình quân 1 người/hộ</mat-label>
-      <input matInput type="text" formControlName="binhQuan">
+      <input class="unit-field" matInput type="text" formControlName="binhQuan">
+      <span class="unit">đồng</span>
     </mat-form-field>
     <mat-form-field appearance="legacy" style="width:50%;">
       <mat-label>Nhà ở được cấp, được thuê, loại nhà</mat-label>
@@ -369,7 +371,8 @@
     </mat-form-field>
     <mat-form-field appearance="legacy" style="width:50%;">
       <mat-label>tổng diện tích sử dụng</mat-label>
-      <input matInput type="text" formControlName="dienTichNhaDuocCap">
+      <input class="unit-field" matInput type="text" formControlName="dienTichNhaDuocCap">
+      <span class="unit">m2</span>
     </mat-form-field>
     <mat-form-field appearance="legacy" style="width:50%;">
       <mat-label>Nhà được mua, tự xây, loại nhà</mat-label>
@@ -377,15 +380,18 @@
     </mat-form-field>
     <mat-form-field appearance="legacy" style="width:50%;">
       <mat-label>tổng diện tích sử dụng</mat-label>
-      <input matInput type="text" formControlName="dienTichNhaDuocMua">
+      <input class="unit-field" matInput type="text" formControlName="dienTichNhaDuocMua">
+      <span class="unit">m2</span>
     </mat-form-field>
     <mat-form-field appearance="legacy" style="width:50%">
       <mat-label>Đất ở, đất được cấp</mat-label>
-      <input matInput type="text" formControlName="datDuocCap">
+      <input class="unit-field" matInput type="text" formControlName="datDuocCap">
+      <span class="unit">m2</span>
     </mat-form-field>
     <mat-form-field appearance="legacy" style="width:50%">
       <mat-label>Đất tự mua</mat-label>
-      <input matInput type="text" formControlName="datDuocMua">
+      <input class="unit-field" matInput type="text" formControlName="datDuocMua">
+      <span class="unit">m2</span>
     </mat-form-field>
     <mat-form-field appearance="legacy" class="full-width">
       <mat-label>Hoạt động kinh tế</mat-label>
@@ -393,11 +399,13 @@
     </mat-form-field>
     <mat-form-field appearance="legacy" style="width:50%">
       <mat-label>Diện tích đất kinh tế doanh trại</mat-label>
-      <input matInput type="text" formControlName="dienTichDatTrangTrai">
+      <input class="unit-field" matInput type="text" formControlName="dienTichDatTrangTrai">
+      <span class="unit">ha</span>
     </mat-form-field>
     <mat-form-field appearance="legacy" style="width:50%">
       <mat-label>Số lao động thuê mướn</mat-label>
-      <input matInput type="text" formControlName="soLaoDongThue">
+      <input class="unit-field" matInput type="text" formControlName="soLaoDongThue">
+      <span class="unit">người</span>
     </mat-form-field>
     <mat-form-field appearance="legacy" style="width:50%">
       <mat-label>Những tài sản có giá trị<i>(50 triệu đồng trở lên)</i> Tài sản</mat-label>
@@ -405,7 +413,8 @@
     </mat-form-field>
     <mat-form-field appearance="legacy" style="width:50%">
       <mat-label>Giá trị</mat-label>
-      <input matInput type="text" formControlName="giaTriTaiSan">
+      <input class="unit-field" matInput type="text" formControlName="giaTriTaiSan">
+      <span class="unit">đồng</span>
     </mat-form-field>
     <mat-form-field appearance="legacy" class="full-width">
       <mat-label>Tình trạng quản lý</mat-label>
