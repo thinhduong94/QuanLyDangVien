@@ -8,6 +8,15 @@ import {
 import { DialogData } from "../../ChiBo/daiolog/chibo.daiolog";
 import { DangVienModel } from "src/app/model/dangvien.model";
 import { DangVienFormDialog } from "../dang-vien-form-dialog/dang-vien-form-dialog.component";
+import { ChiBoService } from "src/app/service/chibo.service";
+import {
+  DanhSachGioiTinh,
+  DanhSachDanToc,
+  DanhSachLyLuanChinhTri,
+  DanhSachHuyHieu,
+  DanhSachKyLuat,
+  DanhSachTinhTrangQuanLy,
+} from "src/app/const/drop-down-data.const";
 
 @Component({
   selector: "dang-vien-pdf",
@@ -18,7 +27,8 @@ export class DangVienPdf implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<DangVienPdf>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    public dangVienFormDialog: MatDialog
+    public dangVienFormDialog: MatDialog,
+    private chiBoService: ChiBoService
   ) {}
   dangvien: DangVienModel;
   lyLichArrLeft = [];
@@ -42,6 +52,40 @@ export class DangVienPdf implements OnInit {
     this.fillEmptySquare(this.theDangVienLeft, 2);
     this.fillEmptySquare(this.theDangVienRight, 6);
     this.imgBase64 = dangVien.anh3x4;
+    this.chiBoService.getByMaChiBo(this.dangvien.chiBo).then((foundChiBo) => {
+      this.dangvien.chiBo = foundChiBo.tenChiBo;
+    });
+    // this.dangvien.gioiTinh = DanhSachGioiTinh.find(
+    //   (gioiTinh) => gioiTinh.value === this.dangvien.gioiTinh
+    // ).display;
+    // this.dangvien.danToc = DanhSachDanToc.find((danToc) => {
+    //   danToc.value === this.dangvien.danToc;
+    // }).display;
+    // this.dangvien.lyLuanChinhTri = DanhSachLyLuanChinhTri.find((lyLuan) => {
+    //   lyLuan.value === this.dangvien.lyLuanChinhTri;
+    // }).display;
+    this.dangvien.gioiTinh = this.getDisplayValue(
+      this.dangvien.gioiTinh,
+      DanhSachGioiTinh
+    );
+    this.dangvien.danToc = this.getDisplayValue(
+      this.dangvien.danToc,
+      DanhSachDanToc
+    );
+    this.dangvien.lyLuanChinhTri = this.getDisplayValue(
+      this.dangvien.lyLuanChinhTri,
+      DanhSachLyLuanChinhTri
+    );
+    // this.dangvien.huyHieu = DanhSachHuyHieu[this.dangvien.huyHieu];
+    this.dangvien.kyLuat = this.getDisplayValue(
+      this.dangvien.kyLuat,
+      DanhSachKyLuat
+    );
+  }
+
+  getDisplayValue(value, arr) {
+    const result = arr.find((item) => item.value === value);
+    return result ? result.display : value;
   }
 
   generateDoc() {
