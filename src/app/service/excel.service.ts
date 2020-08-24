@@ -3,8 +3,7 @@ import * as xlsx from "xlsx";
 import { DangVienExcelMapping } from "../const/dang-vien-excel-mapping.const";
 import * as moment from "moment";
 import * as FileSaver from 'file-saver';
-const EXCEL_TYPE =
-  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
+const EXCEL_TYPE ="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
 const EXCEL_EXTENSION = ".xlsx";
 @Injectable({
   providedIn: "root",
@@ -29,14 +28,14 @@ export class ExcelService {
     xlsx.utils.book_append_sheet(wb, ws, sheet);
     const now = moment().format("MM-DD-YYYY");
     const fileName = `${sheet}_${now}`;
-    const excelBuffer: any = xlsx.writeFile(wb, `${fileName}${EXCEL_EXTENSION}`);
+    const excelBuffer: any = xlsx.write(wb,{ bookType: 'xlsx', type: 'array'});
     this.saveAsExcelFile(excelBuffer,fileName);
   }
   private saveAsExcelFile(buffer: any, fileName: string): void {
     const data: Blob = new Blob([buffer], {
       type: EXCEL_TYPE
     });
-    FileSaver.saveAs(data, fileName);
+    FileSaver.saveAs(data, `${fileName}${EXCEL_EXTENSION}`);
   }
   public excelFileToData(fileName: string, sheetName: string): Array<any> {
     const workbook = xlsx.readFile(fileName);
