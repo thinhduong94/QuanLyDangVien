@@ -2,10 +2,10 @@ import { Injectable } from "@angular/core";
 import * as xlsx from "xlsx";
 import { DangVienExcelMapping } from "../const/dang-vien-excel-mapping.const";
 import * as moment from "moment";
-
-const Excel_TYPE =
+import * as FileSaver from 'file-saver';
+const EXCEL_TYPE =
   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
-const Excel_EXTENSION = ".xlsx";
+const EXCEL_EXTENSION = ".xlsx";
 @Injectable({
   providedIn: "root",
 })
@@ -28,9 +28,16 @@ export class ExcelService {
     }
     xlsx.utils.book_append_sheet(wb, ws, sheet);
     const now = moment().format("MM-DD-YYYY");
-    xlsx.writeFile(wb, `${sheet}_${now}.xlsx`);
+    const fileName = `${sheet}_${now}`;
+    const excelBuffer: any = xlsx.writeFile(wb, `${fileName}${EXCEL_EXTENSION}`);
+    this.saveAsExcelFile(excelBuffer,fileName);
   }
-
+  private saveAsExcelFile(buffer: any, fileName: string): void {
+    const data: Blob = new Blob([buffer], {
+      type: EXCEL_TYPE
+    });
+    FileSaver.saveAs(data, fileName);
+  }
   public excelFileToData(fileName: string, sheetName: string): Array<any> {
     const workbook = xlsx.readFile(fileName);
     const sheet_name_list = workbook.SheetNames;
