@@ -6,8 +6,13 @@
 }
 
 .dv-header,
-.dv-bottom {
+.dv-bottom,
+.flex {
   display: flex;
+}
+
+.flex > div {
+  border: 1px solid black;
 }
 
 .dv-header {
