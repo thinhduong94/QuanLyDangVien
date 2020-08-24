@@ -55,15 +55,6 @@ export class DangVienPdf implements OnInit {
     this.chiBoService.getByMaChiBo(this.dangvien.chiBo).then((foundChiBo) => {
       this.dangvien.chiBo = foundChiBo.tenChiBo;
     });
-    // this.dangvien.gioiTinh = DanhSachGioiTinh.find(
-    //   (gioiTinh) => gioiTinh.value === this.dangvien.gioiTinh
-    // ).display;
-    // this.dangvien.danToc = DanhSachDanToc.find((danToc) => {
-    //   danToc.value === this.dangvien.danToc;
-    // }).display;
-    // this.dangvien.lyLuanChinhTri = DanhSachLyLuanChinhTri.find((lyLuan) => {
-    //   lyLuan.value === this.dangvien.lyLuanChinhTri;
-    // }).display;
     this.dangvien.gioiTinh = this.getDisplayValue(
       this.dangvien.gioiTinh,
       DanhSachGioiTinh
@@ -76,7 +67,6 @@ export class DangVienPdf implements OnInit {
       this.dangvien.lyLuanChinhTri,
       DanhSachLyLuanChinhTri
     );
-    // this.dangvien.huyHieu = DanhSachHuyHieu[this.dangvien.huyHieu];
     this.dangvien.kyLuat = this.getDisplayValue(
       this.dangvien.kyLuat,
       DanhSachKyLuat
@@ -103,7 +93,8 @@ export class DangVienPdf implements OnInit {
 
   fillEmptySquare(arr, fullLength) {
     if (arr.length < fullLength) {
-      for (let i = 0; i < fullLength - arr.length; i++) {
+      const loopCount = fullLength - arr.length;
+      for (let i = 0; i < loopCount; i++) {
         arr.push("");
       }
     }

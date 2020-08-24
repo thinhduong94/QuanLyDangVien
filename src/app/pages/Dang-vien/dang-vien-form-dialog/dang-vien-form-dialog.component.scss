@@ -39,3 +39,18 @@ mat-form-field {
   width: 50%;
   display: inline-block;
 }
+
+.unit {
+  display: inline-block;
+  right: 0;
+  text-align: right;
+  position: absolute;
+  font-weight: 00;
+  color: grey;
+  font-size: 14px;
+  bottom: 8px;
+}
+
+.unit-field {
+  width: calc(100% - 35px);
+}
