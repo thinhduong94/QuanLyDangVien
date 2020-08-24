@@ -90,6 +90,7 @@ export interface PhieuDangVienModel {
   ghiChu:string;
   tinhTrangQuanLy:string;
   xepLoai:string;
+  namXepLoai:string;
 }
 export interface PhieuDangVienOptionModel {
   chiBo: string;
@@ -106,6 +107,7 @@ export interface PhieuDangVienOptionModel {
 }
 export interface SoLieuModel {
   chibo: string;
+  maChiBo:string;
   soLuongCapUy: number;
   dangSo: number;
   nu: number;
@@ -122,7 +124,8 @@ export interface SoLieuModel {
   soCap: number;
   trungCap: number;
   caoCap: number;
-
+  xepLoai:string;
+  namXepLoai:string;
 }
 @Injectable({
   providedIn: "root",
