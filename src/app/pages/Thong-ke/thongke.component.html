@@ -102,12 +102,12 @@
                                 <td>{{item.tenKhaiSinh}}</td>
                                 <td>{{item.tenDangDung}}</td>
                                 <td>{{item.soTheDangVien}}</td>
-                                <td>{{item.gioiTinh}}</td>
+                                <td>{{getTextGioiTinh(item.gioiTinh)}}</td>
                                 <td>{{item.ngaySinh}}</td>
                                 <td>{{item.queQuan}}</td>
                                 <td>{{item.thuongTru}}</td>
                                 <td>{{item.tamTru}}</td>
-                                <td>{{item.danToc}}</td>
+                                <td>{{getTextDanToc(item.danToc)}}</td>
                                 <td>{{item.tonGiao}}</td>
                                 <td>{{item.ngayVaoDang}}</td>
                                 <td>{{item.ngayChinhThucVaoDang}}</td>
@@ -116,13 +116,13 @@
                                 <td>--</td>
                                 <td>{{getTrinhDo(item)}}</td>
                                 <td>{{item.ngoaiNgu}}</td>
-                                <td>{{item.lyLuanChinhTri}}</td>
+                                <td>{{getTextLyLuanChinhTri(item.lyLuanChinhTri)}}</td>
                                 <td>--</td>
-                                <td>{{isQuanLy(item.tinhTrangQuanLy) ? item.tinhTrangQuanLy : '' }}</td>
-                                <td>{{!isQuanLy(item.tinhTrangQuanLy) ? item.tinhTrangQuanLy : ''}}</td>
+                                <td>{{isQuanLy(item.tinhTrangQuanLy) ? getTextTinhTrangQuanLy(item.tinhTrangQuanLy) : '' }}</td>
+                                <td>{{!isQuanLy(item.tinhTrangQuanLy) ? getTextTinhTrangQuanLy(item.tinhTrangQuanLy) : ''}}</td>
                                 <td>{{item.huyHieu}}</td>
                                 <td>{{item.khenThuong}}</td>
-                                <td>{{item.kyLuat}}</td>
+                                <td>{{getTextKyLuat(item.kyLuat)}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -229,10 +229,10 @@
                                 <td>{{item.gioiTinh === 'Nu' ? item.ngaySinh : ''}}</td>
                                 <td>{{item.thuongTru}}</td>
                                 <td>{{item.tamTru}}</td>
-                                <td>{{item.danToc}}</td>
+                                <td>{{getTextDanToc(item.danToc)}}</td>
                                 <td>{{item.tonGiao}}</td>
                                 <td>{{getTrinhDo(item)}}</td>
-                                <td>{{item.lyLuanChinhTri}}</td>
+                                <td>{{getTextLyLuanChinhTri(item.lyLuanChinhTri)}}</td>
                                 <td>--</td>
                                 <td>--</td>
                                 <td>{{item.ngayVaoDang}}</td>
@@ -349,10 +349,10 @@
                                 <td>{{item.gioiTinh === 'Nu' ? item.ngaySinh : ''}}</td>
                                 <td>{{item.thuongTru}}</td>
                                 <td>{{item.tamTru}}</td>
-                                <td>{{item.danToc}}</td>
+                                <td>{{getTextDanToc(item.danToc)}}</td>
                                 <td>{{item.tonGiao}}</td>
                                 <td>{{getTrinhDo(item)}}</td>
-                                <td>{{item.lyLuanChinhTri}}</td>
+                                <td>{{getTextLyLuanChinhTri(item.lyLuanChinhTri)}}</td>
                                 <td>--</td>
                                 <td>--</td>
                                 <td>{{item.ngayVaoDang}}</td>
@@ -561,10 +561,10 @@
                             <td>{{item.gioiTinh === 'Nu' ? item.ngaySinh : ''}}</td>
                             <td>{{item.thuongTru}}</td>
                             <td>{{item.tamTru}}</td>
-                            <td>{{item.danToc}}</td>
+                            <td>{{getTextDanToc(item.danToc)}}</td>
                             <td>{{item.tonGiao}}</td>
                             <td>{{getTrinhDo(item)}}</td>
-                            <td>{{item.lyLuanChinhTri}}</td>
+                            <td>{{getTextLyLuanChinhTri(item.lyLuanChinhTri)}}</td>
                             <td>--</td>
                             <td>--</td>
                             <td>{{item.ngayVaoDang}}</td>

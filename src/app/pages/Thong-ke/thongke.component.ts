@@ -4,7 +4,7 @@ import { ExcelService } from 'src/app/service/excel.service';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { SlowBuffer } from 'buffer';
 import { ChiBoService } from 'src/app/service/chibo.service';
-import { DanhSachKyLuat, DanhSachTinhTrangDangVien , DanhSachXepLoai , XepLoai, DangQuanLi, QuanLy, KhongQuanLy, LyLuanChinhTri, DanToc, DanhSachTinhTrangQuanLy, DotTangHuyHieuDang, GioiTinh, DanhSachGioiTinh } from 'src/app/const/drop-down-data.const';
+import { DanhSachKyLuat, DanhSachTinhTrangDangVien , DanhSachXepLoai , XepLoai, DangQuanLi, QuanLy, KhongQuanLy, LyLuanChinhTri, DanToc, DanhSachTinhTrangQuanLy, DotTangHuyHieuDang, GioiTinh, DanhSachGioiTinh, DanhSachDanToc, DanhSachLyLuanChinhTri } from 'src/app/const/drop-down-data.const';
 import { DanhGiaService } from 'src/app/service/danhgia.service';
 import { forkJoin } from 'rxjs';
 import { DanhGiaModel } from 'src/app/model/danhgia.model';
@@ -342,5 +342,20 @@ export class thongkeComponent implements OnInit {
   }
   getTextXepLoai(xepLoai:string){
     return this.xepLoai.find(item => item.value === xepLoai)?.display || '';
+  }
+  getTextKyLuat(kyLuat:string){
+    return this.danhSachKyLuat.find(item=>item.value == kyLuat)?.display || '';
+  }
+  getTextGioiTinh(gioTinh:string){
+    return this.gioiTinh.find(item=>item.value === gioTinh)?.display || '';
+  }
+  getTextDanToc(danToc:string){
+    return DanhSachDanToc.find(item=>item.value === danToc)?.display || '';
+  }
+  getTextLyLuanChinhTri(lyLuan:string){
+    return DanhSachLyLuanChinhTri.find(item=>item.value === lyLuan)?.display || '';
+  }
+  getTextTinhTrangQuanLy(tinhTrang:string){
+    return DanhSachTinhTrangQuanLy.find(item=>item.value === tinhTrang)?.display || '';
   }
 }
