@@ -10,7 +10,8 @@ import { DangVienFormDialog } from "./dang-vien-form-dialog/dang-vien-form-dialo
 import { ExcelService } from "src/app/service/excel.service";
 import { alertComponent } from "../share/alert/alert.component";
 import { importExcelComponent } from "../share/importExcel/importExcel.component";
-import { confirmComponent } from '../share/confirm/confirm.component';
+import { confirmComponent } from "../share/confirm/confirm.component";
+import { DanToc, GioiTinh } from "src/app/const/drop-down-data.const";
 
 @Component({
   selector: "dang-vien",
@@ -63,6 +64,10 @@ export class DangVienComponent implements OnInit, OnDestroy {
   }
 
   loadData() {
+    this.danhSachDangVien.forEach((dv) => {
+      dv.danToc = DanToc[`display${dv.danToc}`];
+      dv.gioiTinh = GioiTinh[`display${dv.gioiTinh}`];
+    });
     this.dataSource = new MatTableDataSource<DangVienModel>(
       this.danhSachDangVien
     );
@@ -73,15 +78,15 @@ export class DangVienComponent implements OnInit, OnDestroy {
   deleteDangVien(id: number) {
     const mess = "Bạn có muốn xoá đảng viên này không ?";
     const dialogRef = this.dialog.open(confirmComponent, {
-      data: {mess: mess || null}
+      data: { mess: mess || null },
     });
-    dialogRef.afterClosed().subscribe(result => {
-      if(result === 'yes'){
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === "yes") {
         this.dangVienService.delete(id).then(() => {
           this.getDangVien();
         });
       }
-      console.log('The dialog was closed');
+      console.log("The dialog was closed");
     });
   }
 

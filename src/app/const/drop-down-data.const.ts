@@ -65,6 +65,9 @@ export enum DanToc {
   Khac = "khac",
   Hoa = "hoa",
   Kinh = "kinh",
+  displaykinh = "Kinh",
+  displayhoa = "Hoa",
+  displaykhac = "Khac",
 }
 export enum XepLoai {
   HoanThanhXuatSac = "hoanthanhxuatsac",
@@ -82,10 +85,12 @@ export const DotTangHuyHieuDang = [
 export const DanhSachGioiTinh = [
   { value: "nam", display: "Nam" },
   { value: "nu", display: "Nữ" },
-  { value: "", display: "Chọn tất cả" }
+  { value: "", display: "Chọn tất cả" },
 ];
 
 export enum GioiTinh {
   Nam = "nam",
   Nu = "nu",
+  displaynam = "Nam",
+  displaynu = "Nữ",
 }
