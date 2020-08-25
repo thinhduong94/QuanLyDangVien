@@ -48,6 +48,8 @@ export class thongkeComponent implements OnInit {
   displayTinhTrangDangVienText = '';
   displayXepLoaiDangVienText = '';
   displayGioiTinhText = '';
+  gioiTinhNam = GioiTinh.Nam;
+  gioiTinhNu = GioiTinh.Nu;
   constructor(
     private thongKeService : ThongKeService,
     private chiBoService : ChiBoService,
