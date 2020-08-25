@@ -320,7 +320,8 @@ export class thongkeComponent implements OnInit {
     let array = [];
     for(let i = 0;i<duration;i++){
       start++;
-      array.push(start);
+      const text = start.toString();
+      array.push(text);
     }
     return array;
   }
