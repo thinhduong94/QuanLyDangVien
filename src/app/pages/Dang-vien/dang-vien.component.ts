@@ -123,4 +123,16 @@ export class DangVienComponent implements OnInit, OnDestroy {
       this.getDangVien();
     });
   }
+
+  searchDangVien($event) {
+    const searchValue = $event.target.value;
+    const searchResult = this.danhSachDangVien.filter(
+      (dangvien) =>
+        dangvien.tenDangDung.includes(searchValue) ||
+        dangvien.soTheDangVien.includes(searchValue)
+    );
+    if (searchResult.length) {
+      this.dataSource = new MatTableDataSource<DangVienModel>(searchResult);
+    }
+  }
 }
