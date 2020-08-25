@@ -73,6 +73,9 @@ export class DangVienComponent implements OnInit, OnDestroy {
     );
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+    this.dataSource.filterPredicate = (data: DangVienModel, filter: string) => {
+      return data.soTheDangVien.toLocaleLowerCase().match(filter)||data.tenDangDung.toLocaleLowerCase().match(filter) ? true: false;
+    };
   }
 
   deleteDangVien(id: number) {
@@ -124,15 +127,9 @@ export class DangVienComponent implements OnInit, OnDestroy {
     });
   }
 
-  searchDangVien($event) {
-    const searchValue = $event.target.value;
-    const searchResult = this.danhSachDangVien.filter(
-      (dangvien) =>
-        dangvien.tenDangDung.includes(searchValue) ||
-        dangvien.soTheDangVien.includes(searchValue)
-    );
-    if (searchResult.length) {
-      this.dataSource = new MatTableDataSource<DangVienModel>(searchResult);
-    }
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim()
+    filterValue = filterValue.toLowerCase();
+    this.dataSource.filter = filterValue;
   }
 }

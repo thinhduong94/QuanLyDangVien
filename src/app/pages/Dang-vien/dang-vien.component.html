@@ -8,7 +8,7 @@
       <button style="margin-right: 20px;" (click)="exportDangVien()" class="btn btn-success">Xuất ra tập tin</button>
       <mat-form-field class="example-full-width">
         <mat-label>Từ khóa</mat-label>
-        <input (blur)="searchDangVien($event)" type="text" matInput>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Tìm">
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
     </form>
