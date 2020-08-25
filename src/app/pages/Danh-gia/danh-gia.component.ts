@@ -90,7 +90,8 @@ export class DanhGiaComponent implements OnInit, OnDestroy {
     );
     currentYearDanhGia.forEach((data) => {
       const type = this.getRecordType(data);
-      data.danhGia = this.danhGiaFormGroup.controls[data[type]].value;
+      const danhGiaControl = this.danhGiaFormGroup.controls[data[type]];
+      data.danhGia = danhGiaControl ? danhGiaControl.value : "";
       data.namDanhGia = this.selectedYear;
     });
     this.displayData.forEach((data) => {
@@ -103,7 +104,8 @@ export class DanhGiaComponent implements OnInit, OnDestroy {
         )
       ) {
         const newDanhGia = new DanhGiaModel();
-        newDanhGia.danhGia = this.danhGiaFormGroup.controls[data[type]].value;
+        const danhGiaControl = this.danhGiaFormGroup.controls[data[type]];
+        newDanhGia.danhGia = danhGiaControl ? danhGiaControl.value : "";
         newDanhGia[type] = data[type];
         newDanhGia.namDanhGia = this.selectedYear;
         currentYearDanhGia.push(newDanhGia);
