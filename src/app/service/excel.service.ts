@@ -37,8 +37,8 @@ export class ExcelService {
     });
     FileSaver.saveAs(data, `${fileName}${EXCEL_EXTENSION}`);
   }
-  public excelFileToData(fileName: string, sheetName: string): Array<any> {
-    const workbook = xlsx.readFile(fileName);
+  public excelFileToData(bstr: any, sheetName: string): Array<any> {
+    const workbook = xlsx.read(bstr, {type:"binary"});
     const sheet_name_list = workbook.SheetNames;
     let data = [];
     sheet_name_list
@@ -68,8 +68,8 @@ export class ExcelService {
     return data;
   }
 
-  public getDangVienDataFromExcel(fileName: string, sheetName: string): any {
-    const workbook = xlsx.readFile(fileName);
+  public getDangVienDataFromExcel(bstr: any, sheetName: string): any {
+    const workbook = xlsx.read(bstr, {type:"binary"});
     const dangVienSheet = workbook.Sheets[sheetName] || {};
     let data = [];
     if (Object.keys(dangVienSheet).length) {
