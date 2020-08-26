@@ -81,14 +81,14 @@ export class DangVienPdf implements OnInit {
   generateDoc() {
     const element = document.getElementById("page1");
     const opt = {
-      margin: 0,
+      margin: [10,10,10,10],
       filename: "myfile.pdf",
       image: { type: "jpeg", quality: 0.98 },
       html2canvas: { scale: 2 },
       jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
     };
-    const worker = html2pdf(element, "A4", "en", false, "UTF-8");
-    // html2pdf().set(opt).from(element).save();
+    //const worker = html2pdf(element, "A4", "en", false, "UTF-8");
+    html2pdf().set(opt).from(element).save();
   }
 
   fillEmptySquare(arr, fullLength) {

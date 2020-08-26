@@ -17,7 +17,17 @@ export class ChiBoService {
       }
     });
   }
-
+  public checkChiBoBeforInsert(chibo:ChiBo) : Promise<ChiBo> {
+    const sql = "SELECT * FROM chibo WHERE maChiBo = $maChiBo";
+    const values = { $maChiBo: chibo.maChiBo };
+    return TheDb.selectOne(sql, values).then((row) => {
+      if (row) {
+        return null;
+      } else {
+        return chibo;
+      }
+    });
+  }
   public getByMaChiBo(maChiBo: string): Promise<ChiBo> {
     const sql = "SELECT * FROM chibo WHERE maChiBo = $maChiBo";
     const values = { $maChiBo: maChiBo };
@@ -26,7 +36,7 @@ export class ChiBoService {
       if (row) {
         return new ChiBoService().fromRow(row);
       } else {
-        throw new Error("Expected to find 1 chibo. Found 0.");
+        return null;
       }
     });
   }

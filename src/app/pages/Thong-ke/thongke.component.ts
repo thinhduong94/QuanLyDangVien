@@ -104,7 +104,7 @@ export class thongkeComponent implements OnInit {
     });
   }
   phieuDangVien(){
-    this.excelService.exportAsExcelFile(null,'phieuDangVien','html',this.phieuDangVienRef.nativeElement);
+    this.excelService.exportAsExcelFile(null,'tkDangVienBM1','html',this.phieuDangVienRef.nativeElement);
   }
   tkDangVienBM2(){
     this.excelService.exportAsExcelFile(null,'tkDangVienBM2','html',this.tkDangVienRefBM2.nativeElement);
@@ -119,7 +119,7 @@ export class thongkeComponent implements OnInit {
     this.excelService.exportAsExcelFile(null,'tkDanhSachNhanHuyHieuDang','html',this.tkDsNhanHuyHieuDangRef.nativeElement);
   }
   tkXepLoaiChiBo(){
-    this.excelService.exportAsExcelFile(null,'tkXepLoaiChiBo','html',this.tkXepLoaiDangVienRef.nativeElement);
+    this.excelService.exportAsExcelFile(null,'tkXepLoaiChiBo','html',this.tkSoXepLoaiChiBoRef.nativeElement);
   }
   tkXepLoaiDangVien(){
     this.excelService.exportAsExcelFile(null,'tkXepLoaiDangVien','html',this.tkXepLoaiDangVienRef.nativeElement);
@@ -153,7 +153,6 @@ export class thongkeComponent implements OnInit {
     const _temp = temp.filter((item)=>
       ((option.chiBo && option.chiBo !== "") ? option.chiBo === item.chiBo : true) &&
       ((option.gioiTinh && option.gioiTinh !== "") ? option.gioiTinh === item.gioiTinh : true) &&
-      ((option.danToc && option.danToc !== "") ? option.danToc === item.danToc : true ) &&
       ((option.kyLuat && option.kyLuat !== "") ? option.kyLuat === item.kyLuat : true)
     );
    this.tkDangVienDangQuanLyDataBM3 = _temp;
@@ -165,7 +164,6 @@ export class thongkeComponent implements OnInit {
     console.log(this.phieuDangVienOptionModel);
     const _temp = temp.filter((item)=>
       ((!option.chiBo || option.chiBo === "") ? true : option.chiBo === item.chiBo) &&
-      ((!option.tuoiDang) ? true : option.tuoiDang.toString() === item.tuoiDang.toString()) &&
       ((!option.tinhTrangDangVien || option.tinhTrangDangVien === "") ? true : option.tinhTrangDangVien === TinhTrangQianlyMappingFunc(item.tinhTrangQuanLy)) &&
       ((!option.xepLoaiDangVien || option.xepLoaiDangVien === "") ? true : option.xepLoaiDangVien === item.xepLoai)
     );
@@ -178,9 +176,7 @@ export class thongkeComponent implements OnInit {
     console.log(this.phieuDangVienOptionModel);
     const _temp = temp.filter((item)=>
       ((!option.chiBo || option.chiBo === "") ? true : option.chiBo === item.chiBo) &&
-      ((!option.tuoiDang) ? true : option.tuoiDang.toString() === item.tuoiDang.toString()) &&
-      ((!option.tinhTrangDangVien || option.tinhTrangDangVien === "") ? true : option.tinhTrangDangVien === TinhTrangQianlyMappingFunc(item.tinhTrangQuanLy)) &&
-      ((!option.xepLoaiDangVien || option.xepLoaiDangVien === "") ? true : option.xepLoaiDangVien === item.xepLoai)
+      ((!option.tinhTrangDangVien || option.tinhTrangDangVien === "") ? true : option.tinhTrangDangVien === TinhTrangQianlyMappingFunc(item.tinhTrangQuanLy))
     );
    this.tkDangVienDangQuanLyDataBM1 = _temp;
   }
