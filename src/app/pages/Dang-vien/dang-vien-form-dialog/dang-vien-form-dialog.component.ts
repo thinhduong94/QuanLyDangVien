@@ -180,6 +180,8 @@ export class DangVienFormDialog implements OnInit {
           giaDinhLietSi: foundDangVien.giaDinhLietSi,
           giaDinhCoCongCachMang: foundDangVien.giaDinhCoCongCachMang,
           tinhTrangQuanLy: foundDangVien.tinhTrangQuanLy,
+          ngayKyLuat: foundDangVien.ngayKyLuat,
+          ngayChuyenTinhTrangQuanLy: foundDangVien.ngayChuyenTinhTrangQuanLy,
         });
         this.anh3x4 = foundDangVien.anh3x4;
       });
@@ -280,6 +282,8 @@ export class DangVienFormDialog implements OnInit {
       giaDinhLietSi: new FormControl(""),
       giaDinhCoCongCachMang: new FormControl(""),
       tinhTrangQuanLy: new FormControl(""),
+      ngayKyLuat: new FormControl(""),
+      ngayChuyenTinhTrangQuanLy: new FormControl(""),
     });
   }
 

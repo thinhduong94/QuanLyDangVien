@@ -30,6 +30,19 @@ export class DangVienService {
     });
   }
 
+  public getByChiBo(chiBo: string): Promise<DangVienModel[]> {
+    const sql = "SELECT * FROM dangvien WHERE chiBo = $chiBo";
+    const values = { $chiBo: chiBo };
+
+    return TheDb.selectAll(sql, values).then((rows) => {
+      const dangviens: DangVienModel[] = [];
+      for (const row of rows) {
+        const dangvien = new DangVienService().fromRow(row);
+        dangviens.push(dangvien);
+      }
+      return dangviens;
+    });
+  }
   public getAll(): Promise<DangVienModel[]> {
     const sql = `SELECT * FROM dangvien where trangThai = 0`;
     const values = {};
@@ -140,7 +153,9 @@ export class DangVienService {
         giaDinhLietSi,
         giaDinhCoCongCachMang,
         tinhTrangQuanLy,
-        trangThai)
+        trangThai,
+        ngayKyLuat,
+        ngayChuyenTinhTrangQuanLy)
 
         VALUES
 
@@ -237,7 +252,9 @@ export class DangVienService {
           $giaDinhLietSi,
           $giaDinhCoCongCachMang,
           $tinhTrangQuanLy,
-          $trangThai)`;
+          $trangThai,
+          $ngayKyLuat,
+          $ngayChuyenTinhTrangQuanLy)`;
 
     const values = {
       $dangBoTinh: obj.dangBoTinh,
@@ -333,6 +350,8 @@ export class DangVienService {
       $tinhTrangQuanLy: obj.tinhTrangQuanLy,
       $trangThai: 0,
       $anh3x4: obj.anh3x4,
+      $ngayKyLuat: obj.ngayKyLuat,
+      $ngayChuyenTinhTrangQuanLy: obj.ngayChuyenTinhTrangQuanLy,
     };
 
     return TheDb.insert(sql, values).then((result) => {
@@ -441,7 +460,9 @@ export class DangVienService {
         thuongBinhLoai = $thuongBinhLoai,
         giaDinhLietSi = $giaDinhLietSi,
         giaDinhCoCongCachMang = $giaDinhCoCongCachMang,
-        tinhTrangQuanLy = $tinhTrangQuanLy
+        tinhTrangQuanLy = $tinhTrangQuanLy,
+        ngayKyLuat = $ngayKyLuat,
+        ngayChuyenTinhTrangQuanLy = $ngayChuyenTinhTrangQuanLy
          WHERE id = $id`;
 
     const values = this.getValueObject(obj);
@@ -573,6 +594,8 @@ export class DangVienService {
       $giaDinhLietSi: obj.giaDinhLietSi,
       $giaDinhCoCongCachMang: obj.giaDinhCoCongCachMang,
       $tinhTrangQuanLy: obj.tinhTrangQuanLy,
+      $ngayKyLuat: obj.ngayKyLuat,
+      $ngayChuyenTinhTrangQuanLy: obj.ngayChuyenTinhTrangQuanLy,
     };
   }
 }
