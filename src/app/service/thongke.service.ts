@@ -91,6 +91,8 @@ export interface PhieuDangVienModel {
   tinhTrangQuanLy:string;
   xepLoai:string;
   namXepLoai:string;
+  ngayKyLuat:string;
+  ngayChuyenTinhTrangQuanLy:string;
 }
 export interface PhieuDangVienOptionModel {
   chiBo: string;

@@ -31,37 +31,37 @@
                     <table #phieuDangVienRef>
                         <thead>
                             <tr>
-                                <th colspan="25">
+                                <th colspan="27">
                                     ĐẢNG CỘNG SẢN VIỆT NAM
                                 </th>
                             </tr>
                             <tr>
-                                <th colspan="12">
+                                <th colspan="14">
                                     ĐẢNG BỘ THÀNH PHỐ HỒ CHÍ MINH
                                 </th>
                                 <th colspan="13"></th>
                             </tr>
                             <tr>
-                                <th colspan="12">
+                                <th colspan="14">
                                     ĐẢNG BỘ QUẬN 5
                                 </th>
                                 <th colspan="13"></th>
                             </tr>
                             <tr>
-                                <th colspan="12">
+                                <th colspan="14">
                                     ĐẢNG BỘ PHƯỜNG 10
                                 </th>
                                 <th colspan="13"></th>
                             </tr>
                             <tr>
-                                <th colspan="25">
+                                <th colspan="27">
                                     PHIẾU ĐẢNG VIÊN
                                 </th>
                             </tr>
                             <tr>
                                 <th colspan="6">Chi bộ: {{displayChiBoText}}</th>
                                 <th colspan="6">Tình trạng Đảng viên: {{displayTinhTrangDangVienText}}</th>
-                                <th colspan="13"></th>
+                                <th colspan="15"></th>
                             </tr>
                             <tr>
                                 <th rowspan="2">CHI BỘ</th>
@@ -88,6 +88,8 @@
                                 <th rowspan="2">ĐÃ NHẬN HUY HIỆU ĐẢNG (70, 65, 60, 55, 50, 45, 40, 30)</th>
                                 <th rowspan="2">KHEN THƯỞNG</th>
                                 <th rowspan="2">KỶ LUẬT (KTr, CCa, CCh, KT)</th>
+                                <th rowspan="2">NGÀY KỶ LUẬT</th>
+                                <th rowspan="2">NGÀY CHUYỂN TÌNH TRẠNG QUẢN LÝ</th>
                             </tr>
                             <tr>
                                 <th>Đảng (BT, PBT, CUV, ĐV)</th>
@@ -123,6 +125,8 @@
                                 <td>{{item.huyHieu}}</td>
                                 <td>{{item.khenThuong}}</td>
                                 <td>{{getTextKyLuat(item.kyLuat)}}</td>
+                                <td>{{item.ngayKyLuat}}</td>
+                                <td>{{item.ngayChuyenTinhTrangQuanLy}}</td>
                             </tr>
                         </tbody>
                     </table>
