@@ -94,4 +94,6 @@ export class DangVienModel {
   giaDinhLietSi: string;
   giaDinhCoCongCachMang: string;
   tinhTrangQuanLy: string;
+  ngayKyLuat: string;
+  ngayChuyenTinhTrangQuanLy: string;
 }
