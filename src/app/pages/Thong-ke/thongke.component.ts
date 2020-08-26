@@ -104,7 +104,7 @@ export class thongkeComponent implements OnInit {
     });
   }
   phieuDangVien(){
-    this.excelService.exportAsExcelFile(null,'phieuDangVien','html',this.phieuDangVienRef.nativeElement);
+    this.excelService.exportAsExcelFile(null,'tkDangVienBM1','html',this.phieuDangVienRef.nativeElement);
   }
   tkDangVienBM2(){
     this.excelService.exportAsExcelFile(null,'tkDangVienBM2','html',this.tkDangVienRefBM2.nativeElement);
@@ -119,7 +119,7 @@ export class thongkeComponent implements OnInit {
     this.excelService.exportAsExcelFile(null,'tkDanhSachNhanHuyHieuDang','html',this.tkDsNhanHuyHieuDangRef.nativeElement);
   }
   tkXepLoaiChiBo(){
-    this.excelService.exportAsExcelFile(null,'tkXepLoaiChiBo','html',this.tkXepLoaiDangVienRef.nativeElement);
+    this.excelService.exportAsExcelFile(null,'tkXepLoaiChiBo','html',this.tkSoXepLoaiChiBoRef.nativeElement);
   }
   tkXepLoaiDangVien(){
     this.excelService.exportAsExcelFile(null,'tkXepLoaiDangVien','html',this.tkXepLoaiDangVienRef.nativeElement);

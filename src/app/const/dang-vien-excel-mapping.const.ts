@@ -27,11 +27,7 @@ export const DangVienExcelMapping = [
     column: "ngayChinhThucVaoDang",
     display: "Ngày chính thức vào đảng",
   },
-  {
-    header: "V",
-    column: "chiBoChinhThucVaoDang",
-    display: "Chi Bộ chính thức vào đảng",
-  },
+  {header: "V",column: "chiBoChinhThucVaoDang",display: "Chi Bộ chính thức vào đảng"},
   { header: "W", column: "ngayDuocTuyen", display: "Ngày được tuyển" },
   { header: "X", column: "coQuanTuyenDung", display: "Cơ quan tuyển dụng" },
   { header: "Y", column: "ngayVaoDoan", display: "Ngày vào đoàn" },
@@ -74,7 +70,7 @@ export const DangVienExcelMapping = [
     display: "Ngày khôi phục đảng",
   },
   {
-    head: "AR",
+    header: "AR",
     column: "chiBoKhoiPhucDang",
     display: "Chi bộ khôi phục đảng",
   },
