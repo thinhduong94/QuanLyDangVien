@@ -11,14 +11,14 @@ export const DanhSachHuyHieu = [
   { value: "80", display: "80 năm" },
   { value: "85", display: "85 năm" },
   { value: "90", display: "90 năm" },
-  { value: "", display: "Chọn tất cả" },
+  { value: "", display: "Chưa xác định" },
 ];
 export const DanhSachKyLuat = [
   { value: "khientrach", display: "Khiển trách" },
   { value: "canhcao", display: "Cảnh cáo" },
   { value: "cachchuc", display: "Cách chức" },
   { value: "khaitru", display: "Khai trừ" },
-  { value: "", display: "Chọn tất cả" },
+  { value: "", display: "Chưa xác định" },
 ];
 export const DanhSachTinhTrangQuanLy = [
   { value: "dangquanli", display: "Đang quản lí" },
@@ -27,31 +27,31 @@ export const DanhSachTinhTrangQuanLy = [
   { value: "xoaten", display: "Xóa tên" },
   { value: "xinrakhoidang", display: "Xin ra khỏi đảng" },
   { value: "chet", display: "Chết" },
-  { value: "", display: "Chọn tất cả" },
+  { value: "", display: "Chưa xác định" },
 ];
 export const DanhSachDanToc = [
   { value: "kinh", display: "Kinh" },
   { value: "hoa", display: "Hoa" },
   { value: "khac", display: "Khác" },
-  { value: "", display: "Chọn tất cả" },
+  { value: "", display: "Chưa xác định" },
 ];
 export const DanhSachLyLuanChinhTri = [
   { value: "socap", display: "Sơ cấp" },
   { value: "trungcap", display: "Trung cấp" },
   { value: "caocap", display: "Cao cấp" },
-  { value: "", display: "Chọn tất cả" },
+  { value: "", display: "Chưa xác định" },
 ];
 export const DanhSachTinhTrangDangVien = [
   { value: "quanly", display: "Quản lí" },
   { value: "khongquanly", display: "Không còn quản lí" },
-  { value: "", display: "Chọn tất cả" },
+  { value: "", display: "Chưa xác định" },
 ];
 export const DanhSachXepLoai = [
   { value: "hoanthanhxuatsac", display: "Hoàn thành xuất sắc" },
   { value: "hoanthanhtot", display: "Hoàn thành tốt" },
   { value: "hoanthanh", display: "Hoàn thành" },
   { value: "khonghoanthanh", display: "Không hoàn thành" },
-  { value: "", display: "Chọn tất cả" },
+  { value: "", display: "Chưa xác định" },
 ];
 export const DangQuanLi = "dangquanli";
 export const QuanLy = "quanly";
@@ -85,7 +85,7 @@ export const DotTangHuyHieuDang = [
 export const DanhSachGioiTinh = [
   { value: "nam", display: "Nam" },
   { value: "nu", display: "Nữ" },
-  { value: "", display: "Chọn tất cả" },
+  { value: "", display: "Chưa xác định" },
 ];
 
 export enum GioiTinh {

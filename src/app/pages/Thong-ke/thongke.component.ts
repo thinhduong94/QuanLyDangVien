@@ -306,7 +306,7 @@ export class thongkeComponent implements OnInit {
       this.chibos = result;
       this.chibos.push({
         maChiBo:'',
-        tenChiBo:'Chọn tất cả'
+        tenChiBo:'Chưa xác định'
       })
     });
   }
