@@ -15,26 +15,16 @@
     </div>
     <div class="mat-elevation-z8" #epltable>
         <table mat-table [dataSource]="dataSource" matSort matTooltip="Kích vào mã số chi bộ để xem chi tiết">
-      
-          <!-- Position Column -->
-          <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Mã số </th>
-            <td mat-cell *matCellDef="let element" (click)="selectItem(element.id)" > {{element.id}} </td>
-          </ng-container>
-      
-          <!-- Name Column -->
           <ng-container matColumnDef="maChiBo">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Mã Số Chi Bộ </th>
             <td mat-cell *matCellDef="let element" (click)="selectItem(element.id)" > {{element.maChiBo}} </td>
           </ng-container>
       
-          <!-- Weight Column -->
           <ng-container matColumnDef="tenChiBo">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Tên Chi Bộ </th>
             <td mat-cell *matCellDef="let element" (click)="selectItem(element.id)"> {{element.tenChiBo}} </td>
           </ng-container>
       
-          <!-- Symbol Column -->
           <ng-container matColumnDef="ghiChu">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Ghi Chú </th>
             <td mat-cell *matCellDef="let element" (click)="selectItem(element.id)"> {{element.ghiChu}} </td>
