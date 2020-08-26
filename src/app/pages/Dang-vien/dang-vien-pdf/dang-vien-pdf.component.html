@@ -3,576 +3,577 @@
   <button mat-button mat-dialog-close (click)="backToDangVienForm()">Trở về phiếu đảng viên</button>
 </div>
 <div class="page-container">
-  <page id="page1" class="page">
-    <p class="page-title">ĐẢNG CỘNG SẢN VIỆT NAM</p>
-    <p class="code-title">Mẫu 2 -HSĐV</p>
-    <div class="flex">
-      <div style="width: 50%">
-        <div class="field-container">
-          <div class="full-width">
-            <span class="field field-title">ĐẢNG BỘ TỈNH<small>(tương
-                đương)</small>:</span><span class="field-data">{{dangvien.dangBoTinh}}</span>
+  <div id="page1">
+    <div class="page">
+      <p class="page-title">ĐẢNG CỘNG SẢN VIỆT NAM</p>
+      <p class="code-title">Mẫu 2 -HSĐV</p>
+      <div class="flex">
+        <div style="width: 50%">
+          <div class="field-container">
+            <div class="full-width">
+              <span class="field field-title">ĐẢNG BỘ TỈNH<small>(tương
+                  đương)</small>:</span><span class="field-data">{{dangvien.dangBoTinh}}</span>
+            </div>
+          </div>
+          <div class="field-container">
+            <div class="full-width">
+              <span class="field field-title">ĐẢNG BỘ HUYỆN:<small>(tương
+                  đương)</small>:</span><span class="field-data">{{dangvien.dangBoHuyen}}</span>
+            </div>
+          </div>
+          <div class="field-container">
+            <div class="full-width">
+              <span class="field field-title">ĐẢNG BỘ, CHI BỘ CƠ SỞ:</span><span
+                class="field-data">{{dangvien.chiBoCoSo}}</span>
+            </div>
+          </div>
+          <div class="field-container">
+            <div class="full-width">
+              <span class="field field-title">ĐẢNG BỘ BỘ PHẬN:</span><span class="field-data">{{dangvien.boPhan}}</span>
+            </div>
+          </div>
+          <div class="field-container">
+            <div class="full-width">
+              <span class="field field-title">CHI BỘ:</span><span class="field-data">{{dangvien.chiBo}}</span>
+            </div>
           </div>
         </div>
-        <div class="field-container">
-          <div class="full-width">
-            <span class="field field-title">ĐẢNG BỘ HUYỆN:<small>(tương
-                đương)</small>:</span><span class="field-data">{{dangvien.dangBoHuyen}}</span>
-          </div>
-        </div>
-        <div class="field-container">
-          <div class="full-width">
-            <span class="field field-title">ĐẢNG BỘ, CHI BỘ CƠ SỞ:</span><span
-              class="field-data">{{dangvien.chiBoCoSo}}</span>
-          </div>
-        </div>
-        <div class="field-container">
-          <div class="full-width">
-            <span class="field field-title">ĐẢNG BỘ BỘ PHẬN:</span><span class="field-data">{{dangvien.boPhan}}</span>
-          </div>
-        </div>
-        <div class="field-container">
-          <div class="full-width">
-            <span class="field field-title">CHI BỘ:</span><span class="field-data">{{dangvien.chiBo}}</span>
-          </div>
-        </div>
-      </div>
 
-      <div class="top-right-section">
-        <p class="field pl">SỐ LÝ LỊCH:
-          <span class="ly-lich">
-            <span class="square" *ngFor="let lyLichleft of lyLichArrLeft">{{lyLichleft}}</span>
-            <span class="square-section">
-              <span class="square" *ngFor="let lyLichRight of lyLichArrRight">{{lyLichRight}}</span>
+        <div class="top-right-section">
+          <p class="field pl">SỐ LÝ LỊCH:
+            <span class="ly-lich">
+              <span class="square" *ngFor="let lyLichleft of lyLichArrLeft">{{lyLichleft}}</span>
+              <span class="square-section">
+                <span class="square" *ngFor="let lyLichRight of lyLichArrRight">{{lyLichRight}}</span>
+              </span>
             </span>
-          </span>
-        </p>
-        <p class="field pl">SỐ THẺ ĐẢNG VIÊN:
-          <span class="the-dang-vien">
-            <span class="square" *ngFor="let dvLeft of theDangVienLeft">{{dvLeft}}</span>
-            <span class="square-section">
-              <span class="square" *ngFor="let dvRight of theDangVienRight">{{dvRight}}</span>
+          </p>
+          <p class="field pl">SỐ THẺ ĐẢNG VIÊN:
+            <span class="the-dang-vien">
+              <span class="square" *ngFor="let dvLeft of theDangVienLeft">{{dvLeft}}</span>
+              <span class="square-section">
+                <span class="square" *ngFor="let dvRight of theDangVienRight">{{dvRight}}</span>
+              </span>
             </span>
-          </span>
-        </p>
+          </p>
 
-        <div class="flex">
-          <div class="page-name">
-            PHIẾU
-            ĐẢNG VIÊN
+          <div class="flex">
+            <div class="page-name">
+              PHIẾU
+              ĐẢNG VIÊN
+            </div>
+            <div *ngIf="!imgBase64" class="image-section">
+              <p>Ảnh 3x4</p>
+            </div>
+            <img *ngIf="imgBase64" class="image-size" [src]="imgBase64">
           </div>
-          <div *ngIf="!imgBase64" class="image-section">
-            <p>Ảnh 3x4</p>
-          </div>
-          <img *ngIf="imgBase64" class="image-size" [src]="imgBase64">
+        </div>
+      </div>
+      <div class="field-container">
+        <div style="width:70%">
+          <span class="field field-title">01) Họ và tên đang
+            dùng:</span><span class="field-data">{{dangvien.tenDangDung}}</span>
+        </div>
+        <div class="field" style="width:30%">
+          <span class="field field-title">
+            02) Nam, nữ:
+          </span> <span class="field-data">{{dangvien.gioiTinh}}</span></div>
+      </div>
+      <div class="field-container">
+        <div style="width:70%">
+          <span class="field field-title">03) Họ và tên khai sinh</span><span
+            class="field-data">{{dangvien.tenKhaiSinh}}</span>
+        </div>
+        <div class="field" style="width:30%">
+          <span class="field field-title"> 04) Sinh ngày</span> <span class="field-data">{{dangvien.ngaySinh}}</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div class="full-width">
+          <span class="field field-title">05) Nơi sinh</span><span class="field-data">{{dangvien.noiSinh}}</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div class="full-width">
+          <span class="field field-title">06) Quê quán</span><span class="field-data">{{dangvien.queQuan}}</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div class="full-width">
+          <span class="field field-title">07) Thường trú</span><span class="field-data">{{dangvien.thuongTru}}</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div class="full-width pl">
+          <span class="field field-title">Tạm trú</span><span class="field-data">{{dangvien.tamTru}}</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div style="width:50%">
+          <span class="field field-title">08) Dân tộc:</span><span class="field-data">{{dangvien.danToc}}</span>
+        </div>
+        <div class="field" style="width:50%">
+          <span class="field field-title">09) Tôn giáo</span> <span class="field-data">{{dangvien.tonGiao}}</span></div>
+      </div>
+      <div class="field-container">
+        <div style="width:50%">
+          <span class="field field-title">10) Thành phần gia đình:</span><span
+            class="field-data">{{dangvien.thanhPhanGiaDinh}}</span>
+        </div>
+        <div class="field" style="width:50%">
+          <span class="field field-title">11) Nghề nghiệp hiện nay:</span> <span
+            class="field-data">{{dangvien.ngheNghiep}}</span></div>
+      </div>
+      <div class="field-container">
+        <div style="width:30%">
+          <span class="field field-title">12) Ngày vào đảng:</span>
+          <span class="field-data">{{dangvien.ngayVaoDang}}</span>
+        </div>
+        <div class="field" style="width:70%">
+          <span class="field field-title">Tại chi bộ:
+          </span> <span class="field-data">{{dangvien.chiBoVaoDang}}</span></div>
+      </div>
+      <div class="field-container">
+        <div style="width:40%;" class="pl">
+          <span class="field field-title"> Người giới thiệu 1:</span><span
+            class="field-data">{{dangvien.nguoiGioiThieuMot}}</span>
+        </div>
+        <div class="field" style="width:60%">
+          <span class="field field-title"> Chức vụ, đơn vị:</span><span
+            class="field-data">{{dangvien.chucVuNguoiGioiThieuMot}}</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div style="width:40%;" class="pl">
+          <span class="field field-title"> Người giới thiệu 2:</span><span
+            class="field-data">{{dangvien.nguoiGioiThieuHai}}</span>
+        </div>
+        <div class="field" style="width:60%">
+          <span class="field field-title"> Chức vụ, đơn vị:</span>
+          <span class="field-data">{{dangvien.chucVuNguoiGioiThieuHai}}</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div class="pl" style="width:70%;">
+          <span class="field field-title"> Ngày cấp có thẩm quyền ra quyết định kết nạp</span><span
+            class="field-data">{{dangvien.ngayQuyetDinhKetNap}}</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div style="width:40%;" class="pl">
+          <span class="field field-title">Ngày chính thức:</span><span
+            class="field-data">{{dangvien.ngayChinhThucVaoDang}}</span>
+        </div>
+        <div class="field" style="width:60%">
+          <span class="field field-title">Tại chi bộ:</span><span class="field-data">{{dangvien.chiBoChinhThucVaoDang}}
+          </span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div style="width:40%">
+          <span class="field field-title">13) Ngày được tuyển dụng:</span>
+          <span class="field-data">{{dangvien.ngayDuocTuyen}}</span>
+        </div>
+        <div class="field" style="width:60%">
+          <span class="field field-title">Cơ quan tuyển dụng
+          </span> <span class="field-data">{{dangvien.coQuanTuyenDung}}</span></div>
+      </div>
+      <div class="field-container">
+        <div class="full-width">
+          <span class="field field-title">14) Ngày vào đoàn TNCS Hồ Chí Minh:</span>
+          <span class="field-data">{{dangvien.ngayVaoDoan}}</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div class="full-width">
+          <span class="field field-title">15) Tham gia các tổ chức xã hội khác:</span>
+          <span class="field-data">{{dangvien.thamGiaToChucXaHoi}}</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div style="width:40%">
+          <span class="field field-title">16) Ngày nhập ngũ:</span>
+          <span class="field-data">{{dangvien.ngayNhapNgu}}</span>
+        </div>
+        <div class="field" style="width:60%">
+          <span class="field field-title">Ngày xuất ngũ/ chuyển ngành
+          </span> <span class="field-data">{{dangvien.ngayXuatNgu}} </span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div class="full-width">
+          <span class="field field-title">17) Trình độ hiện nay:</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div style="width:40%;" class="pl">
+          <span class="field field-title"> - Giáo dục phổ thông</span><span
+            class="field-data">{{dangvien.giaoDucPhoThong}}</span>
+        </div>
+        <div class="field" style="width:60%">
+          <span class="field field-title"> - Giáo dục nghề nghiệp</span>
+          <span class="field-data">{{dangvien.giaoDucNgheNghiep}}</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div class="full-width pl">
+          <span class="field field-title">- Giáo dục đại học và sau đại học:</span>
+          <span class="field-data">{{dangvien.giaoDucDaiHocVaSauDaiHoc}}</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div style="width:40%;" class="pl">
+          <span class="field field-title"> - Học vị:</span>
+          <span class="field-data">{{dangvien.hocVi}}</span>
+        </div>
+        <div class="field" style="width:60%">
+          <span class="field field-title"> - Học hàm:</span>
+          <span class="field-data">{{dangvien.hocHam}}</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div style="width:40%;" class="pl">
+          <span class="field field-title"> - Lý luân chính trị:</span>
+          <span class="field-data">{{dangvien.lyLuanChinhTri}}</span>
+        </div>
+        <div class="field" style="width:60%">
+          <span class="field field-title"> - Ngoại ngữ:</span>
+          <span class="field-data">{{dangvien.ngoaiNgu}}</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div class="full-width pl">
+          <span class="field field-title">- Tin học:</span>
+          <span class="field-data">{{dangvien.tinHoc}}</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div style="width:50%">
+          <span class="field field-title">18) Tình trạng sức khỏe bản thân:</span><span
+            class="field-data">{{dangvien.tinhTrangSucKhoe}}</span>
+        </div>
+        <div class="field" style="width:50%">
+          <span class="field field-title"> -Thương binh loại
+          </span> <span class="field-data">{{dangvien.thuongBinhLoai}}</span></div>
+      </div>
+      <div class="field-container">
+        <div style="width:50%">
+          <span class="field field-title">- Gia đình liệt sỹ</span><input type="checkbox"
+            [checked]='dangvien.giaDinhLietSi' onclick="return false;" />
+        </div>
+        <div class="field" style="width:50%">
+          <span class="field field-title">- Gia đình có công với CM
+          </span> <input type="checkbox" [checked]='dangvien.giaDinhCoCongCachMang' onclick="return false;" /></div>
+      </div>
+      <div class="field-container">
+        <div style="width:50%">
+          <span class="field field-title">19) Số chứng minh ND:</span>
+          <span class="field-data">{{dangvien.soCmnd}}</span>
+        </div>
+        <div class="field" style="width:50%">
+          <span class="field field-title">20) Được miễn công tác và SHD ngày:
+          </span> <span class="field-data">{{dangvien.mienCongTacNgay}}</span></div>
+      </div>
+      <div class="field-container">
+        <div style="width:50%">
+          <span class="field field-title">(hoặc số căn cước công dân)</span><span
+            class="field-data">{{dangvien.canCuocCongDan}}</span>
         </div>
       </div>
     </div>
-    <div class="field-container">
-      <div style="width:70%">
-        <span class="field field-title">01) Họ và tên đang
-          dùng:</span><span class="field-data">{{dangvien.tenDangDung}}</span>
-      </div>
-      <div class="field" style="width:30%">
-        <span class="field field-title">
-          02) Nam, nữ:
-        </span> <span class="field-data">{{dangvien.gioiTinh}}</span></div>
-    </div>
-    <div class="field-container">
-      <div style="width:70%">
-        <span class="field field-title">03) Họ và tên khai sinh</span><span
-          class="field-data">{{dangvien.tenKhaiSinh}}</span>
-      </div>
-      <div class="field" style="width:30%">
-        <span class="field field-title"> 04) Sinh ngày</span> <span class="field-data">{{dangvien.ngaySinh}}</span>
+    <div class="page">
+      <p class="header">21)TÓM TẮT QUÁ TRÌNH HOẠT ĐỘNG VÀ CÔNG TÁC</p>
+      <div class="field-container" style="display: block;">
+        <table>
+          <tr>
+            <th>Từ tháng,năm đến tháng năm</th>
+            <th>Làm gì, chức vụ, đơn vị công tác<i>(Đảng, chính quyền, đoàn thể, kinh tế, văn hóa, xã hội ...)</i></th>
+          </tr>
+        </table>
+        <pre style="height: 1045px;" class="txt-area">{{dangvien.quaTrinhHoatDongVaCongTac}}</pre>
       </div>
     </div>
-    <div class="field-container">
-      <div class="full-width">
-        <span class="field field-title">05) Nơi sinh</span><span class="field-data">{{dangvien.noiSinh}}</span>
+    <div class="page">
+      <p class="header">22) ĐÀO TẠO, BỒI DƯỠNG VỀ CHUYÊN MÔN, NGHIỆP VỤ, LÝ LUẬN CHÍNH TRỊ,NGOẠI
+        NGỮ</p>
+      <div class="field-container" style="display: block;">
+        <table>
+          <tr>
+            <th>Tên trường</th>
+            <th>Ngành học hoặc tên lớp học</th>
+            <th>Từ tháng/năm đến tháng/năm</th>
+            <th>Hình thức học</th>
+            <th>Văn bằng, chứng chỉ, trình độ gì</th>
+          </tr>
+        </table>
+        <pre style="height: 200px;" class="txt-area">{{dangvien.daoTao}}</pre>
+      </div>
+      <div class="field-container">
+        <div class="full-width">
+          <span class="field field-title">23) Khen thưởng</span><span
+            class="field-data multi-row-span">{{dangvien.khenThuong}}</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div class="full-width">
+          <span class="field field-title">24) đã được tặng huy hiệu đảng:</span>
+          <input type="checkbox" [checked]="this.dangvien.huyHieu === '30'" onclick="return false;">
+          <label>30 năm</label>
+          <input type="checkbox" [checked]="this.dangvien.huyHieu === '40'" onclick="return false;">
+          <label>40 năm</label>
+          <input type="checkbox" [checked]="this.dangvien.huyHieu === '45'" onclick="return false;">
+          <label>45 năm</label>
+          <input type="checkbox" [checked]="this.dangvien.huyHieu === '50'" onclick="return false;">
+          <label>50 năm</label>
+          <input type="checkbox" [checked]="this.dangvien.huyHieu === '55'" onclick="return false;">
+          <label>55 năm</label>
+          <input type="checkbox" [checked]="this.dangvien.huyHieu === '60'" onclick="return false;">
+          <label>60 năm</label>
+          <input type="checkbox" [checked]="this.dangvien.huyHieu === '65'" onclick="return false;">
+          <label>65 năm</label>
+          <input type="checkbox" [checked]="this.dangvien.huyHieu === '70'" onclick="return false;">
+          <label>70 năm</label>
+          <input type="checkbox" [checked]="this.dangvien.huyHieu === '75'" onclick="return false;">
+          <label>75 năm</label>
+          <input type="checkbox" [checked]="this.dangvien.huyHieu === '80'" onclick="return false;">
+          <label>80 năm</label>
+          <input type="checkbox" [checked]="this.dangvien.huyHieu === '85'" onclick="return false;">
+          <label>85 năm</label>
+          <input type="checkbox" [checked]="this.dangvien.huyHieu === '90'" onclick="return false;">
+          <label>90 năm</label>
+        </div>
+      </div>
+      <div class="field-container">
+        <div class="full-width">
+          <span class="field field-title">25) Danh hiệu được phong<small><i>(chiến sĩ thi đua; anh hùng "LL vũ trang,
+                lao
+                động"; nhà giáo; nghệ sĩ; thầy thuốc "nhân dân ưu tú")</i></small></span>
+          <span class="field-data multi-row-span">{{dangvien.danhHieu}}</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div class="full-width">
+          <span class="field field-title">26) Kỷ luật<small><i>(Đảng, chính quyền, pháp luật)</i></small></span><span
+            class="field-data">{{dangvien.kyLuat}}</span>
+        </div>
+      </div>
+      <p class="header">27) ĐẶC ĐIỂM LỊCH SỬ BẢN THÂN</p>
+      <div class="field-container">
+        <div class="full-width">
+          <span class="field field-title">a) Bị xóa tên trong danh sách đảng viên</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div style="width:49%">
+          <span class="field field-title">Thời gian</span>
+          <span class="field-data">{{dangvien.thoiGianBiXoa}}</span>
+        </div>
+        <div class="field" style="width:49%">
+          <span class="field field-title">Tại chi bộ</span>
+          <span class="field-data">{{dangvien.chiBoBiXoa}}</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div class="full-width">
+          <span class="field field-title">b) Được kết nạp lại vào Đảng</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div style="width:49%">
+          <span class="field field-title">- Ngày vào đảng lần thứ hai</span>
+          <span class="field-data">{{dangvien.ngayVaoDangLanHai}}</span>
+        </div>
+        <div class="field" style="width:49%">
+          <span class="field field-title">Tại chi bộ</span>
+          <span class="field-data">{{dangvien.chiBoVaoDangLanHai}}</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div style="width:49%">
+          <span class="field field-title">Người giới thiệu 1</span><span
+            class="field-data">{{dangvien.nguoiGioiThieuMotLanHai}}</span>
+        </div>
+        <div class="field" style="width:49%">
+          <span class="field field-title">Chức vụ, đơn vị</span> <span class="field-data">
+            {{dangvien.chucVuNguoiGioiThieuMotLanHai}}</span></div>
+      </div>
+      <div class="field-container">
+        <div style="width:49%">
+          <span class="field field-title">Người giới thiệu 2</span><span
+            class="field-data">{{dangvien.nguoiGioiThieuHaiLanHai}}</span>
+        </div>
+        <div class="field" style="width:49%">
+          <span class="field field-title">Chức vụ, đơn vị</span> <span
+            class="field-data">{{dangvien.chucVuNguoiGioiThieuHaiLanHai}} </span></div>
+      </div>
+      <div class="field-container">
+        <div style="width:49%">
+          <span class="field field-title">- Ngày chính thức lần thứ hai</span>
+          <span class="field-data">{{dangvien.ngayChinhThucVaoLanHai}}</span>
+        </div>
+        <div class="field" style="width:49%">
+          <span class="field field-title">Tại chi bộ</span>
+          <span class="field-data">{{dangvien.chiBoChinhThucVaoDangLanHai}}</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div style="width:49%">
+          <span class="field field-title">c) Ngày được khôi phục đảng tịch:</span>
+          <span class="field-data">{{dangvien.ngayKhoiPhucDang}}</span>
+        </div>
+        <div class="field" style="width:49%">
+          <span class="field field-title">Tại chi bộ</span>
+          <span class="field-data"> </span></div>
+      </div>
+      <div class="field-container">
+        <div class="full-width">
+          <span class="field field-title">d) Bị xử lý theo pháp luật <small><i>(ngày, tháng, năm; chính quyền nào xử
+                lý; hình thức xử lý; nơi thi hành án ...)</i></small>:</span>
+          <span class="field-data multi-row-span">{{dangvien.biXuLyTheoPhapLuat}}</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div class="full-width">
+          <span class="field field-title">d) Bản thân có làm việc trong chế độ cũ <small><i>(ngày, tháng, năm; chức vụ;
+                nơi
+                làm việc ...)</i></small>:</span>
+          <span class="field-data multi-row-span">{{dangvien.lamViecTrongCheDoCu}}</span>
+        </div>
+      </div>
+      <p class="header">28) QUAN HỆ VỚI NƯỚC NGOÀI</p>
+      <div class="field-container">
+        <div class="full-width">
+          <span class="field field-title">a) Đã đi nước ngoài<small><i>(nước nào, lý do, thời gian ra ngoài
+                ...)</i></small>:</span>
+          <span class="field-data multi-row-span">{{dangvien.daDiNuocNgoai}}</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div class="full-width">
+          <span class="field field-title">b) Tham gia hoặc có quan hệ với các tổ chức chính trị, kinh tế, xã hội nào ở
+            nước
+            ngoài<small></small>:</span>
+          <span class="field-data multi-row-span">{{dangvien.thamGiaToChucNuocNgoai}}</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div class="full-width">
+          <span class="field field-title">c) Có người thân ở nước ngoài<small><i>(tên người, quan hệ gì, ở nước nào
+                ...)</i></small>:</span>
+          <span class="field-data multi-row-span">{{dangvien.coNguoiThanNuocNgoai}}</span>
+        </div>
       </div>
     </div>
-    <div class="field-container">
-      <div class="full-width">
-        <span class="field field-title">06) Quê quán</span><span class="field-data">{{dangvien.queQuan}}</span>
+    <div class="page">
+      <p class="header">29) QUAN HỆ GIA ĐÌNH
+        cha,mẹ đẻ;cha, mẹ vợ(chồng);các con;anh chị em ruột
+      </p>
+      <div class="field-container" style="display: block;" >
+        <table>
+          <tr>
+            <th>Quan hệ</th>
+            <th>HỌ VÀ TÊN</th>
+            <th>Năm sinh</th>
+            <th>Quê quán, nơi ở hiện nay<small><i>(trong, ngoài nước)</i></small>,nghề nghiệp, chức danh, chức vụ, đơn
+              vị
+              công
+              tác</th>
+          </tr>
+        </table>
+        <pre style="height: 550px;" class="txt-area">{{dangvien.quanHeGiaDinh}}</pre>
+      </div>
+      <p class="header">30) HOÀN CẢNH KINH TẾ CỦA BẢN THÂN VÀ GIA ĐÌNH</p>
+      <div class="field-container">
+        <div style="width:60%" class="relative">
+          <span class="field field-title">Tổng thu nhập của hộ gia đình<small><i>(trong 1 năm)</i></small></span>
+          <span class="field-data">{{dangvien.tongThuNhap}}</span>
+        </div>đồng,
+        <div class="field" style="width:40%">
+          <span class="field field-title">Bình quân 1 người/hộ</span>
+          <span class="field-data">{{dangvien.binhQuan}}</span>
+        </div>đồng
+      </div>
+      <div class="field-container">
+        <div style="width:60%">
+          <span class="field field-title">- Nhà ở: +Được cấp, được thuê, loại nhà</span>
+          <span class="field-data">{{dangvien.loaiNhaDuocCap}}</span>,
+        </div>
+        <div class="field" style="width:40%" class="relative">
+          <span class="field field-title">Tổng diện tích sử dụng</span>
+          <span class="field-data">{{dangvien.dienTichNhaDuocCap}}</span>
+        </div>m2
+      </div>
+      <div class="field-container">
+        <div style="width:60%">
+          <span class="field field-title">- Nhà tự mua, tự xây, loại nhà</span>
+          <span class="field-data">{{dangvien.loaiNhaDuocMua}}</span>
+        </div>
+        <div class="field" style="width:40%" class="relative">
+          <span class="field field-title">Tổng diện tích sử dụng</span>
+          <span class="field-data">{{dangvien.dienTichNhaDuocMua}}</span>
+        </div>m2
+      </div>
+      <div class="field-container">
+        <div style="width:60%" class="relative">
+          <span class="field field-title">- Đất ở: + Đất được cấp:</span>
+          <span class="field-data">{{dangvien.datDuocCap}}</span>
+        </div>m2
+        <div class="field" style="width:40%">
+          <span class="field field-title">+ Đất tự mua</span>
+          <span class="field-data">{{dangvien.datDuocMua}}</span></div>m2
+      </div>
+      <div class="field-container">
+        <div class="full-width">
+          <span class="field field-title">- Hoạt động kinh tế</span>
+          <span class="field-data">{{dangvien.hoatDongKinhTe}}</span>
+        </div>
+      </div>
+      <div class="field-container">
+        <div style="width:60%">
+          <span class="field field-title">Diện tích đất kinh doanh trang trại</span>
+          <span class="field-data">{{dangvien.dienTichDatTrangTrai}}</span>
+        </div>ha
+        <div class="field" style="width:40%">
+          <span class="field field-title">Số lao động thuê mướn</span>
+          <span class="field-data">{{dangvien.soLaoDongThue}}</span>
+        </div>người
+      </div>
+      <div class="field-container">
+        <div style="width:70%">
+          <span class="field field-title">Những tài sản có giá trị<small><i>(50 triệu đồng trở lên):</i></small>Tài
+            sản:</span>
+          <span class="field-data">{{dangvien.taiSanCoGiaTri}}</span>
+        </div>
+        <div class="field" style="width:30%">
+          <span class="field field-title">Giá trị</span>
+          <span class="field-data">{{dangvien.giaTriTaiSan}}</span></div>đồng
+      </div>
+      <div class="field-container">
+        <div class="field" class="full-width">
+          <span class="field-data"> </span></div>
+      </div>
+      <pre style="width:100%;text-align:right;font-size: 11px;padding: 5px 15px;">
+        ..........ngày,.....tháng......năm.........
+      </pre>
+      <div class="field-container">
+        <div class="footer">
+          <p class="footer-title">NGƯỜI KHAI</p>
+          <p>Tôi xin cam đoan những lời khai trên đây đúng sự thật</p>
+          <pre>Ngày.....tháng.....năm</pre>
+          <p><i>(Ký, ghi rõ họ tên)</i></p>
+        </div>
+        <div class="mid-footer">
+          <p class="footer-title">XÁC NHẬN CỦA CHI ỦY CHI BỘ</p>
+          <div class="full-width"><span class="field-data"> </span></div>
+          <div class="full-width"><span class="field-data"> </span></div>
+          <pre>Ngày.....tháng.....năm</pre>
+          <p><i>(Chức vụ, ghi rõ họ tên)</i></p>
+        </div>
+        <div class="footer">
+          <p class="footer-title">XÁC NHẬN CỦA CẤP ỦY CƠ SỞ</p>
+          <p><i>(Chức vụ, đóng dấu, ghi rõ họ tên)</i></p>
+        </div>
       </div>
     </div>
-    <div class="field-container">
-      <div class="full-width">
-        <span class="field field-title">07) Thường trú</span><span class="field-data">{{dangvien.thuongTru}}</span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div class="full-width pl">
-        <span class="field field-title">Tạm trú</span><span class="field-data">{{dangvien.tamTru}}</span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div style="width:50%">
-        <span class="field field-title">08) Dân tộc:</span><span class="field-data">{{dangvien.danToc}}</span>
-      </div>
-      <div class="field" style="width:50%">
-        <span class="field field-title">09) Tôn giáo</span> <span class="field-data">{{dangvien.tonGiao}}</span></div>
-    </div>
-    <div class="field-container">
-      <div style="width:50%">
-        <span class="field field-title">10) Thành phần gia đình:</span><span
-          class="field-data">{{dangvien.thanhPhanGiaDinh}}</span>
-      </div>
-      <div class="field" style="width:50%">
-        <span class="field field-title">11) Nghề nghiệp hiện nay:</span> <span
-          class="field-data">{{dangvien.ngheNghiep}}</span></div>
-    </div>
-    <div class="field-container">
-      <div style="width:30%">
-        <span class="field field-title">12) Ngày vào đảng:</span>
-        <span class="field-data">{{dangvien.ngayVaoDang}}</span>
-      </div>
-      <div class="field" style="width:70%">
-        <span class="field field-title">Tại chi bộ:
-        </span> <span class="field-data">{{dangvien.chiBoVaoDang}}</span></div>
-    </div>
-    <div class="field-container">
-      <div style="width:40%;" class="pl">
-        <span class="field field-title"> Người giới thiệu 1:</span><span
-          class="field-data">{{dangvien.nguoiGioiThieuMot}}</span>
-      </div>
-      <div class="field" style="width:60%">
-        <span class="field field-title"> Chức vụ, đơn vị:</span><span
-          class="field-data">{{dangvien.chucVuNguoiGioiThieuMot}}</span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div style="width:40%;" class="pl">
-        <span class="field field-title"> Người giới thiệu 2:</span><span
-          class="field-data">{{dangvien.nguoiGioiThieuHai}}</span>
-      </div>
-      <div class="field" style="width:60%">
-        <span class="field field-title"> Chức vụ, đơn vị:</span>
-        <span class="field-data">{{dangvien.chucVuNguoiGioiThieuHai}}</span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div class="pl" style="width:70%;">
-        <span class="field field-title"> Ngày cấp có thẩm quyền ra quyết định kết nạp</span><span
-          class="field-data">{{dangvien.ngayQuyetDinhKetNap}}</span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div style="width:40%;" class="pl">
-        <span class="field field-title">Ngày chính thức:</span><span
-          class="field-data">{{dangvien.ngayChinhThucVaoDang}}</span>
-      </div>
-      <div class="field" style="width:60%">
-        <span class="field field-title">Tại chi bộ:</span><span class="field-data">{{dangvien.chiBoChinhThucVaoDang}}
-        </span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div style="width:40%">
-        <span class="field field-title">13) Ngày được tuyển dụng:</span>
-        <span class="field-data">{{dangvien.ngayDuocTuyen}}</span>
-      </div>
-      <div class="field" style="width:60%">
-        <span class="field field-title">Cơ quan tuyển dụng
-        </span> <span class="field-data">{{dangvien.coQuanTuyenDung}}</span></div>
-    </div>
-    <div class="field-container">
-      <div class="full-width">
-        <span class="field field-title">14) Ngày vào đoàn TNCS Hồ Chí Minh:</span>
-        <span class="field-data">{{dangvien.ngayVaoDoan}}</span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div class="full-width">
-        <span class="field field-title">15) Tham gia các tổ chức xã hội khác:</span>
-        <span class="field-data">{{dangvien.thamGiaToChucXaHoi}}</span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div style="width:40%">
-        <span class="field field-title">16) Ngày nhập ngũ:</span>
-        <span class="field-data">{{dangvien.ngayNhapNgu}}</span>
-      </div>
-      <div class="field" style="width:60%">
-        <span class="field field-title">Ngày xuất ngũ/ chuyển ngành
-        </span> <span class="field-data">{{dangvien.ngayXuatNgu}} </span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div class="full-width">
-        <span class="field field-title">17) Trình độ hiện nay:</span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div style="width:40%;" class="pl">
-        <span class="field field-title"> - Giáo dục phổ thông</span><span
-          class="field-data">{{dangvien.giaoDucPhoThong}}</span>
-      </div>
-      <div class="field" style="width:60%">
-        <span class="field field-title"> - Giáo dục nghề nghiệp</span>
-        <span class="field-data">{{dangvien.giaoDucNgheNghiep}}</span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div class="full-width pl">
-        <span class="field field-title">- Giáo dục đại học và sau đại học:</span>
-        <span class="field-data">{{dangvien.giaoDucDaiHocVaSauDaiHoc}}</span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div style="width:40%;" class="pl">
-        <span class="field field-title"> - Học vị:</span>
-        <span class="field-data">{{dangvien.hocVi}}</span>
-      </div>
-      <div class="field" style="width:60%">
-        <span class="field field-title"> - Học hàm:</span>
-        <span class="field-data">{{dangvien.hocHam}}</span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div style="width:40%;" class="pl">
-        <span class="field field-title"> - Lý luân chính trị:</span>
-        <span class="field-data">{{dangvien.lyLuanChinhTri}}</span>
-      </div>
-      <div class="field" style="width:60%">
-        <span class="field field-title"> - Ngoại ngữ:</span>
-        <span class="field-data">{{dangvien.ngoaiNgu}}</span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div class="full-width pl">
-        <span class="field field-title">- Tin học:</span>
-        <span class="field-data">{{dangvien.tinHoc}}</span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div style="width:50%">
-        <span class="field field-title">18) Tình trạng sức khỏe bản thân:</span><span
-          class="field-data">{{dangvien.tinhTrangSucKhoe}}</span>
-      </div>
-      <div class="field" style="width:50%">
-        <span class="field field-title"> -Thương binh loại
-        </span> <span class="field-data">{{dangvien.thuongBinhLoai}}</span></div>
-    </div>
-    <div class="field-container">
-      <div style="width:50%">
-        <span class="field field-title">- Gia đình liệt sỹ</span><input type="checkbox"
-          [checked]='dangvien.giaDinhLietSi' onclick="return false;" />
-      </div>
-      <div class="field" style="width:50%">
-        <span class="field field-title">- Gia đình có công với CM
-        </span> <input type="checkbox" [checked]='dangvien.giaDinhCoCongCachMang' onclick="return false;" /></div>
-    </div>
-    <div class="field-container">
-      <div style="width:50%">
-        <span class="field field-title">19) Số chứng minh ND:</span>
-        <span class="field-data">{{dangvien.soCmnd}}</span>
-      </div>
-      <div class="field" style="width:50%">
-        <span class="field field-title">20) Được miễn công tác và SHD ngày:
-        </span> <span class="field-data">{{dangvien.mienCongTacNgay}}</span></div>
-    </div>
-    <div class="field-container">
-      <div style="width:50%">
-        <span class="field field-title">(hoặc số căn cước công dân)</span><span
-          class="field-data">{{dangvien.canCuocCongDan}}</span>
-      </div>
-    </div>
-
-    <p class="header" style="margin-top:30px">21)TÓM TẮT QUÁ TRÌNH HOẠT ĐỘNG VÀ CÔNG TÁC</p>
-    <div class="field-container">
-      <table>
-        <tr>
-          <th>Từ tháng,năm đến tháng năm</th>
-          <th>Làm gì, chức vụ, đơn vị công tác<i>(Đảng, chính quyền, đoàn thể, kinh tế, văn hóa, xã hội ...)</i></th>
-        </tr>
-        <tr style="height: 1045px;">
-          <td colspan="2"><textarea class="txt-area" readonly>{{dangvien.quaTrinhHoatDongVaCongTac}}</textarea></td>
-        </tr>
-      </table>
-    </div>
-
-    <p class="header" style="margin-top: 10px;">22) ĐÀO TẠO, BỒI DƯỠNG VỀ CHUYÊN MÔN, NGHIỆP VỤ, LÝ LUẬN CHÍNH TRỊ,NGOẠI
-      NGỮ</p>
-    <div class="field-container">
-      <table>
-        <tr>
-          <th>Tên trường</th>
-          <th>Ngành học hoặc tên lớp học</th>
-          <th>Từ tháng/năm đến tháng/năm</th>
-          <th>Hình thức học</th>
-          <th>Văn bằng, chứng chỉ, trình độ gì</th>
-        </tr>
-        <tr style="height: 200px;">
-          <td colspan="5"><textarea class="txt-area" readonly>{{dangvien.daoTao}}</textarea></td>
-        </tr>
-      </table>
-    </div>
-    <div class="field-container">
-      <div class="full-width">
-        <span class="field field-title">23) Khen thưởng</span><span
-          class="field-data multi-row-span">{{dangvien.khenThuong}}</span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div class="full-width">
-        <span class="field field-title">24) đã được tặng huy hiệu đảng:</span>
-        <input type="checkbox" [checked]="this.dangvien.huyHieu === '30'" onclick="return false;">
-        <label>30 năm</label>
-        <input type="checkbox" [checked]="this.dangvien.huyHieu === '40'" onclick="return false;">
-        <label>40 năm</label>
-        <input type="checkbox" [checked]="this.dangvien.huyHieu === '45'" onclick="return false;">
-        <label>45 năm</label>
-        <input type="checkbox" [checked]="this.dangvien.huyHieu === '50'" onclick="return false;">
-        <label>50 năm</label>
-        <input type="checkbox" [checked]="this.dangvien.huyHieu === '55'" onclick="return false;">
-        <label>55 năm</label>
-        <input type="checkbox" [checked]="this.dangvien.huyHieu === '60'" onclick="return false;">
-        <label>60 năm</label>
-        <input type="checkbox" [checked]="this.dangvien.huyHieu === '65'" onclick="return false;">
-        <label>65 năm</label>
-        <input type="checkbox" [checked]="this.dangvien.huyHieu === '70'" onclick="return false;">
-        <label>70 năm</label>
-        <input type="checkbox" [checked]="this.dangvien.huyHieu === '75'" onclick="return false;">
-        <label>75 năm</label>
-        <input type="checkbox" [checked]="this.dangvien.huyHieu === '80'" onclick="return false;">
-        <label>80 năm</label>
-        <input type="checkbox" [checked]="this.dangvien.huyHieu === '85'" onclick="return false;">
-        <label>85 năm</label>
-        <input type="checkbox" [checked]="this.dangvien.huyHieu === '90'" onclick="return false;">
-        <label>90 năm</label>
-      </div>
-    </div>
-    <div class="field-container">
-      <div class="full-width">
-        <span class="field field-title">25) Danh hiệu được phong<small><i>(chiến sĩ thi đua; anh hùng "LL vũ trang, lao
-              động"; nhà giáo; nghệ sĩ; thầy thuốc "nhân dân ưu tú")</i></small></span>
-        <span class="field-data multi-row-span">{{dangvien.danhHieu}}</span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div class="full-width">
-        <span class="field field-title">26) Kỷ luật<small><i>(Đảng, chính quyền, pháp luật)</i></small></span><span
-          class="field-data">{{dangvien.kyLuat}}</span>
-      </div>
-    </div>
-    <p class="header">27) ĐẶC ĐIỂM LỊCH SỬ BẢN THÂN</p>
-    <div class="field-container">
-      <div class="full-width">
-        <span class="field field-title">a) Bị xóa tên trong danh sách đảng viên</span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div style="width:49%">
-        <span class="field field-title">Thời gian</span>
-        <span class="field-data">{{dangvien.thoiGianBiXoa}}</span>
-      </div>
-      <div class="field" style="width:49%">
-        <span class="field field-title">Tại chi bộ</span>
-        <span class="field-data">{{dangvien.chiBoBiXoa}}</span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div class="full-width">
-        <span class="field field-title">b) Được kết nạp lại vào Đảng</span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div style="width:49%">
-        <span class="field field-title">- Ngày vào đảng lần thứ hai</span>
-        <span class="field-data">{{dangvien.ngayVaoDangLanHai}}</span>
-      </div>
-      <div class="field" style="width:49%">
-        <span class="field field-title">Tại chi bộ</span>
-        <span class="field-data">{{dangvien.chiBoVaoDangLanHai}}</span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div style="width:49%">
-        <span class="field field-title">Người giới thiệu 1</span><span
-          class="field-data">{{dangvien.nguoiGioiThieuMotLanHai}}</span>
-      </div>
-      <div class="field" style="width:49%">
-        <span class="field field-title">Chức vụ, đơn vị</span> <span class="field-data">
-          {{dangvien.chucVuNguoiGioiThieuMotLanHai}}</span></div>
-    </div>
-    <div class="field-container">
-      <div style="width:49%">
-        <span class="field field-title">Người giới thiệu 2</span><span
-          class="field-data">{{dangvien.nguoiGioiThieuHaiLanHai}}</span>
-      </div>
-      <div class="field" style="width:49%">
-        <span class="field field-title">Chức vụ, đơn vị</span> <span
-          class="field-data">{{dangvien.chucVuNguoiGioiThieuHaiLanHai}} </span></div>
-    </div>
-    <div class="field-container">
-      <div style="width:49%">
-        <span class="field field-title">- Ngày chính thức lần thứ hai</span>
-        <span class="field-data">{{dangvien.ngayChinhThucVaoLanHai}}</span>
-      </div>
-      <div class="field" style="width:49%">
-        <span class="field field-title">Tại chi bộ</span>
-        <span class="field-data">{{dangvien.chiBoChinhThucVaoDangLanHai}}</span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div style="width:49%">
-        <span class="field field-title">c) Ngày được khôi phục đảng tịch:</span>
-        <span class="field-data">{{dangvien.ngayKhoiPhucDang}}</span>
-      </div>
-      <div class="field" style="width:49%">
-        <span class="field field-title">Tại chi bộ</span>
-        <span class="field-data"> </span></div>
-    </div>
-    <div class="field-container">
-      <div class="full-width">
-        <span class="field field-title">d) Bị xử lý theo pháp luật <small><i>(ngày, tháng, năm; chính quyền nào xử
-              lý; hình thức xử lý; nơi thi hành án ...)</i></small>:</span>
-        <span class="field-data multi-row-span">{{dangvien.biXuLyTheoPhapLuat}}</span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div class="full-width">
-        <span class="field field-title">d) Bản thân có làm việc trong chế độ cũ <small><i>(ngày, tháng, năm; chức vụ;
-              nơi
-              làm việc ...)</i></small>:</span>
-        <span class="field-data multi-row-span">{{dangvien.lamViecTrongCheDoCu}}</span>
-      </div>
-    </div>
-    <p class="header">28) QUAN HỆ VỚI NƯỚC NGOÀI</p>
-    <div class="field-container">
-      <div class="full-width">
-        <span class="field field-title">a) Đã đi nước ngoài<small><i>(nước nào, lý do, thời gian ra ngoài
-              ...)</i></small>:</span>
-        <span class="field-data multi-row-span">{{dangvien.daDiNuocNgoai}}</span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div class="full-width">
-        <span class="field field-title">b) Tham gia hoặc có quan hệ với các tổ chức chính trị, kinh tế, xã hội nào ở
-          nước
-          ngoài<small></small>:</span>
-        <span class="field-data multi-row-span">{{dangvien.thamGiaToChucNuocNgoai}}</span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div class="full-width">
-        <span class="field field-title">c) Có người thân ở nước ngoài<small><i>(tên người, quan hệ gì, ở nước nào
-              ...)</i></small>:</span>
-        <span class="field-data multi-row-span">{{dangvien.coNguoiThanNuocNgoai}}</span>
-      </div>
-    </div>
-    <p class="header" style="margin-top:20px">29) QUAN HỆ GIA ĐÌNH
-      cha,mẹ đẻ;cha, mẹ vợ(chồng);các con;anh chị em ruột
-    </p>
-    <div class="field-container">
-      <table>
-        <tr>
-          <th>Quan hệ</th>
-          <th>HỌ VÀ TÊN</th>
-          <th>Năm sinh</th>
-          <th>Quê quán, nơi ở hiện nay<small><i>(trong, ngoài nước)</i></small>,nghề nghiệp, chức danh, chức vụ, đơn vị
-            công
-            tác</th>
-        </tr>
-        <tr style="height: 550px;">
-          <td colspan="4" style="text-align: center;">
-            <textarea class="txt-area" readonly>{{dangvien.quanHeGiaDinh}}</textarea></td>
-        </tr>
-      </table>
-    </div>
-    <p class="header">30) HOÀN CẢNH KINH TẾ CỦA BẢN THÂN VÀ GIA ĐÌNH</p>
-    <div class="field-container">
-      <div style="width:60%" class="relative">
-        <span class="field field-title">Tổng thu nhập của hộ gia đình<small><i>(trong 1 năm)</i></small></span>
-        <span class="field-data">{{dangvien.tongThuNhap}}</span>
-      </div>đồng,
-      <div class="field" style="width:40%">
-        <span class="field field-title">Bình quân 1 người/hộ</span>
-        <span class="field-data">{{dangvien.binhQuan}}</span>
-      </div>đồng
-    </div>
-    <div class="field-container">
-      <div style="width:60%">
-        <span class="field field-title">- Nhà ở: +Được cấp, được thuê, loại nhà</span>
-        <span class="field-data">{{dangvien.loaiNhaDuocCap}}</span>,
-      </div>
-      <div class="field" style="width:40%" class="relative">
-        <span class="field field-title">Tổng diện tích sử dụng</span>
-        <span class="field-data">{{dangvien.dienTichNhaDuocCap}}</span>
-      </div>m2
-    </div>
-    <div class="field-container">
-      <div style="width:60%">
-        <span class="field field-title">- Nhà tự mua, tự xây, loại nhà</span>
-        <span class="field-data">{{dangvien.loaiNhaDuocMua}}</span>
-      </div>
-      <div class="field" style="width:40%" class="relative">
-        <span class="field field-title">Tổng diện tích sử dụng</span>
-        <span class="field-data">{{dangvien.dienTichNhaDuocMua}}</span>
-      </div>m2
-    </div>
-    <div class="field-container">
-      <div style="width:60%" class="relative">
-        <span class="field field-title">- Đất ở: + Đất được cấp:</span>
-        <span class="field-data">{{dangvien.datDuocCap}}</span>
-      </div>m2
-      <div class="field" style="width:40%">
-        <span class="field field-title">+ Đất tự mua</span>
-        <span class="field-data">{{dangvien.datDuocMua}}</span></div>m2
-    </div>
-    <div class="field-container">
-      <div class="full-width">
-        <span class="field field-title">- Hoạt động kinh tế</span>
-        <span class="field-data">{{dangvien.hoatDongKinhTe}}</span>
-      </div>
-    </div>
-    <div class="field-container">
-      <div style="width:60%">
-        <span class="field field-title">Diện tích đất kinh doanh trang trại</span>
-        <span class="field-data">{{dangvien.dienTichDatTrangTrai}}</span>
-      </div>ha
-      <div class="field" style="width:40%">
-        <span class="field field-title">Số lao động thuê mướn</span>
-        <span class="field-data">{{dangvien.soLaoDongThue}}</span>
-      </div>người
-    </div>
-    <div class="field-container">
-      <div style="width:70%">
-        <span class="field field-title">Những tài sản có giá trị<small><i>(50 triệu đồng trở lên):</i></small>Tài
-          sản:</span>
-        <span class="field-data">{{dangvien.taiSanCoGiaTri}}</span>
-      </div>
-      <div class="field" style="width:30%">
-        <span class="field field-title">Giá trị</span>
-        <span class="field-data">{{dangvien.giaTriTaiSan}}</span></div>đồng
-    </div>
-    <div class="field-container">
-      <div class="field" class="full-width">
-        <span class="field-data"> </span></div>
-    </div>
-    <pre style="width:100%;text-align:right;font-size: 11px;">
-      ..........ngày,.....tháng......năm.........
-    </pre>
-    <div class="field-container">
-      <div class="footer">
-        <p class="footer-title">NGƯỜI KHAI</p>
-        <p>Tôi xin cam đoan những lời khai trên đây đúng sự thật</p>
-        <pre>Ngày.....tháng.....năm</pre>
-        <p><i>(Ký, ghi rõ họ tên)</i></p>
-      </div>
-      <div class="mid-footer">
-        <p class="footer-title">XÁC NHẬN CỦA CHI ỦY CHI BỘ</p>
-        <div class="full-width"><span class="field-data"> </span></div>
-        <div class="full-width"><span class="field-data"> </span></div>
-        <pre>Ngày.....tháng.....năm</pre>
-        <p><i>(Chức vụ, ghi rõ họ tên)</i></p>
-      </div>
-      <div class="footer">
-        <p class="footer-title">XÁC NHẬN CỦA CẤP ỦY CƠ SỞ</p>
-        <p><i>(Chức vụ, đóng dấu, ghi rõ họ tên)</i></p>
-      </div>
-    </div>
-  </page>
+  </div>
 </div>
