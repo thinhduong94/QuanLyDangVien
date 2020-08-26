@@ -80,15 +80,23 @@ export class DangVienPdf implements OnInit {
 
   generateDoc() {
     const element = document.getElementById("page1");
+    const date = new Date();
+    const dd = date.getDate();
+    const MM = date.getMonth();
+    const yy = date.getFullYear().toString();
+    const hh = date.getHours();
+    const mm = date.getMinutes();
+    const ss = date.getSeconds();
+    const filename = yy+MM+dd+hh+mm+ss;
     const opt = {
-      margin: [10,10,10,10],
-      filename: "myfile.pdf",
+      margin: 0,
+      filename: `PhieuDangVien_${filename}.pdf`,
       image: { type: "jpeg", quality: 0.98 },
       html2canvas: { scale: 2 },
-      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
     };
-    //const worker = html2pdf(element, "A4", "en", false, "UTF-8");
-    html2pdf().set(opt).from(element).save();
+    const worker = html2pdf(element,opt);
+    // html2pdf().set(opt).from(element).save();
   }
 
   fillEmptySquare(arr, fullLength) {
