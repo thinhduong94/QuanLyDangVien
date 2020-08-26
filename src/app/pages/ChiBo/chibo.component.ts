@@ -18,7 +18,7 @@ import { confirmComponent } from '../share/confirm/confirm.component';
   styleUrls: ['./chibo.component.css']
 })
 export class ChiBoComponent implements OnInit {
-  displayedColumns: string[] = ['id','maChiBo', 'tenChiBo', 'ghiChu', 'qdThanhLap','action'];
+  displayedColumns: string[] = ['maChiBo', 'tenChiBo', 'ghiChu', 'qdThanhLap','action'];
   dataSource = new MatTableDataSource<ChiBo>([]);
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
