@@ -104,7 +104,20 @@ export class ChiBoComponent implements OnInit {
       data: {sheet : 'ChiBo'}
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      let arrayCallCheckChiBo = [];
+      (result as []).forEach((item:ChiBo)=>{
+        arrayCallCheckChiBo.push(this.chiBoService.checkChiBoBeforInsert(item));
+      });
+      Promise.all(arrayCallCheckChiBo).then(arr=>{
+        const cbs = (arr as []).filter(item=>item);
+        let arrayCallInsert = [];
+        cbs.forEach(cb=>{
+          arrayCallInsert.push(this.chiBoService.insert(cb));
+        });
+        Promise.all(arrayCallInsert).then(a=>{
+          this.getChidos();
+        });
+      });
     });
    }
 }
