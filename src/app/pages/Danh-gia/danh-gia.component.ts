@@ -104,7 +104,9 @@ export class DanhGiaComponent implements OnInit, OnDestroy {
         const danhGiaControl = this.danhGiaFormGroup.controls[
           data.soTheDangVien
         ];
-        newDanhGia.danhGia = danhGiaControl ? danhGiaControl.value : "";
+        newDanhGia.danhGia = danhGiaControl
+          ? danhGiaControl.value
+          : newDanhGia.danhGia;
         newDanhGia.soTheDangVien = data.soTheDangVien;
         newDanhGia.namDanhGia = this.selectedYear;
         this.currentYearDanhGia.push(newDanhGia);

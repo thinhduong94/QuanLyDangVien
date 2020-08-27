@@ -328,4 +328,8 @@ export class DangVienFormDialog implements OnInit {
       data: { dangvien: this.dangVienForm.value },
     });
   }
+
+  removeImage() {
+    this.anh3x4 = "";
+  }
 }
