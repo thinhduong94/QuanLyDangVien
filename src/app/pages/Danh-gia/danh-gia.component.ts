@@ -78,7 +78,6 @@ export class DanhGiaComponent implements OnInit, OnDestroy {
 
   onSaveClick() {
     this.upsertDanhGia();
-    this.danhGiaService.getAll().then((result) => (this.allDanhGia = result));
   }
 
   upsertDanhGia() {
