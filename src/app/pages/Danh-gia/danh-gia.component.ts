@@ -23,6 +23,10 @@ export class DanhGiaComponent implements OnInit, OnDestroy {
   isShow = false;
   danhGiaFormGroup = new FormGroup({});
   yearSubscription = new Subscription();
+  currentYearDanhGia = [];
+  selectedChiBo = new FormControl("");
+  xepLoaiChiBo = new FormControl("");
+  chiBos = [];
   constructor(
     private danhGiaService: DanhGiaService,
     private dangVienService: DangVienService,
@@ -30,7 +34,6 @@ export class DanhGiaComponent implements OnInit, OnDestroy {
     private ref: ChangeDetectorRef
   ) {}
   ngOnInit() {
-    let currentYearDanhGia = [];
     this.yearSubscription = this.danhGiaService.dateEventEmitter.subscribe(
       (year: Moment) => {
         this.selectedYear = year.year().toString();
@@ -38,43 +41,37 @@ export class DanhGiaComponent implements OnInit, OnDestroy {
       }
     );
     this.selectedYear = new Date().getFullYear().toString();
-    this.danhGiaService
-      .getAll()
-      .then((result) => {
-        this.allDanhGia = result;
 
-        currentYearDanhGia = this.allDanhGia.filter(
-          (danhGia) => danhGia.namDanhGia === this.selectedYear
+    this.chiBoService
+      .getAll()
+      .then((allChiBo) => {
+        this.chiBos = allChiBo;
+        this.selectedChiBo.setValue(allChiBo.length ? allChiBo[0].maChiBo : "");
+        return this.danhGiaService.getDanhGiaChiBoByYear(
+          this.selectedChiBo.value,
+          this.selectedYear
         );
-        return this.dangVienService.getAll();
+      })
+      .then((currentDanhGiaChiBo) => {
+        this.xepLoaiChiBo.setValue(
+          currentDanhGiaChiBo ? currentDanhGiaChiBo.danhGia : ""
+        );
+        return this.dangVienService.getByChiBo(this.selectedChiBo.value);
       })
       .then((allDangVien) => {
-        this.displayData = this.displayData.concat(allDangVien);
-        return this.chiBoService.getAll();
-      })
-      .then((allChiBo) => {
-        this.displayData = this.displayData.concat(allChiBo);
+        this.displayData = allDangVien;
         this.displayData.forEach((data) => {
-          this.initSetValueForDanhGia(data, currentYearDanhGia);
+          this.dynamicForm[data.soTheDangVien] = new FormControl("");
         });
         this.danhGiaFormGroup = new FormGroup(this.dynamicForm);
         this.isShow = true;
+        return this.danhGiaService.getDanhGiaByYear(this.selectedYear);
+      })
+      .then((allDanhGia) => {
+        this.loadDanhGia(allDanhGia);
       });
   }
 
-  initSetValueForDanhGia(data, currentYearDanhGia) {
-    ["maChiBo", "soTheDangVien"].forEach((type) => {
-      if (data[type]) {
-        const currentDanhGia = currentYearDanhGia.find(
-          (danhgia) => danhgia[type] === data[type]
-        );
-        this.dynamicForm[data[type]] = new FormControl("");
-        if (currentDanhGia) {
-          this.dynamicForm[data[type]].setValue(currentDanhGia.danhGia);
-        }
-      }
-    });
-  }
   ngOnDestroy() {
     this.yearSubscription.unsubscribe();
   }
@@ -85,55 +82,87 @@ export class DanhGiaComponent implements OnInit, OnDestroy {
   }
 
   upsertDanhGia() {
-    const currentYearDanhGia = this.allDanhGia.filter(
-      (danhGia) => danhGia.namDanhGia === this.selectedYear
-    );
-    currentYearDanhGia.forEach((data) => {
-      const type = this.getRecordType(data);
-      const danhGiaControl = this.danhGiaFormGroup.controls[data[type]];
-      data.danhGia = danhGiaControl ? danhGiaControl.value : "";
+    this.currentYearDanhGia.forEach((data) => {
+      if (data.maChiBo && data.maChiBo === this.selectedChiBo.value) {
+        data.danhGia = this.xepLoaiChiBo.value;
+      }
+      if (data.soTheDangVien) {
+        const danhGiaControl = this.danhGiaFormGroup.controls[
+          data.soTheDangVien
+        ];
+        data.danhGia = danhGiaControl ? danhGiaControl.value : "";
+      }
       data.namDanhGia = this.selectedYear;
     });
     this.displayData.forEach((data) => {
-      const type = this.getRecordType(data);
-      const code = data.maChiBo || data.soTheDangVien;
       if (
-        !currentYearDanhGia.find(
-          (danhGia) =>
-            danhGia.maChiBo === code || danhGia.soTheDangVien === code
+        !this.currentYearDanhGia.find(
+          (danhGia) => danhGia.soTheDangVien === data.soTheDangVien
         )
       ) {
         const newDanhGia = new DanhGiaModel();
-        const danhGiaControl = this.danhGiaFormGroup.controls[data[type]];
+        const danhGiaControl = this.danhGiaFormGroup.controls[
+          data.soTheDangVien
+        ];
         newDanhGia.danhGia = danhGiaControl ? danhGiaControl.value : "";
-        newDanhGia[type] = data[type];
+        newDanhGia.soTheDangVien = data.soTheDangVien;
         newDanhGia.namDanhGia = this.selectedYear;
-        currentYearDanhGia.push(newDanhGia);
+        this.currentYearDanhGia.push(newDanhGia);
       }
     });
-    this.danhGiaService.upsertDanhGiaList(currentYearDanhGia);
-  }
 
-  getRecordType(data) {
-    return data.maChiBo ? "maChiBo" : "soTheDangVien";
+    this.danhGiaService.upsertDanhGiaList(this.currentYearDanhGia);
   }
 
   loadDanhGiaByYear() {
-    const cloneData = cloneDeepWith(this.displayData);
-    const currentYearDanhGia = this.allDanhGia.filter(
-      (danhGia) => danhGia.namDanhGia === this.selectedYear
-    );
-    cloneData.forEach((data) => {
-      const code = data.maChiBo || data.soTheDangVien;
-      if (code && this.danhGiaFormGroup.controls[code]) {
-        const foundDanhGia = currentYearDanhGia.find(
-          (danhGia) =>
-            danhGia.maChiBo === code || danhGia.soTheDangVien === code
-        );
-        const value = foundDanhGia ? foundDanhGia.danhGia : "";
-        this.danhGiaFormGroup.controls[code].setValue(value);
-      }
+    this.danhGiaService.getDanhGiaByYear(this.selectedYear).then((danhGia) => {
+      this.loadDanhGia(danhGia);
     });
-    this.displayData = cloneData;
+  }
+
+  loadDanhGia(allDanhGia) {
+    this.currentYearDanhGia = allDanhGia;
+    const danhGiaChiBo = this.currentYearDanhGia.find(
+      (danhgia) => danhgia.maChiBo === this.selectedChiBo.value
+    );
+    if (danhGiaChiBo) {
+      this.xepLoaiChiBo.setValue(danhGiaChiBo.danhGia);
+    } else {
+      this.xepLoaiChiBo.setValue("");
+    }
+    if (!allDanhGia.length) {
+      this.displayData.forEach((data) => {
+        const control = this.danhGiaFormGroup.controls[data.soTheDangVien];
+        if (control) {
+          control.setValue("");
+        }
+      });
+    } else {
+      allDanhGia.forEach((danhgia) => {
+        if (danhgia.soTheDangVien) {
+          const control = this.danhGiaFormGroup.controls[danhgia.soTheDangVien];
+          if (control) {
+            control.setValue(danhgia.danhGia);
+          }
+        }
+      });
+    }
+  }
+
+  onChiBoChange($event) {
+    const chibo = $event.value;
+    if (chibo) {
+      this.dangVienService.getByChiBo(chibo).then((allDangVien) => {
+        this.displayData = allDangVien;
+        if (allDangVien.length) {
+          this.dynamicForm = {};
+          this.displayData.forEach((data) => {
+            this.dynamicForm[data.soTheDangVien] = new FormControl("");
+          });
+          this.danhGiaFormGroup = new FormGroup(this.dynamicForm);
+        }
+        this.loadDanhGiaByYear();
+      });
+    }
   }
 }

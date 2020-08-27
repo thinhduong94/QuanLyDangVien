@@ -1,6 +1,7 @@
 import { TheDb } from "../model/thedb";
 import { DanhGiaModel } from "../model/danhgia.model";
 import { Injectable, EventEmitter } from "@angular/core";
+import { DangVienModel } from "../model/dangvien.model";
 @Injectable({
   providedIn: "root",
 })
@@ -9,6 +10,23 @@ export class DanhGiaService {
   public get(id: number): Promise<DanhGiaModel> {
     const sql = "SELECT * FROM danhgia WHERE id = $id";
     const values = { $id: id };
+
+    return TheDb.selectOne(sql, values).then((row) => {
+      if (row) {
+        return new DanhGiaService().fromRow(row);
+      } else {
+        throw new Error("Expected to find 1 danhgia. Found 0.");
+      }
+    });
+  }
+
+  public getDanhGiaChiBoByYear(
+    maChiBo: string,
+    namDanhGia: string
+  ): Promise<DanhGiaModel> {
+    const sql =
+      "SELECT * FROM danhgia WHERE maChiBo = $maChiBo AND namDanhGia = $namDanhGia";
+    const values = { $maChiBo: maChiBo, $namDanhGia: namDanhGia };
 
     return TheDb.selectOne(sql, values).then((row) => {
       if (row) {
@@ -34,6 +52,40 @@ export class DanhGiaService {
       if (row) {
         return new DanhGiaService().fromRow(row);
       }
+    });
+  }
+
+  public getBySoTheDangVienAndNamDanhGia(
+    dangvien: DangVienModel
+  ): Promise<DanhGiaModel[]> {
+    const sql = `SELECT * FROM danhgia where namDanhGia = $namDanhGia AND soTheDangVien = $soTheDangVien`;
+    const values = {};
+    return TheDb.selectAll(sql, values).then((rows) => {
+      const danhGias: DanhGiaModel[] = [];
+      for (const row of rows) {
+        const danhgia = new DanhGiaService().fromRow(row);
+        danhGias.push(danhgia);
+      }
+      return danhGias;
+    });
+  }
+
+  public getDanhGiaByYear(namDanhGia: string) {
+    const sql = `SELECT 
+    d.* 
+    FROM danhgia d
+     INNER JOIN dangvien r ON
+      d.soTheDangVien = r.soTheDangVien
+      WHERE d.namDanhGia = $namDanhGia`;
+    const values = { $namDanhGia: namDanhGia };
+
+    return TheDb.selectAll(sql, values).then((rows) => {
+      const chibos: DanhGiaModel[] = [];
+      for (const row of rows) {
+        const danhgia = new DanhGiaService().fromRow(row);
+        chibos.push(danhgia);
+      }
+      return chibos;
     });
   }
 

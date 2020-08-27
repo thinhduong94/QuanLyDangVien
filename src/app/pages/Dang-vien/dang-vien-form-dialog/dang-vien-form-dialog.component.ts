@@ -57,7 +57,9 @@ export class DangVienFormDialog implements OnInit {
     { value: "khaitru", display: "Khai trừ" },
   ];
   danhSachTinhTrangQuanLy = [
-    { value: "dangquanli", display: "Đang quản lí" },
+    { value: "dangquanlihientai", display: "Đang quản lí(hiện tại)" },
+    { value: "dangquanliketnap", display: "Đang quản lí(kết nạp)" },
+    { value: "dangquanlichuyenden", display: "Đang quản lí(chuyển đến)" },
     { value: "chuyendi", display: "Chuyển đi" },
     { value: "khaitru", display: "Khai trừ" },
     { value: "xoaten", display: "Xóa tên" },
