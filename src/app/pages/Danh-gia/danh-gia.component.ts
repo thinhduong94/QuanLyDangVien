@@ -8,7 +8,7 @@ import { ChangeDetectorRef } from "@angular/core";
 import { Moment } from "moment";
 import { Subscription, from } from "rxjs";
 import { DanhGiaModel } from "src/app/model/danhgia.model";
-import { cloneDeepWith } from "lodash";
+// import { cloneDeepWith } from "lodash";
 @Component({
   selector: "danh-gia",
   templateUrl: "danh-gia.component.html",
@@ -81,18 +81,33 @@ export class DanhGiaComponent implements OnInit, OnDestroy {
   }
 
   upsertDanhGia() {
+    const upsertData = [];
+    let currentDanhGiaChiBo = this.currentYearDanhGia.find((danhGia) => {
+      danhGia.maChiBo = this.selectedChiBo.value;
+    });
+    if (currentDanhGiaChiBo) {
+      currentDanhGiaChiBo.danhGia = this.xepLoaiChiBo.value;
+    } else {
+      currentDanhGiaChiBo = new DanhGiaModel();
+      currentDanhGiaChiBo.danhGia = this.xepLoaiChiBo.value;
+      currentDanhGiaChiBo.maChiBo = this.selectedChiBo.value;
+      currentDanhGiaChiBo.namDanhGia = this.selectedYear;
+    }
+    upsertData.push(currentDanhGiaChiBo);
+
+    //update current danh gia dang vien
     this.currentYearDanhGia.forEach((data) => {
-      if (data.maChiBo && data.maChiBo === this.selectedChiBo.value) {
-        data.danhGia = this.xepLoaiChiBo.value;
-      }
       if (data.soTheDangVien) {
         const danhGiaControl = this.danhGiaFormGroup.controls[
           data.soTheDangVien
         ];
-        data.danhGia = danhGiaControl ? danhGiaControl.value : "";
+        data.danhGia = danhGiaControl ? danhGiaControl.value : data.danhGia;
       }
       data.namDanhGia = this.selectedYear;
+      upsertData.push(data);
     });
+
+    //add new danhgia for chibo
     this.displayData.forEach((data) => {
       if (
         !this.currentYearDanhGia.find(
@@ -108,11 +123,11 @@ export class DanhGiaComponent implements OnInit, OnDestroy {
           : newDanhGia.danhGia;
         newDanhGia.soTheDangVien = data.soTheDangVien;
         newDanhGia.namDanhGia = this.selectedYear;
-        this.currentYearDanhGia.push(newDanhGia);
+        upsertData.push(newDanhGia);
       }
     });
 
-    this.danhGiaService.upsertDanhGiaList(this.currentYearDanhGia);
+    this.danhGiaService.upsertDanhGiaList(upsertData);
   }
 
   loadDanhGiaByYear() {
