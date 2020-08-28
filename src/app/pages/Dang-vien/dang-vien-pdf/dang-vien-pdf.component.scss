@@ -151,10 +151,8 @@ table {
 }
 
 .page-container {
-  width: 674px;
-  // width: 595px;
   overflow-y: scroll;
-  max-height: 90vh;
+  max-height: 85vh;
 }
 
 .page {
@@ -187,10 +185,16 @@ input[type="checkbox"] {
   height: 100%;
   border: 1px solid;
   overflow: hidden;
-  border-top: none;;
+  border-top: none;
 }
 
 .multi-row-span {
   display: unset;
   line-height: 1.6;
+}
+
+.field-container{
+  tr{
+    border: solid 1px;
+  }
 }
