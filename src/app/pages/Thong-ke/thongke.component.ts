@@ -4,7 +4,7 @@ import { ExcelService } from 'src/app/service/excel.service';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { SlowBuffer } from 'buffer';
 import { ChiBoService } from 'src/app/service/chibo.service';
-import { DanhSachKyLuat, DanhSachTinhTrangDangVien , DanhSachXepLoai , XepLoai, DangQuanLi, QuanLy, KhongQuanLy, LyLuanChinhTri, DanToc, DanhSachTinhTrangQuanLy, DotTangHuyHieuDang, GioiTinh, DanhSachGioiTinh, DanhSachDanToc, DanhSachLyLuanChinhTri } from 'src/app/const/drop-down-data.const';
+import { DanhSachKyLuat, DanhSachTinhTrangDangVien , DanhSachXepLoai , XepLoai, DangQuanLi, QuanLy, KhongQuanLy, LyLuanChinhTri, DanToc, DanhSachTinhTrangQuanLy, DotTangHuyHieuDang, GioiTinh, DanhSachGioiTinh, DanhSachDanToc, DanhSachLyLuanChinhTri, Dangquanlihientai, Dangquanliketnap, Dangquanlichuyenden } from 'src/app/const/drop-down-data.const';
 import { DanhGiaService } from 'src/app/service/danhgia.service';
 import { forkJoin } from 'rxjs';
 import { DanhGiaModel } from 'src/app/model/danhgia.model';
@@ -158,7 +158,7 @@ export class thongkeComponent implements OnInit {
    this.tkDangVienDangQuanLyDataBM3 = _temp;
   }
   chayBaoCaoBM2(){
-    const TinhTrangQianlyMappingFunc = (tinhtrang) => tinhtrang === DangQuanLi ? QuanLy : KhongQuanLy;
+    const TinhTrangQianlyMappingFunc = (tinhtrang) => (tinhtrang === DangQuanLi || tinhtrang === Dangquanlihientai || tinhtrang === Dangquanliketnap || tinhtrang === Dangquanlichuyenden) ? QuanLy : KhongQuanLy;
     let temp = [...this.tkDangVienDangQuanLyModels];
     let option = this.phieuDangVienOptionModel;
     console.log(this.phieuDangVienOptionModel);
@@ -170,7 +170,7 @@ export class thongkeComponent implements OnInit {
    this.tkDangVienDangQuanLyDataBM2 = _temp;
   }
   chayBaoCaoBM1(){
-    const TinhTrangQianlyMappingFunc = (tinhtrang) => tinhtrang === DangQuanLi ? QuanLy : KhongQuanLy;
+    const TinhTrangQianlyMappingFunc = (tinhtrang) => (tinhtrang === DangQuanLi || tinhtrang === Dangquanlihientai || tinhtrang === Dangquanliketnap || tinhtrang === Dangquanlichuyenden) ? QuanLy : KhongQuanLy;
     let temp = [...this.tkDangVienDangQuanLyModels];
     let option = this.phieuDangVienOptionModel;
     console.log(this.phieuDangVienOptionModel);
@@ -337,7 +337,7 @@ export class thongkeComponent implements OnInit {
     this.displayGioiTinhText = this.gioiTinh.find(item => item.value === this.phieuDangVienOptionModel.gioiTinh)?.display || '';
   }
   isQuanLy(tinhtrang:string){
-    return tinhtrang === DangQuanLi ? true : false;
+    return (tinhtrang === DangQuanLi || tinhtrang === Dangquanlihientai || tinhtrang === Dangquanliketnap || tinhtrang === Dangquanlichuyenden) ? true : false;
   }
   getTextXepLoai(xepLoai:string){
     return this.xepLoai.find(item => item.value === xepLoai)?.display || '';

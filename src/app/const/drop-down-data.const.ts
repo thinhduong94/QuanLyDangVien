@@ -21,7 +21,9 @@ export const DanhSachKyLuat = [
   { value: "", display: "Chưa xác định" },
 ];
 export const DanhSachTinhTrangQuanLy = [
-  { value: "dangquanli", display: "Đang quản lí" },
+  { value: "dangquanlihientai", display: "Đang quản lí(hiện tại)"},
+  { value: "dangquanliketnap", display: "Đang quản lí(kết nạp)"},
+  { value: "dangquanlichuyenden", display: "Đang quản lí(chuyển đến)"},
   { value: "chuyendi", display: "Chuyển đi" },
   { value: "khaitru", display: "Khai trừ" },
   { value: "xoaten", display: "Xóa tên" },
@@ -56,6 +58,9 @@ export const DanhSachXepLoai = [
 export const DangQuanLi = "dangquanli";
 export const QuanLy = "quanly";
 export const KhongQuanLy = "khongquanly";
+export const Dangquanlihientai = "dangquanlihientai"
+export const Dangquanliketnap = "dangquanliketnap";
+export const Dangquanlichuyenden = "dangquanlichuyenden";
 export enum LyLuanChinhTri {
   SoCap = "socap",
   TrungCap = "trungcap",
