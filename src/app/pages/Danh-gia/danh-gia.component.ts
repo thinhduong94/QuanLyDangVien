@@ -102,9 +102,9 @@ export class DanhGiaComponent implements OnInit, OnDestroy {
           data.soTheDangVien
         ];
         data.danhGia = danhGiaControl ? danhGiaControl.value : data.danhGia;
+        data.namDanhGia = this.selectedYear;
+        upsertData.push(data);
       }
-      data.namDanhGia = this.selectedYear;
-      upsertData.push(data);
     });
 
     //add new danhgia for chibo
