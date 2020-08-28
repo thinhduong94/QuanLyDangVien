@@ -93,6 +93,7 @@ export class DanhGiaComponent implements OnInit, OnDestroy {
       }
       data.namDanhGia = this.selectedYear;
     });
+    this.currentYearDanhGia = [];
     this.displayData.forEach((data) => {
       if (
         !this.currentYearDanhGia.find(

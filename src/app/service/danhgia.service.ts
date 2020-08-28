@@ -32,7 +32,7 @@ export class DanhGiaService {
       if (row) {
         return new DanhGiaService().fromRow(row);
       } else {
-        throw new Error("Expected to find 1 danhgia. Found 0.");
+        // throw new Error("Expected to find 1 danhgia. Found 0.");
       }
     });
   }
