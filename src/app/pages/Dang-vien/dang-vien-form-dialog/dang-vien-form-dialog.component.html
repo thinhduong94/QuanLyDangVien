@@ -461,7 +461,7 @@
   </div>
 </div>
 <mat-dialog-actions>
-  <button mat-button mat-dialog-close>Đóng</button>
-  <button mat-button [mat-dialog-close]="true" (click)="onSaveClick()" cdkFocusInitial>Lưu</button>
-  <button mat-button mat-dialog-close (click)="preview()">Preview PDF</button>
+  <button mat-button mat-dialog-close class="btn btn-light">Đóng</button>
+  <button mat-button [mat-dialog-close]="true" class="btn btn-light" (click)="onSaveClick()" cdkFocusInitial>Lưu</button>
+  <button mat-button mat-dialog-close class="btn btn-light" (click)="preview()">Preview PDF</button>
 </mat-dialog-actions>
