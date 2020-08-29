@@ -71,12 +71,8 @@ export class DanhGiaService {
   }
 
   public getDanhGiaByYear(namDanhGia: string) {
-    const sql = `SELECT 
-    d.* 
-    FROM danhgia d
-     INNER JOIN dangvien r ON
-      d.soTheDangVien = r.soTheDangVien
-      WHERE d.namDanhGia = $namDanhGia`;
+    const sql = `SELECT * from danhgia
+      WHERE namDanhGia = $namDanhGia`;
     const values = { $namDanhGia: namDanhGia };
 
     return TheDb.selectAll(sql, values).then((rows) => {
