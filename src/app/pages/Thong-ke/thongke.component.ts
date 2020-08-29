@@ -8,6 +8,7 @@ import { DanhSachKyLuat, DanhSachTinhTrangDangVien , DanhSachXepLoai , XepLoai, 
 import { DanhGiaService } from 'src/app/service/danhgia.service';
 import { forkJoin } from 'rxjs';
 import { DanhGiaModel } from 'src/app/model/danhgia.model';
+import * as _ from 'lodash'
 @Component({
   selector: 'app-thongke',
   templateUrl: './thongke.component.html',
@@ -31,11 +32,13 @@ export class thongkeComponent implements OnInit {
   monthCurrent = new Date().getMonth();
   soLieuModel = {} as SoLieuModel;
   soLieuModels : SoLieuModel[] = [];
+  soLieuModelsTemp : SoLieuModel[] = [];
   xepLoaiChiBoData : SoLieuModel[] = [];
   tkXepLoaiDangVienData : PhieuDangVienModel[] = []; 
   xepLoaiChiBoDataOriginal : SoLieuModel[] = [];
   tkXepLoaiDangVienDataOriginal : PhieuDangVienModel[] = []; 
   chibos = [];
+  danhgia = [];
   tuoiDangTron = [10,15,20,25,30,35,40,45,50,55,60,65,70];
   danhSachKyLuat = [];
   tinhTrangDangVien = [];
@@ -73,9 +76,10 @@ export class thongkeComponent implements OnInit {
   getTkDangVienDangQuanLy(){
     const option = {};
     this.thongKeService.getTkDangVienDangQuanLy(option).then(dangvien=>{
-      this.danhGiaService.getAll().then(danhgia=>{
+      this.danhGiaService.getAll().then(dg=>{
         this.caculateTuoiDang(dangvien);
-        this.megreDangGiaWithDangVien(dangvien,danhgia);
+        this.danhgia = dg;
+        this.megreDangGiaWithDangVien(dangvien,this.phieuDangVienOptionModel.nam);
         this.tkDangVienDangQuanLyModels = dangvien;
         this.tkDangVienDangQuanLyDataBM3 = dangvien;
         this.tkDangVienDangQuanLyDataBM2 = dangvien;
@@ -83,13 +87,13 @@ export class thongkeComponent implements OnInit {
         this.tkDsNhanHuyHieuDang = dangvien;
         this.tkXepLoaiDangVienDataOriginal = dangvien;
         this.tkXepLoaiDangVienData = [...this.tkXepLoaiDangVienDataOriginal];
-        this.getSoLieuChiBo(danhgia);
+        this.getSoLieuChiBo(this.phieuDangVienOptionModel.nam,this.tkDangVienDangQuanLyModels);
       });
     })
   }
-  megreDangGiaWithDangVien(dangvien : Array<PhieuDangVienModel> ,danhgia : Array<DanhGiaModel>){
+  megreDangGiaWithDangVien(dangvien : Array<PhieuDangVienModel>,nam){
     dangvien.forEach(dv => {
-      const xepLoaiDv = danhgia.find(dg=>dg.soTheDangVien === dv.soTheDangVien && dg.namDanhGia === this.phieuDangVienOptionModel.nam) || {} as DanhGiaModel;
+      const xepLoaiDv = this.danhgia.find(dg=>dg.soTheDangVien === dv.soTheDangVien && dg.namDanhGia === nam) || {} as DanhGiaModel;
       dv.xepLoai = xepLoaiDv.danhGia;
       dv.namXepLoai = xepLoaiDv.namDanhGia;
     });
@@ -135,12 +139,18 @@ export class thongkeComponent implements OnInit {
     );
    this.tkXepLoaiDangVienData = _temp;
   }
+  chayThongKeSoLieu(){
+    let option = this.phieuDangVienOptionModel;
+    console.log(this.phieuDangVienOptionModel);
+    const dsDangVien = _.cloneDeep(this.tkDangVienDangQuanLyModels);
+    this.megreDangGiaWithDangVien(dsDangVien,option.nam)
+    this.getSoLieuChiBo(this.phieuDangVienOptionModel.nam,dsDangVien);
+  }
   chayXepLoaiChiBo(){
     let temp = [...this.xepLoaiChiBoDataOriginal];
     let option = this.phieuDangVienOptionModel;
     console.log(this.phieuDangVienOptionModel);
     const _temp = temp.filter((item)=>
-      ((!option.chiBo || option.chiBo === "") ? true : option.chiBo === item.maChiBo) &&
       ((!option.nam || option.nam === "") ? true : option.nam == item.namXepLoai) &&
       ((!option.xepLoaiDangVien || option.xepLoaiDangVien === "") ? true : option.xepLoaiDangVien === item.xepLoai)
     );
@@ -196,10 +206,13 @@ export class thongkeComponent implements OnInit {
     }
     this.tkDsNhanHuyHieuDang = _temp;
   }
-  getSoLieuChiBo(danhgia){
+  getSoLieuChiBo(nam,danhVien){
+    this.soLieuModels = [];
+    this.xepLoaiChiBoDataOriginal = [];
+    this.xepLoaiChiBoData = [];
     this.chiBoService.getAll().then(items=>{
       items.forEach(item=>{
-        const xepLoaiCb = danhgia.find(dg=>dg.maChiBo === item.maChiBo && dg.namDanhGia === this.phieuDangVienOptionModel.nam) || {} as DanhGiaModel;
+        const xepLoaiCb = this.danhgia.find(dg=>dg.maChiBo === item.maChiBo && dg.namDanhGia === nam) || {} as DanhGiaModel;
         let xepLoai = xepLoaiCb.danhGia;
         let namXepLoai = xepLoaiCb.namDanhGia;
         let soLuongCapUy = 0;
@@ -216,7 +229,7 @@ export class thongkeComponent implements OnInit {
         let hoanThanhTot = 0; 
         let hoanThanh = 0;
         let khongHoanThanh = 0;
-        this.tkDangVienDangQuanLyDataBM2.forEach(dv=>{
+        danhVien.forEach(dv=>{
           if(dv.chiBo == item.maChiBo){
             soLuongDangVien++;
             if(["BT","PBT","CUV"].includes(dv['chucVuDang'])){
@@ -279,7 +292,8 @@ export class thongkeComponent implements OnInit {
         this.soLieuModels.push(obj);
         this.xepLoaiChiBoDataOriginal.push(obj);
         this.xepLoaiChiBoData.push(obj);
-      })
+      });
+      this.soLieuModelsTemp = [...this.soLieuModels];
     });
   }
   getTrinhDo(item : PhieuDangVienModel){
