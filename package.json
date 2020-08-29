@@ -16,15 +16,26 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "package": "electron-builder",
+    "package-win": "electron-builder",
     "postinstall": "electron-builder install-app-deps"
   },
   "build": {
     "appId": "com.pamtbaau.angular-cli-electron-sqlite-bootstrap",
-    "productName": "Angular-cli-Electron-SQLite-Bootstrap",
+    "productName": "Quan_Ly_Dang_Vien",
     "directories": {
       "output": "build"
     },
+    "mac": {
+      "icon": "dist/assets/images/Emblem_of_Vietnam_Communist_Party.ico",
+      "category": "public.app-category.utilities"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "dist/assets/images/Emblem_of_Vietnam_Communist_Party.ico"
+    },
     "nsis": {
+      "installerIcon": "dist/assets/images/Emblem_of_Vietnam_Communist_Party.ico",
+      "installerHeaderIcon": "dist/assets/images/Emblem_of_Vietnam_Communist_Party.ico",
       "oneClick": false
     },
     "files": [
@@ -32,6 +43,7 @@
       "!**/build",
       "!**/config",
       "!**/assets/data",
+      "!**/assets/images",
       "!**/src"
     ],
     "extraResources": [
@@ -39,6 +51,10 @@
         "from": "src/assets/data",
         "to": "dist/assets/data",
         "filter": "database*"
+      },
+      {
+        "from": "src/assets/images",
+        "to": "dist/assets/images"
       }
     ]
   },
