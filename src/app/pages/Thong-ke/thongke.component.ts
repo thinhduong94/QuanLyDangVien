@@ -152,7 +152,7 @@ export class thongkeComponent implements OnInit {
     console.log(this.phieuDangVienOptionModel);
     const _temp = temp.filter((item)=>
       ((!option.nam || option.nam === "") ? true : option.nam == item.namXepLoai) &&
-      ((!option.xepLoaiDangVien || option.xepLoaiDangVien === "") ? true : option.xepLoaiDangVien === item.xepLoai)
+      ((!option.chiBo || option.chiBo === "") ? true : option.chiBo === item.maChiBo)
     );
    this.xepLoaiChiBoData = _temp;
   }
