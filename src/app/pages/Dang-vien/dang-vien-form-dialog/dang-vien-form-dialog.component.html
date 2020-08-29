@@ -48,10 +48,12 @@
           </div>
           <div style="align-self: flex-end;justify-content: center;align-items: center;position: absolute;bottom: 0;">
             <!-- <input type="file" name="image" (change)="fileProgress($event)" /> -->
-            <label>
+            <label *ngIf="!anh3x4" >
               <input style="display:none" type="file" name="image" (change)="fileProgress($event)" />
-              <span *ngIf="!anh3x4" class="btn btn-secondary">Chọn hình</span>
-              <span *ngIf="anh3x4" class="btn btn-secondary" (click)="removeImage()">Xóa
+              <span class="btn btn-secondary">Chọn hình</span>
+            </label>
+            <label *ngIf="anh3x4">
+              <span class="btn btn-secondary" (click)="removeImage()">Xóa
                 hình</span>
             </label>
           </div>
