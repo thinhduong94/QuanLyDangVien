@@ -44,9 +44,9 @@ export class DangVienPdf implements OnInit {
     const dangVien = this.data["dangvien"] as DangVienModel;
     const { soLyLich = "", soTheDangVien = "" } = dangVien;
     this.lyLichArrLeft = soLyLich.split("").slice(0, 6);
-    this.lyLichArrRight = soLyLich.split("").slice(6, 8);
+    this.lyLichArrRight = soLyLich.split("").slice(6, 9);
     this.fillEmptySquare(this.lyLichArrLeft, 6);
-    this.fillEmptySquare(this.lyLichArrRight, 2);
+    this.fillEmptySquare(this.lyLichArrRight, 3);
     this.theDangVienLeft = soTheDangVien.split("").slice(0, 2);
     this.theDangVienRight = soTheDangVien.split("").slice(2, 8);
     this.fillEmptySquare(this.theDangVienLeft, 2);

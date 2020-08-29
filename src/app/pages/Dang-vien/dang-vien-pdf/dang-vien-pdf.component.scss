@@ -28,12 +28,17 @@
   display: block;
   width: auto;
   overflow: hidden;
-  border-bottom: 1px dotted black;
   height: 15px;
   padding-left: 5px;
+  line-height: 10px;
   font-size: 12px;
   text-align: left;
   font-weight: normal;
+  //dash underline
+  background-image: linear-gradient(to right, black 50%, transparent 50%);
+  background-position: 0 1.04em;
+  background-repeat: repeat-x;
+  background-size: 4px 1px;
 }
 
 .field-container {
