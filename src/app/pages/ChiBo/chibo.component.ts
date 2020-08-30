@@ -33,7 +33,7 @@ export class ChiBoComponent implements OnInit {
     protected excelService : ExcelService) { }
   ngOnInit() {
     const checkDB = setInterval(()=>{
-      if(TheDb.db){
+      if(TheDb.db && this.chibos.length === 0){
         this.getChidos();
         clearInterval(checkDB);
       }
