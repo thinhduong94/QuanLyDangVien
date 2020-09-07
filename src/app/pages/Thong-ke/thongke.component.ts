@@ -51,6 +51,7 @@ export class thongkeComponent implements OnInit {
   displayTinhTrangDangVienText = '';
   displayXepLoaiDangVienText = '';
   displayGioiTinhText = '';
+  displayDotText = '';
   gioiTinhNam = GioiTinh.Nam;
   gioiTinhNu = GioiTinh.Nu;
   constructor(
@@ -104,7 +105,7 @@ export class thongkeComponent implements OnInit {
   caculateTuoiDang(data){
     const getAge = (ngayVaoDang) => Math.floor((new Date().getTime() - new Date(ngayVaoDang).getTime()) / 3.15576e+10);
     data.forEach(dv => {
-      dv.tuoiDang = getAge(dv.ngayVaoDang);
+      dv.tuoiDang = dv.ngayVaoDang ? getAge(dv.ngayVaoDang) : '';
     });
   }
   phieuDangVien(){
@@ -199,14 +200,15 @@ export class thongkeComponent implements OnInit {
       const getAge = (ngayVaoDang) => Math.floor((new Date(date).getTime() - new Date(ngayVaoDang).getTime()) / 3.15576e+10);
       temp.forEach(dv=>{
         dv.tuoiDang = getAge(dv.ngayVaoDang).toString();
-        if(dv.tuoiDang !== dv.huyHieu && this.tuoiDangTron.includes(Number.parseInt(dv.tuoiDang))){
+        if(this.tuoiDangTron.includes(Number.parseInt(dv.tuoiDang))){
           _temp.push(dv);
         }
       });
     }
     this.tkDsNhanHuyHieuDang = _temp;
   }
-  getSoLieuChiBo(nam,danhVien){
+  getSoLieuChiBo(nam,dv){
+    const danhVien = _.cloneDeep(dv);
     this.soLieuModels = [];
     this.xepLoaiChiBoDataOriginal = [];
     this.xepLoaiChiBoData = [];
@@ -334,6 +336,9 @@ export class thongkeComponent implements OnInit {
       array.push(text);
     }
     return array;
+  }
+  selectDot(){
+    this.displayDotText = this.dotTangHuyHieuDang.find(item=>item.value === this.phieuDangVienOptionModel.dot)?.text || '';
   }
   selectChiBo(){
     this.displayChiBoText = this.chibos.find(item=>item.maChiBo === this.phieuDangVienOptionModel.chiBo)?.tenChiBo || '';

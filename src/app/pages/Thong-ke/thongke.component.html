@@ -371,7 +371,7 @@
                     <div class="inputGroup">
                         <mat-form-field class="inputitem" appearance="legacy">
                             <mat-label>Đợt</mat-label>
-                            <mat-select [(ngModel)]="phieuDangVienOptionModel.dot">
+                            <mat-select [(ngModel)]="phieuDangVienOptionModel.dot" (ngModelChange)="selectDot()">
                                 <mat-option *ngFor="let data of dotTangHuyHieuDang" [value]="data.value">
                                 {{data.display}}
                                 </mat-option>
@@ -423,7 +423,7 @@
                             </tr>
                             <tr>
                                 <th colspan="11">
-                                    <h5>Đề nghị tặng Huy hiệu đảng ĐỢT THÁNG {{phieuDangVienOptionModel.dot}}</h5>
+                                    <h5>Đề nghị tặng Huy hiệu đảng {{displayDotText}}</h5>
                                 </th>
                             </tr>
                             <tr>
