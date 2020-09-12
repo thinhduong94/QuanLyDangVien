@@ -106,6 +106,7 @@ export interface PhieuDangVienOptionModel {
   xepLoaiDangVien: string;
   dot:string;
   nam:string;
+  mienSinhHoat:string;
 }
 export interface SoLieuModel {
   chibo: string;
