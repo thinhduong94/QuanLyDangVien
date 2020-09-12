@@ -281,7 +281,7 @@ export class thongkeComponent implements OnInit {
             if(dv.xepLoai === XepLoai.KhongHoanThanh){
               khongHoanThanh++;
             }
-            if(!dv.mienCongTacNgay || dv.mienCongTacNgay ===''){
+            if(dv.mienCongTacNgay || dv.mienCongTacNgay !==''){
               mienSinhHoat++;
             }
           }
