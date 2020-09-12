@@ -88,12 +88,16 @@ export enum XepLoai {
   KhongHoanThanh = "khonghoanthanh",
 }
 export const DotTangHuyHieuDang = [
-  { value: "03/31", display: "Đợt 1: 1/1 - 31/3", text: "Đợt 1(3 tháng 2)"},
-  { value: "05/31", display: "Đợt 2: 1/4 - 31/5", text: "Đợt 2( 30 tháng 4)"},
+  { value: "02/28", display: "Đợt 1: 1/12 - 28/2", text: "Đợt 1(3 tháng 2)"},
+  { value: "05/31", display: "Đợt 2: 1/3 - 31/5", text: "Đợt 2( 30 tháng 4)"},
   { value: "09/30", display: "Đợt 3: 1/6 - 30/9", text: "Đợt 3 (2 tháng 9)"},
-  { value: "12/31", display: "Đợt 4: 1/10 - 31/12", text: "Đợt 4 (7 tháng 11)"},
+  { value: "11/30", display: "Đợt 4: 1/10 - 30/11", text: "Đợt 4 (7 tháng 11)"},
 ];
-
+export const Dot1 = "02/28";
+export const DotTangHuyHieuDangPhuong = [
+  { value: "06/30", display: "Đợt 1: 1/1 - 30/6", text: "Đợt 1(1/1 - 30/6)"},
+  { value: "12/31", display: "Đợt 2: 1/7 - 31/12", text: "Đợt 2(1/7 - 31/12)"}
+];
 export const DanhSachGioiTinh = [
   { value: "nam", display: "Nam" },
   { value: "nu", display: "Nữ" },

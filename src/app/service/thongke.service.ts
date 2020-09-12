@@ -105,6 +105,7 @@ export interface PhieuDangVienOptionModel {
   tinhTrangDangVien: string;
   xepLoaiDangVien: string;
   dot:string;
+  dotPhuong:string;
   nam:string;
   mienSinhHoat:string;
 }

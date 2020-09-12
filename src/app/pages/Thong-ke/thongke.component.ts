@@ -4,7 +4,7 @@ import { ExcelService } from 'src/app/service/excel.service';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { SlowBuffer } from 'buffer';
 import { ChiBoService } from 'src/app/service/chibo.service';
-import { DanhSachKyLuat, DanhSachTinhTrangDangVien , DanhSachXepLoai , XepLoai, DangQuanLi, QuanLy, KhongQuanLy, LyLuanChinhTri, DanToc, DanhSachTinhTrangQuanLy, DotTangHuyHieuDang, GioiTinh, DanhSachGioiTinh, DanhSachDanToc, DanhSachLyLuanChinhTri, Dangquanlihientai, Dangquanliketnap, Dangquanlichuyenden, DanhSachMienSinhHoat, MienSinhHoat, SinhHoat } from 'src/app/const/drop-down-data.const';
+import { DanhSachKyLuat, DanhSachTinhTrangDangVien , DanhSachXepLoai , XepLoai, DangQuanLi, QuanLy, KhongQuanLy, LyLuanChinhTri, DanToc, DanhSachTinhTrangQuanLy, DotTangHuyHieuDang, GioiTinh, DanhSachGioiTinh, DanhSachDanToc, DanhSachLyLuanChinhTri, Dangquanlihientai, Dangquanliketnap, Dangquanlichuyenden, DanhSachMienSinhHoat, MienSinhHoat, SinhHoat, DotTangHuyHieuDangPhuong, Dot1 } from 'src/app/const/drop-down-data.const';
 import { DanhGiaService } from 'src/app/service/danhgia.service';
 import { forkJoin } from 'rxjs';
 import { DanhGiaModel } from 'src/app/model/danhgia.model';
@@ -20,6 +20,7 @@ export class thongkeComponent implements OnInit {
   @ViewChild('tkDangVienRefBM3', { static: false }) tkDangVienRefBM3: ElementRef;
   @ViewChild('tkSoLieuDangVienRefBM5', { static: false }) tkSoLieuDangVienRefBM5: ElementRef;
   @ViewChild('tkDsNhanHuyHieuDangRef', { static: false }) tkDsNhanHuyHieuDangRef: ElementRef;
+  @ViewChild('tkDsNhanHuyHieuDangPhuongRef', { static: false }) tkDsNhanHuyHieuDangPhuongRef: ElementRef;
   @ViewChild('tkXepLoaiDangVienRef', { static: false }) tkXepLoaiDangVienRef: ElementRef;
   @ViewChild('tkSoXepLoaiChiBoRef', { static: false }) tkSoXepLoaiChiBoRef: ElementRef;
   phieuDangVienModels : PhieuDangVienModel[] = [];
@@ -27,7 +28,8 @@ export class thongkeComponent implements OnInit {
   tkDangVienDangQuanLyDataBM3 : PhieuDangVienModel[] = [];
   tkDangVienDangQuanLyDataBM2 : PhieuDangVienModel[] = []; 
   tkDangVienDangQuanLyDataBM1 : PhieuDangVienModel[] = []; 
-  tkDsNhanHuyHieuDang : PhieuDangVienModel[] = [];  
+  tkDsNhanHuyHieuDang : PhieuDangVienModel[] = []; 
+  tkDsNhanHuyHieuDangPhuong : PhieuDangVienModel[] = [];  
   phieuDangVienOptionModel = {} as PhieuDangVienOptionModel;
   monthCurrent = new Date().getMonth();
   soLieuModel = {} as SoLieuModel;
@@ -39,11 +41,13 @@ export class thongkeComponent implements OnInit {
   tkXepLoaiDangVienDataOriginal : PhieuDangVienModel[] = []; 
   chibos = [];
   danhgia = [];
-  tuoiDangTron = [10,15,20,25,30,35,40,45,50,55,60,65,70];
+  tuoiDangTron = [30,40,45,50,55,60,65,70,75,80,85,90,95];
+  tuoiDangTronPhuong = [10, 15, 20, 25, 35]
   danhSachKyLuat = [];
   tinhTrangDangVien = [];
   xepLoai = [];
   dotTangHuyHieuDang = [];
+  dotTangHuyHieuDangPhuong = [];
   gioiTinh = [];
   nam =[];
   danhSachMienSinhHoat = [];
@@ -54,6 +58,7 @@ export class thongkeComponent implements OnInit {
   displayGioiTinhText = '';
   displayTinhTrangSinhHoatText = '';
   displayDotText = '';
+  displayDotPhuongText = '';
   gioiTinhNam = GioiTinh.Nam;
   gioiTinhNu = GioiTinh.Nu;
   constructor(
@@ -88,6 +93,7 @@ export class thongkeComponent implements OnInit {
         this.tkDangVienDangQuanLyDataBM2 = dangvien;
         this.tkDangVienDangQuanLyDataBM1 = dangvien;
         this.tkDsNhanHuyHieuDang = dangvien;
+        this.tkDsNhanHuyHieuDangPhuong = dangvien;
         this.tkXepLoaiDangVienDataOriginal = dangvien;
         this.tkXepLoaiDangVienData = [...this.tkXepLoaiDangVienDataOriginal];
         this.getSoLieuChiBo(this.phieuDangVienOptionModel.nam,this.tkDangVienDangQuanLyModels);
@@ -124,6 +130,9 @@ export class thongkeComponent implements OnInit {
   }
   tkDanhSachNhanHuyHieuDang(){
     this.excelService.exportAsExcelFile(null,'tkDanhSachNhanHuyHieuDang','html',this.tkDsNhanHuyHieuDangRef.nativeElement);
+  }
+  tkDanhSachNhanHuyHieuDangPhuong(){
+    this.excelService.exportAsExcelFile(null,'tkDanhSachNhanHuyHieuDangPhuong','html',this.tkDsNhanHuyHieuDangPhuongRef.nativeElement);
   }
   tkXepLoaiChiBo(){
     this.excelService.exportAsExcelFile(null,'tkXepLoaiChiBo','html',this.tkSoXepLoaiChiBoRef.nativeElement);
@@ -204,9 +213,13 @@ export class thongkeComponent implements OnInit {
   chayBaoCaoDanhHieuDang(){
     let temp = [...this.tkDangVienDangQuanLyModels];
     let option = this.phieuDangVienOptionModel;
-    let date = `${option.dot}/${option.nam}`;
     const _temp = [];
     if(option.dot !== "" && option.nam !== ""){
+      let nam = parseInt(option.nam) ;
+      if(option.dot === Dot1){
+        nam++;
+      }
+      let date = `${option.dot}/${option.nam}`;
       const getAge = (ngayVaoDang) => Math.floor((new Date(date).getTime() - new Date(ngayVaoDang.replace( /(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3")).getTime()) / 3.15576e+10);
       temp.forEach(dv=>{
         dv.tuoiDang = getAge(dv.ngayVaoDang).toString();
@@ -216,6 +229,22 @@ export class thongkeComponent implements OnInit {
       });
     }
     this.tkDsNhanHuyHieuDang = _temp;
+  }
+  chayBaoCaoDanhHieuDangPhuong(){
+    let temp = [...this.tkDangVienDangQuanLyModels];
+    let option = this.phieuDangVienOptionModel;
+    let date = `${option.dotPhuong}/${option.nam}`;
+    const _temp = [];
+    if(option.dot !== "" && option.nam !== ""){
+      const getAge = (ngayVaoDang) => Math.floor((new Date(date).getTime() - new Date(ngayVaoDang.replace( /(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3")).getTime()) / 3.15576e+10);
+      temp.forEach(dv=>{
+        dv.tuoiDang = getAge(dv.ngayVaoDang).toString();
+        if(this.tuoiDangTronPhuong.includes(Number.parseInt(dv.tuoiDang))){
+          _temp.push(dv);
+        }
+      });
+    }
+    this.tkDsNhanHuyHieuDangPhuong = _temp;
   }
   getSoLieuChiBo(nam,dv){
     const danhVien = _.cloneDeep(dv);
@@ -331,6 +360,7 @@ export class thongkeComponent implements OnInit {
     this.tinhTrangDangVien = DanhSachTinhTrangDangVien;
     this.xepLoai = DanhSachXepLoai;
     this.dotTangHuyHieuDang = DotTangHuyHieuDang;
+    this.dotTangHuyHieuDangPhuong = DotTangHuyHieuDangPhuong;
     this.gioiTinh = DanhSachGioiTinh;
     this.danhSachMienSinhHoat = DanhSachMienSinhHoat;
     this.nam = this.createArrayYear();
@@ -355,6 +385,9 @@ export class thongkeComponent implements OnInit {
   }
   selectDot(){
     this.displayDotText = this.dotTangHuyHieuDang.find(item=>item.value === this.phieuDangVienOptionModel.dot)?.text || '';
+  }
+  selectDotPhuong(){
+    this.displayDotPhuongText = this.dotTangHuyHieuDangPhuong.find(item=>item.value === this.phieuDangVienOptionModel.dotPhuong)?.text || '';
   }
   selectChiBo(){
     this.displayChiBoText = this.chibos.find(item=>item.maChiBo === this.phieuDangVienOptionModel.chiBo)?.tenChiBo || '';
