@@ -8,7 +8,7 @@
             <button style="margin-right: 20px;" (click)="exportToExcel()" class="btn btn-success">Xuất ra tập tin</button> 
             <mat-form-field class="example-full-width">
               <mat-label>Từ khóa</mat-label>
-              <input type="text" matInput>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Tìm">
               <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field>
         </form>

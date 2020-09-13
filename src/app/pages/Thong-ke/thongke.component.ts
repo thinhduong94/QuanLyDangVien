@@ -219,14 +219,15 @@ export class thongkeComponent implements OnInit {
       let maxYear = parseInt(option.nam);
       let minYear = parseInt(option.nam) ;
       if(maxDate === Dot1){
-        maxYear++;
+        minYear--;
       }
       let date = `${maxDate}/${maxYear}`;
       const getAge = (ngayVaoDang) => Math.floor((new Date(date).getTime() - new Date(ngayVaoDang).getTime()) / 3.15576e+10);
       temp.forEach(dv=>{
         dv.tuoiDang = getAge(dv.ngayVaoDang.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3")).toString();
+        console.log(`${dv.tenKhaiSinh}-${dv.tuoiDang}-${dv.ngayVaoDang}`)
         const [day,month] = dv.ngayVaoDang.split("/");
-        const ngayVaoDangNew = `${month}/${day}/${maxYear}`;
+        const ngayVaoDangNew = `${month}/${day}`;
         const max = date;
         const min = `${minDate}/${minYear}`
         const checkInRange = this.checkRangeDate(min,max,ngayVaoDangNew);
@@ -238,9 +239,17 @@ export class thongkeComponent implements OnInit {
     this.tkDsNhanHuyHieuDang = _temp;
   }
   checkRangeDate(min,max,current){
-    var today = new Date(current).getTime();
+    var currentYear = new Date(min).getFullYear();
     var from = new Date(min).getTime();
     var to = new Date(max).getTime();
+    if(new Date(min).getFullYear() !== new Date(max).getFullYear()){
+      const [month,date] = current.split("/");
+      const months2 = [1,2];
+      if(months2.includes(parseInt(month))){
+        currentYear = new Date(max).getFullYear();
+      }
+    }
+    var today = new Date(`${current}/${currentYear}`).getTime();
     if(today >= from && today <= to) {
         return true;
     }
@@ -259,7 +268,7 @@ export class thongkeComponent implements OnInit {
       temp.forEach(dv=>{
         dv.tuoiDang = getAge(dv.ngayVaoDang).toString();
         const [day="",month=""] = dv.ngayVaoDang.split("/");
-        const ngayVaoDangNew = `${month}/${day}/${maxYear}`;
+        const ngayVaoDangNew = `${month}/${day}`;
         const max = date;
         const min = `${minDate}/${minYear}`
         const checkInRange = this.checkRangeDate(min,max,ngayVaoDangNew);
