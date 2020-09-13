@@ -83,7 +83,7 @@ export class DanhGiaComponent implements OnInit, OnDestroy {
   upsertDanhGia() {
     const upsertData = [];
     let currentDanhGiaChiBo = this.currentYearDanhGia.find((danhGia) => {
-      danhGia.maChiBo = this.selectedChiBo.value;
+      return danhGia.maChiBo === this.selectedChiBo.value;
     });
     if (currentDanhGiaChiBo) {
       currentDanhGiaChiBo.danhGia = this.xepLoaiChiBo.value;
@@ -128,6 +128,7 @@ export class DanhGiaComponent implements OnInit, OnDestroy {
     });
 
     this.danhGiaService.upsertDanhGiaList(upsertData);
+    this.loadDanhGiaByYear();
   }
 
   loadDanhGiaByYear() {

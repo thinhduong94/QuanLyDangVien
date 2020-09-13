@@ -18,12 +18,13 @@ export const DanhSachKyLuat = [
   { value: "canhcao", display: "Cảnh cáo" },
   { value: "cachchuc", display: "Cách chức" },
   { value: "khaitru", display: "Khai trừ" },
-  { value: "", display: "Tất cả" },
+  { value: "khong", display: "Không" },
+  { value: "", display: "Tất cả" }
 ];
 export const DanhSachTinhTrangQuanLy = [
-  { value: "dangquanlihientai", display: "Đang quản lí(hiện tại)"},
-  { value: "dangquanliketnap", display: "Đang quản lí(kết nạp)"},
-  { value: "dangquanlichuyenden", display: "Đang quản lí(chuyển đến)"},
+  { value: "dangquanlihientai", display: "Đang quản lí(hiện tại)" },
+  { value: "dangquanliketnap", display: "Đang quản lí(kết nạp)" },
+  { value: "dangquanlichuyenden", display: "Đang quản lí(chuyển đến)" },
   { value: "chuyendi", display: "Chuyển đi" },
   { value: "khaitru", display: "Khai trừ" },
   { value: "xoaten", display: "Xóa tên" },
@@ -65,7 +66,7 @@ export const SinhHoat = "sinhHoat";
 export const DangQuanLi = "dangquanli";
 export const QuanLy = "quanly";
 export const KhongQuanLy = "khongquanly";
-export const Dangquanlihientai = "dangquanlihientai"
+export const Dangquanlihientai = "dangquanlihientai";
 export const Dangquanliketnap = "dangquanliketnap";
 export const Dangquanlichuyenden = "dangquanlichuyenden";
 export enum LyLuanChinhTri {
