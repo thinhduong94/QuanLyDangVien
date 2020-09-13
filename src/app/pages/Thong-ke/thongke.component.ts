@@ -215,31 +215,55 @@ export class thongkeComponent implements OnInit {
     let option = this.phieuDangVienOptionModel;
     const _temp = [];
     if(option.dot !== "" && option.nam !== ""){
-      let nam = parseInt(option.nam) ;
-      if(option.dot === Dot1){
-        nam++;
+      const [minDate = "",maxDate = ""] = option.dot.split("-");
+      let maxYear = parseInt(option.nam);
+      let minYear = parseInt(option.nam) ;
+      if(maxDate === Dot1){
+        maxYear++;
       }
-      let date = `${option.dot}/${option.nam}`;
-      const getAge = (ngayVaoDang) => Math.floor((new Date(date).getTime() - new Date(ngayVaoDang.replace( /(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3")).getTime()) / 3.15576e+10);
+      let date = `${maxDate}/${maxYear}`;
+      const getAge = (ngayVaoDang) => Math.floor((new Date(date).getTime() - new Date(ngayVaoDang).getTime()) / 3.15576e+10);
       temp.forEach(dv=>{
-        dv.tuoiDang = getAge(dv.ngayVaoDang).toString();
-        if(this.tuoiDangTron.includes(Number.parseInt(dv.tuoiDang))){
+        dv.tuoiDang = getAge(dv.ngayVaoDang.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3")).toString();
+        const [day,month] = dv.ngayVaoDang.split("/");
+        const ngayVaoDangNew = `${month}/${day}/${maxYear}`;
+        const max = date;
+        const min = `${minDate}/${minYear}`
+        const checkInRange = this.checkRangeDate(min,max,ngayVaoDangNew);
+        if(checkInRange && this.tuoiDangTron.includes(Number.parseInt(dv.tuoiDang))){
           _temp.push(dv);
         }
       });
     }
     this.tkDsNhanHuyHieuDang = _temp;
   }
+  checkRangeDate(min,max,current){
+    var today = new Date(current).getTime();
+    var from = new Date(min).getTime();
+    var to = new Date(max).getTime();
+    if(today >= from && today <= to) {
+        return true;
+    }
+    return false;
+  }
   chayBaoCaoDanhHieuDangPhuong(){
     let temp = [...this.tkDangVienDangQuanLyModels];
     let option = this.phieuDangVienOptionModel;
-    let date = `${option.dotPhuong}/${option.nam}`;
     const _temp = [];
-    if(option.dot !== "" && option.nam !== ""){
+    if(option.dotPhuong !== "" && option.nam !== ""){
+      const [minDate = "",maxDate = ""] = option.dotPhuong.split("-");
+      let maxYear = parseInt(option.nam);
+      let minYear = parseInt(option.nam) ;
+      let date = `${maxDate}/${maxYear}`;
       const getAge = (ngayVaoDang) => Math.floor((new Date(date).getTime() - new Date(ngayVaoDang.replace( /(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3")).getTime()) / 3.15576e+10);
       temp.forEach(dv=>{
         dv.tuoiDang = getAge(dv.ngayVaoDang).toString();
-        if(this.tuoiDangTronPhuong.includes(Number.parseInt(dv.tuoiDang))){
+        const [day="",month=""] = dv.ngayVaoDang.split("/");
+        const ngayVaoDangNew = `${month}/${day}/${maxYear}`;
+        const max = date;
+        const min = `${minDate}/${minYear}`
+        const checkInRange = this.checkRangeDate(min,max,ngayVaoDangNew);
+        if(checkInRange && this.tuoiDangTronPhuong.includes(Number.parseInt(dv.tuoiDang))){
           _temp.push(dv);
         }
       });

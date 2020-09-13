@@ -18,7 +18,17 @@ export class DangVien213Service {
                 }
             });
     }
-
+    public checkDangVien213BeforInsert(item:DangVien213) : Promise<DangVien213> {
+        const sql = "SELECT * FROM dangvien213 WHERE maDv = $maDv";
+        const values = { $maDv: item.maDv };
+        return TheDb.selectOne(sql, values).then((row) => {
+          if (row) {
+            return null;
+          } else {
+            return item;
+          }
+        });
+      }
     public getAll(): Promise<DangVien213[]> {
         const sql = `SELECT * FROM dangvien213 WHERE trangThai = 0`;
         const values = {};

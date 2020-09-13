@@ -11,6 +11,7 @@ import { imageComponent } from '../share/image/image.component';
 import { ExcelService } from 'src/app/service/excel.service';
 import { alertComponent } from '../share/alert/alert.component';
 import { importExcelComponent } from '../share/importExcel/importExcel.component';
+import { GioiTinh } from 'src/app/const/drop-down-data.const';
 @Component({
   selector: 'app-dangvien213',
   templateUrl: './dangvien213.component.html',
@@ -32,7 +33,7 @@ export class DangVien213Component implements OnInit {
   ngOnInit() {
     const checkDB = setInterval(()=>{
       if(TheDb.db){
-        this.getChidos();
+        this.getDangVien213();
         clearInterval(checkDB);
       }
     },10)
@@ -45,13 +46,16 @@ export class DangVien213Component implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.getChidos();
+      this.getDangVien213();
     });
   }
-  public getChidos() {
+  public getDangVien213() {
     this.dangVien213Service.getAll()
         .then((dangVien213s) => {
             console.log(dangVien213s);
+            dangVien213s.forEach((dv) => {
+              dv.gioTinh = GioiTinh[`display${dv.gioTinh}`];
+            });
             this.dangVien213s = dangVien213s;
             this.loadData();
         });
@@ -66,7 +70,7 @@ export class DangVien213Component implements OnInit {
   }
   public removeItem(id:number){
     this.dangVien213Service.delete(id).then(()=>{
-      this.getChidos();
+      this.getDangVien213();
     })
   }
   public openImgDialog(img?:string): void {
@@ -79,7 +83,6 @@ export class DangVien213Component implements OnInit {
   }
   exportToExcel() {
     this.excelService.exportAsExcelFile(this.dangVien213s,'DangVien213');
-    this.showAlert("Đã hoàn thành.");
    }
    showAlert(mess:string){
     const dialogRef = this.dialog.open(alertComponent, {
@@ -93,7 +96,20 @@ export class DangVien213Component implements OnInit {
       data: {sheet : 'DangVien213'}
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      let arrayCallCheckChiBo = [];
+      (result as []).forEach((item:DangVien213)=>{
+        arrayCallCheckChiBo.push(this.dangVien213Service.checkDangVien213BeforInsert(item));
+      });
+      Promise.all(arrayCallCheckChiBo).then(arr=>{
+        const cbs = (arr as []).filter(item=>item);
+        let arrayCallInsert = [];
+        cbs.forEach(cb=>{
+          arrayCallInsert.push(this.dangVien213Service.insert(cb));
+        });
+        Promise.all(arrayCallInsert).then(a=>{
+          this.getDangVien213();
+        });
+      });
     });
    }
 }
