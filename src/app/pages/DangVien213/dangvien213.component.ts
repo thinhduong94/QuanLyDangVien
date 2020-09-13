@@ -53,9 +53,6 @@ export class DangVien213Component implements OnInit {
     this.dangVien213Service.getAll()
         .then((dangVien213s) => {
             console.log(dangVien213s);
-            dangVien213s.forEach((dv) => {
-              dv.gioTinh = GioiTinh[`display${dv.gioTinh}`];
-            });
             this.dangVien213s = dangVien213s;
             this.loadData();
         });
