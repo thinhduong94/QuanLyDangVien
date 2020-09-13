@@ -76,16 +76,16 @@ export class DangVien213Service {
     public update(obj:DangVien213): Promise<void> {
         const sql = `
             UPDATE dangvien213
-                SET maDv : $maDv,
-                tenDv : $tenDv,
-                ngaySinh : $ngaySinh,
-                gioTinh : $gioTinh,
-                diaChi : $diaChi,
-                noiCongTac : $noiCongTac,
-                tinhTrang: $tinhTrang,
-                ngayQuanLy : $ngayQuanLy,
-                maChiDo : $maChiDo,
-                ghiChu : $ghiChu
+                SET maDv = $maDv,
+                tenDv = $tenDv,
+                ngaySinh = $ngaySinh,
+                gioTinh = $gioTinh,
+                diaChi = $diaChi,
+                noiCongTac = $noiCongTac,
+                tinhTrang = $tinhTrang,
+                ngayQuanLy = $ngayQuanLy,
+                maChiDo = $maChiDo,
+                ghiChu = $ghiChu
              WHERE id = $id`;
 
         const values = {
