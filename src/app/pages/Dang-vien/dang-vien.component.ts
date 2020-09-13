@@ -110,10 +110,6 @@ export class DangVienComponent implements OnInit, OnDestroy {
 
   exportDangVien() {
     this.excelService.exportAsExcelFile(this.danhSachDangVien, "DangVien");
-    const dialogRef = this.dialog.open(alertComponent, {
-      width: "500px",
-      data: { mess: "Đã hoàn thành" || null },
-    });
   }
 
   importDangVien() {

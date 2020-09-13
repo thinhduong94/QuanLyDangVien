@@ -90,7 +90,6 @@ export class ChiBoComponent implements OnInit {
   }
   exportToExcel() {
     this.excelService.exportAsExcelFile(this.chibos,'ChiBo');
-    this.showAlert("Đã hoàn thành.");
    }
    showAlert(mess:string){
     const dialogRef = this.dialog.open(alertComponent, {
