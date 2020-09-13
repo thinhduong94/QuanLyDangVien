@@ -54,6 +54,13 @@ export const DanhSachXepLoai = [
   { value: "hoanthanhtot", display: "Hoàn thành tốt" },
   { value: "hoanthanh", display: "Hoàn thành" },
   { value: "khonghoanthanh", display: "Không hoàn thành" },
+  { value: "", display: "Chưa xác định" },
+];
+export const DanhSachXepLoaiTk = [
+  { value: "hoanthanhxuatsac", display: "Hoàn thành xuất sắc" },
+  { value: "hoanthanhtot", display: "Hoàn thành tốt" },
+  { value: "hoanthanh", display: "Hoàn thành" },
+  { value: "khonghoanthanh", display: "Không hoàn thành" },
   { value: "", display: "Tất cả" },
 ];
 export const DanhSachMienSinhHoat = [

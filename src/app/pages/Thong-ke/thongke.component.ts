@@ -4,7 +4,7 @@ import { ExcelService } from 'src/app/service/excel.service';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { SlowBuffer } from 'buffer';
 import { ChiBoService } from 'src/app/service/chibo.service';
-import { DanhSachKyLuat, DanhSachTinhTrangDangVien , DanhSachXepLoai , XepLoai, DangQuanLi, QuanLy, KhongQuanLy, LyLuanChinhTri, DanToc, DanhSachTinhTrangQuanLy, DotTangHuyHieuDang, GioiTinh, DanhSachGioiTinh, DanhSachDanToc, DanhSachLyLuanChinhTri, Dangquanlihientai, Dangquanliketnap, Dangquanlichuyenden, DanhSachMienSinhHoat, MienSinhHoat, SinhHoat, DotTangHuyHieuDangPhuong, Dot1 } from 'src/app/const/drop-down-data.const';
+import { DanhSachKyLuat, DanhSachTinhTrangDangVien , DanhSachXepLoaiTk , XepLoai, DangQuanLi, QuanLy, KhongQuanLy, LyLuanChinhTri, DanToc, DanhSachTinhTrangQuanLy, DotTangHuyHieuDang, GioiTinh, DanhSachGioiTinh, DanhSachDanToc, DanhSachLyLuanChinhTri, Dangquanlihientai, Dangquanliketnap, Dangquanlichuyenden, DanhSachMienSinhHoat, MienSinhHoat, SinhHoat, DotTangHuyHieuDangPhuong, Dot1 } from 'src/app/const/drop-down-data.const';
 import { DanhGiaService } from 'src/app/service/danhgia.service';
 import { forkJoin } from 'rxjs';
 import { DanhGiaModel } from 'src/app/model/danhgia.model';
@@ -391,7 +391,7 @@ export class thongkeComponent implements OnInit {
   loadDropDown() {
     this.danhSachKyLuat = DanhSachKyLuat;
     this.tinhTrangDangVien = DanhSachTinhTrangDangVien;
-    this.xepLoai = DanhSachXepLoai;
+    this.xepLoai = DanhSachXepLoaiTk;
     this.dotTangHuyHieuDang = DotTangHuyHieuDang;
     this.dotTangHuyHieuDangPhuong = DotTangHuyHieuDangPhuong;
     this.gioiTinh = DanhSachGioiTinh;
