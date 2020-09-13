@@ -16,7 +16,7 @@
         <p>
             <mat-form-field appearance="legacy">
                 <mat-label>Ngày sinh</mat-label>
-                <input matInput type="date" placeholder="" [formControl]="ngaySinhControl">
+                <input matInput type="text" placeholder="" [formControl]="ngaySinhControl">
               </mat-form-field>
         </p>
         <p>
@@ -46,14 +46,18 @@
         <p>
             <mat-form-field appearance="legacy">
                 <mat-label>Ngày Quản Lý</mat-label>
-                <input matInput type="date" placeholder="" [formControl]="ngayQuanLyControl">
+                <input matInput type="text" placeholder="" [formControl]="ngayQuanLyControl">
               </mat-form-field>
         </p>
         <p>
             <mat-form-field appearance="legacy">
                 <mat-label>Mã Số Chi Bộ</mat-label>
-                <input matInput type="text" placeholder="" [formControl]="maChiDoControl">
-              </mat-form-field>
+                <mat-select [formControl]="maChiDoControl">
+                    <mat-option *ngFor="let cb of chibos" [value]="cb.maChiBo">
+                      {{cb.tenChiBo}}
+                    </mat-option>
+                  </mat-select>
+            </mat-form-field>
         </p>
         <p>
             <mat-form-field appearance="legacy">

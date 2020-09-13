@@ -3,6 +3,7 @@ import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { DangVien213Service } from 'src/app/service/dangvien213.service';
 import { DangVien213 } from 'src/app/model/dangvien213.model';
+import { ChiBoService } from 'src/app/service/chibo.service';
 export interface DialogData {
     id: number;
 }  
@@ -24,14 +25,17 @@ export interface DialogData {
     maChiDoControl = new FormControl('');
     ghiChuControl = new FormControl('');
     title:string = "Tạo Mới Thông Tin Đảng viên 213";
+    chibos = [];
     constructor(
       public dialogRef: MatDialogRef<dangvien213CreateDaiolog>,
       @Inject(MAT_DIALOG_DATA) public data: DialogData,
       public fb: FormBuilder,
       protected DangVien213Service: DangVien213Service,
       public dialog: MatDialog,
+      private chiboService: ChiBoService
       ) {
         this.createForm();
+        this.loadChiBoDropDown();
         if(data.id){
             this.title = "Thông Tin Đảng viên 213";
             this.DangVien213Service.get(data.id).then(data=>{
@@ -54,6 +58,11 @@ export interface DialogData {
     onNoClick(): void {
       this.dialogRef.close();
     }
+    loadChiBoDropDown() {
+        this.chiboService.getAll().then((result) => {
+          this.chibos = result;
+        });
+      }
     save(){
         let dangVien213 = this.models.value as DangVien213;
         if(this.data.id){
