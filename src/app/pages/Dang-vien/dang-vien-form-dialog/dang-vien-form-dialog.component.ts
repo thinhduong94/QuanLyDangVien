@@ -16,7 +16,14 @@ import { DangVienService } from "src/app/service/dangvien.service";
 import { ChiBoService } from "src/app/service/chibo.service";
 import * as html2pdf from "html2pdf.js";
 import { DangVienPdf } from "../dang-vien-pdf/dang-vien-pdf.component";
-import { DanhSachGioiTinh } from "src/app/const/drop-down-data.const";
+import {
+  DanhSachGioiTinh,
+  DanhSachKyLuat,
+  DanhSachTinhTrangQuanLy,
+  DanhSachDanToc,
+  DanhSachLyLuanChinhTri,
+  DanhSachHuyHieu,
+} from "src/app/const/drop-down-data.const";
 @Component({
   selector: "dang-vien-form-dialog",
   templateUrl: "dang-vien-form-dialog.component.html",
@@ -36,46 +43,11 @@ export class DangVienFormDialog implements OnInit {
   @ViewChild("topdf") toPdf: ElementRef;
   dangVienForm: FormGroup;
   chibos = [];
-  danhSachHuyHieu = [
-    { value: "30", display: "30 năm" },
-    { value: "40", display: "40 năm" },
-    { value: "45", display: "45 năm" },
-    { value: "50", display: "50 năm" },
-    { value: "55", display: "55 năm" },
-    { value: "60", display: "60 năm" },
-    { value: "65", display: "65 năm" },
-    { value: "70", display: "70 năm" },
-    { value: "75", display: "75 năm" },
-    { value: "80", display: "80 năm" },
-    { value: "85", display: "85 năm" },
-    { value: "90", display: "90 năm" },
-  ];
-  danhSachKyLuat = [
-    { value: "khientrach", display: "Khiển trách" },
-    { value: "canhcao", display: "Cảnh cáo" },
-    { value: "cachchuc", display: "Cách chức" },
-    { value: "khaitru", display: "Khai trừ" },
-  ];
-  danhSachTinhTrangQuanLy = [
-    { value: "dangquanlihientai", display: "Đang quản lí(hiện tại)" },
-    { value: "dangquanliketnap", display: "Đang quản lí(kết nạp)" },
-    { value: "dangquanlichuyenden", display: "Đang quản lí(chuyển đến)" },
-    { value: "chuyendi", display: "Chuyển đi" },
-    { value: "khaitru", display: "Khai trừ" },
-    { value: "xoaten", display: "Xóa tên" },
-    { value: "xinrakhoidang", display: "Xin ra khỏi đảng" },
-    { value: "chet", display: "Chết" },
-  ];
-  danhSachDanToc = [
-    { value: "kinh", display: "Kinh" },
-    { value: "hoa", display: "Hoa" },
-    { value: "khac", display: "Khác" },
-  ];
-  danhSachLyLuanChinhTri = [
-    { value: "socap", display: "Sơ cấp" },
-    { value: "trungcap", display: "Trung cấp" },
-    { value: "caocap", display: "Cao cấp" },
-  ];
+  danhSachHuyHieu = DanhSachHuyHieu;
+  danhSachKyLuat = DanhSachKyLuat;
+  danhSachTinhTrangQuanLy = DanhSachTinhTrangQuanLy;
+  danhSachDanToc = DanhSachDanToc;
+  danhSachLyLuanChinhTri = DanhSachLyLuanChinhTri;
   danhSachGioiTinh = DanhSachGioiTinh;
   ngOnInit() {
     this.initForm();
