@@ -250,26 +250,30 @@
       <input matInput type="text" formControlName="quaTrinhHoatDongVaCongTac">
     </mat-form-field> -->
     <h1 style="text-align:center">21) Tóm tắt quá trình hoạt động và công tác</h1>
-    <div>
-      <b>Từ tháng,năm đến tháng,năm</b> &nbsp;&nbsp;&nbsp; 
-      <b>Làm gì, chức vụ, đơn vị công tác (Đảng, chính quyền, đoàn thể, kinh tế, văn hóa, xã hội, ...)</b>
+    <div class="table-textarea">
+      <div>
+        <b>Từ tháng,năm đến tháng,năm</b> &nbsp;&nbsp;
+        <b>Làm gì, chức vụ, đơn vị công tác (Đảng, chính quyền, đoàn thể, kinh tế, văn hóa, xã hội, ...)</b>
+      </div>
+      <textarea class="full-width" rows="5" formControlName="quaTrinhHoatDongVaCongTac"
+        placeholder="Từ tháng, năm đến tháng năm - Làm nghề gì, chức vụ, đơn vị công tác (Đảng, chính quyền, đoàn thể, kinh tế, văn hoá, xã hội...)"></textarea>
     </div>
-    <textarea class="full-width" rows="5" formControlName="quaTrinhHoatDongVaCongTac"
-      placeholder="Từ tháng, năm đến tháng năm - Làm nghề gì, chức vụ, đơn vị công tác (Đảng, chính quyền, đoàn thể, kinh tế, văn hoá, xã hội...)"></textarea>
     <!-- <mat-form-field appearance="legacy" class="full-width">
       <mat-label>22) Đào tạo bồi dưỡng về chuyên môn, nghiệp vụ, lý luận chính trị, ngoại ngữ</mat-label>
       <input matInput type="text" formControlName="daoTao">
     </mat-form-field> -->
-    <h1 style="text-align:center">22) Đào tạo bồi dưỡng về chuyên môn, nghiệp vụ, lý luận chính trị, ngoại ngữ</h1>
-    <div>
-      <b>Tên Trường</b> &nbsp;&nbsp;&nbsp; 
-      <b>Ngành học hoặc tên lớp học</b> &nbsp;&nbsp;&nbsp; 
-      <b>Từ tháng/năm đến tháng/năm</b> &nbsp;&nbsp;&nbsp; 
-      <b>Hình thức học</b> &nbsp;&nbsp;&nbsp; 
-      <b>Văn bằng, chứng trỉ, trình độ gì</b>
+    <div class="table-textarea">
+      <h1 style="text-align:center">22) Đào tạo bồi dưỡng về chuyên môn, nghiệp vụ, lý luận chính trị, ngoại ngữ</h1>
+      <div>
+        <b>Tên Trường</b> &nbsp;&nbsp;
+        <b>Ngành học hoặc tên lớp học</b> &nbsp;&nbsp;
+        <b>Từ tháng/năm đến tháng/năm</b> &nbsp;&nbsp;
+        <b>Hình thức học</b> &nbsp;&nbsp;
+        <b>Văn bằng, chứng trỉ, trình độ gì</b>
+      </div>
+      <textarea class="full-width" rows="5" formControlName="daoTao"
+        placeholder="Tên trường - Ngành học hoặc tên lớp học - Từ tháng, năm đến tháng, năm - Hình thức học - Văn bằng, chứng chỉ, trình độ"></textarea>
     </div>
-    <textarea class="full-width" rows="5" formControlName="daoTao"
-      placeholder="Tên trường - Ngành học hoặc tên lớp học - Từ tháng, năm đến tháng, năm - Hình thức học - Văn bằng, chứng chỉ, trình độ"></textarea>
     <mat-form-field appearance="legacy" class="full-width">
       <mat-label>23) Khen thưởng</mat-label>
       <input matInput type="text" formControlName="khenThuong">
@@ -376,14 +380,16 @@
       <mat-label>Có người thân ở nước ngoài<i>(tên người, quan hệ gì, ở nước nào)</i></mat-label>
       <input matInput type="text" formControlName="coNguoiThanNuocNgoai">
     </mat-form-field>
-    <h1 style="text-align:center">29) Quan hệ gia đình</h1>
-    <div>
-      <b>Quan hệ</b> &nbsp;&nbsp;&nbsp; 
-      <b>Họ và tên</b> &nbsp;&nbsp;&nbsp; 
-      <b>Năm sinh</b> &nbsp;&nbsp;&nbsp; 
-      <b>Quê quán, nơi ở hiện nay(trong,ngoài nước),nghề nghiệp, chức danh, chức vụ, đơn vị công tác</b>
+    <div class="table-textarea">
+      <h1 style="text-align:center">29) Quan hệ gia đình</h1>
+      <div>
+        <b>Quan hệ</b> &nbsp;&nbsp;
+        <b>Họ và tên</b> &nbsp;&nbsp;
+        <b>Năm sinh</b> &nbsp;&nbsp;
+        <b>Quê quán, nơi ở hiện nay(trong,ngoài nước),nghề nghiệp, chức danh, chức vụ, đơn vị công tác</b>
+      </div>
+      <textarea class="full-width" rows="5" formControlName="quanHeGiaDinh"></textarea>
     </div>
-    <textarea class="full-width" rows="5" formControlName="quanHeGiaDinh"></textarea>
     <h1 style="text-align:center">30) Hoàn cảnh kinh tế của bản thân và gia đình</h1>
     <mat-form-field appearance="legacy" style="width:70%;">
       <mat-label>Tổng thu nhập của hộ gia đình<i>(trong 1 năm)</i></mat-label>

@@ -59,3 +59,13 @@ mat-form-field {
 .unit-field {
   width: calc(100% - 35px);
 }
+
+.table-textarea {
+  text-align: center;
+  b { 
+    font-size: 0.9em;
+  }
+  textarea {
+    width: 820px !important;
+  }
+}

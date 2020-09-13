@@ -80,7 +80,7 @@ td {
 
 table {
   width: 100%;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .page-title {
@@ -202,4 +202,9 @@ input[type="checkbox"] {
   tr {
     border: solid 1px;
   }
+}
+
+pre {
+  font-size: 1.2em;
+  font-family: sans-serif;
 }
