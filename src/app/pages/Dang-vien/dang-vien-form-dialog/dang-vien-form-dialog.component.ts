@@ -237,7 +237,7 @@ export class DangVienFormDialog implements OnInit {
       chucVuNguoiGioiThieuHai: new FormControl(""),
       ngayChinhThucVaoLanHai: new FormControl(""),
       chiBoChinhThucVaoDangLanHai: new FormControl(""),
-      kyLuat: new FormControl(""),
+      kyLuat: new FormControl("khong"),
       ngayQuyetDinhKetNap: new FormControl(""),
       giaoDucPhoThong: new FormControl(""),
       giaoDucNgheNghiep: new FormControl(""),

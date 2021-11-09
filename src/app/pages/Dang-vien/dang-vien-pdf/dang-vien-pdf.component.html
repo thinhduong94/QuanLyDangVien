@@ -12,24 +12,19 @@
           <div class="field-container">
             <div class="full-width">
               <span class="field field-title">ĐẢNG BỘ TỈNH<small>(tương
-                  đương)</small>:</span><span class="field-data">{{dangvien.dangBoTinh}}</span>
+                  đương)</small>:</span><span [ngClass]="dangvien.dangBoTinh && dangvien.dangBoTinh.length > 0 ? 'field-data-multi-row-span' : 'field-data'">{{dangvien.dangBoTinh}}</span>
             </div>
           </div>
           <div class="field-container">
             <div class="full-width">
               <span class="field field-title">ĐẢNG BỘ HUYỆN:<small>(tương
-                  đương)</small>:</span><span class="field-data">{{dangvien.dangBoHuyen}}</span>
+                  đương)</small>:</span><span [ngClass]="dangvien.dangBoHuyen && dangvien.dangBoHuyen.length > 0 ? 'field-data-multi-row-span' : 'field-data'">{{dangvien.dangBoHuyen}}</span>
             </div>
           </div>
           <div class="field-container">
             <div class="full-width">
               <span class="field field-title">ĐẢNG BỘ, CHI BỘ CƠ SỞ:</span><span
-                class="field-data">{{dangvien.chiBoCoSo}}</span>
-            </div>
-          </div>
-          <div class="field-container">
-            <div class="full-width">
-              <span class="field field-title">ĐẢNG BỘ BỘ PHẬN:</span><span class="field-data">{{dangvien.boPhan}}</span>
+              [ngClass]="dangvien.chiBoCoSo && dangvien.chiBoCoSo.length > 0 ? 'field-data-multi-row-span' : 'field-data'">{{dangvien.chiBoCoSo}}</span>
             </div>
           </div>
           <div class="field-container">
@@ -120,9 +115,9 @@
           <span class="field field-title">10) Thành phần gia đình:</span><span
             class="field-data">{{dangvien.thanhPhanGiaDinh}}</span>
         </div>
-        <div class="field" style="width:50%">
-          <span class="field field-title">11) Nghề nghiệp hiện nay:</span> <span
-            class="field-data">{{dangvien.ngheNghiep}}</span></div>
+        <div class="field" style="width:50%; height:auto">
+          <span class="field field-title">11) Nghề nghiệp hiện nay:</span><span
+          [ngClass]="dangvien.ngheNghiep && dangvien.ngheNghiep.length > 0 ? 'field-data-multi-row-span' : 'field-data'">{{dangvien.ngheNghiep}}</span></div>
       </div>
       <div class="field-container">
         <div style="width:30%">
@@ -247,6 +242,8 @@
           <span class="field-data">{{dangvien.tinHoc}}</span>
         </div>
       </div>
+    </div>
+    <div class="page">
       <div class="field-container">
         <div style="width:50%">
           <span class="field field-title">18) Tình trạng sức khỏe bản thân:</span><span
@@ -280,8 +277,6 @@
             class="field-data">{{dangvien.canCuocCongDan}}</span>
         </div>
       </div>
-    </div>
-    <div class="page">
       <p class="header">21)TÓM TẮT QUÁ TRÌNH HOẠT ĐỘNG VÀ CÔNG TÁC</p>
       <div class="field-container" style="display: block;">
         <table>
@@ -290,7 +285,7 @@
             <b>Làm gì, chức vụ, đơn vị công tác<i>(Đảng, chính quyền, đoàn thể, kinh tế, văn hóa, xã hội ...)</i></b>
           </tr>
         </table>
-        <pre style="height: 1000px;" class="txt-area">{{dangvien.quaTrinhHoatDongVaCongTac}}</pre>
+        <pre style="height: 800px;" class="txt-area">{{dangvien.quaTrinhHoatDongVaCongTac}}</pre>
       </div>
     </div>
     <div class="page">
@@ -437,7 +432,7 @@
           <span class="field field-title">d) Bản thân có làm việc trong chế độ cũ <small><i>(ngày, tháng, năm; chức vụ;
                 nơi
                 làm việc ...)</i></small>:</span>
-          <span class="field-data multi-row-span">{{dangvien.lamViecTrongCheDoCu}}</span>
+          <span [ngClass]="dangvien.lamViecTrongCheDoCu && dangvien.lamViecTrongCheDoCu.length > 0 ? 'field-data-multi-row-span' : 'field-data'">{{dangvien.lamViecTrongCheDoCu}}</span>
         </div>
       </div>
       <p class="header">28) QUAN HỆ VỚI NƯỚC NGOÀI</p>
